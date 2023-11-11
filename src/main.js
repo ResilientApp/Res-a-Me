@@ -10,6 +10,10 @@ import {createAppRouter} from "./router/router.js"
 import {createApp} from "vue"
 import App from './vue/core/App.vue'
 
+import { createVuetify } from 'vuetify'
+import 'vuetify/styles'
+import * as components from 'vuetify/components'
+
 const data = useData()
 
 data.fetchEssentials().then(r => {
@@ -20,5 +24,8 @@ data.fetchEssentials().then(r => {
     navigation.init(data.getSections(), data.getCategories())
 
     const router = createAppRouter()
-    createApp(App).use(router).mount('#app')
+    const vuetify = createVuetify({
+        components,
+    })
+    createApp(App).use(router).use(vuetify).mount('#app')
 })

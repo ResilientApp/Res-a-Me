@@ -9,6 +9,7 @@
         color: white;
         right: 40px;
         top: 20px;
+        text-transform: none;
       "
     >
       Sign in
@@ -16,7 +17,7 @@
 
     <v-card
       theme="light"
-      class="pa-8 d-flex justify-center align-center flex-wrap"
+      class="d-flex justify-center align-center flex-wrap"
       style="width: 100%; height: 100%"
     >
       <v-responsive max-width="550">
@@ -28,21 +29,44 @@
         ></v-img>
 
         <v-autocomplete
-          :items="items"
-          append-inner-icon="mdi-microphone"
-          auto-select-first
-          class="flex-full-width"
-          density="comfortable"
-          item-props
-          menu-icon=""
-          placeholder="Search People"
+          v-model="friends"
+          :disabled="isUpdating"
+          :items="people"
+          chips
+          color="blue-grey-lighten-2"
+          item-title="name"
+          item-value="name"
+          label="Search People"
           prepend-inner-icon="mdi-magnify"
           rounded
           theme="light"
           variant="outlined"
-        ></v-autocomplete>
+        >
+          <template v-slot:chip="{ props, item }">
+            <v-chip
+              v-bind="props"
+              :prepend-avatar="item.raw.avatar"
+              :text="item.raw.name"
+            ></v-chip>
+          </template>
 
-        <v-container class="text-center">
+          <template v-slot:item="{ props, item }">
+            <v-list-item
+              v-bind="props"
+              :prepend-avatar="item?.raw?.avatar"
+              :title="item?.raw?.name"
+              :subtitle="item?.raw?.group"
+            ></v-list-item>
+          </template>
+        </v-autocomplete>
+
+        <v-row dense justify="center" class="pt-5 pb-5">
+            <v-btn variant="flat" color="#ededf0" style="text-transform: none;" class="mr-5"> Res-A-Me Search </v-btn>
+            <v-btn variant="flat" color="#ededf0" style="text-transform: none;"> I'm Feeling Lucky </v-btn>
+        </v-row>
+        
+
+        <v-container class="text-center pt-15">
           <v-row justify="center" dense>
             <v-col v-for="(shortcut, i) in shortcuts" :key="i" cols="auto">
               <v-card
@@ -55,7 +79,7 @@
               >
                 <v-avatar
                   :icon="shortcut.icon"
-                  color="white"
+                  color="black"
                   variant="tonal"
                   class="mb-2"
                 ></v-avatar>
@@ -85,7 +109,6 @@
                 <v-card title="Add shortcut" rounded="lg">
                   <template v-slot:text>
                     <v-label class="text-caption">Name</v-label>
-
                     <v-text-field
                       density="compact"
                       variant="solo-filled"
@@ -129,10 +152,68 @@
   </v-app>
 </template>
 
-<script setup></script>
+<script>
+export default {
+  data() {
+    const srcs = {
+      1: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+      2: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
+      3: "https://cdn.vuetifyjs.com/images/lists/3.jpg",
+      4: "https://cdn.vuetifyjs.com/images/lists/4.jpg",
+      5: "https://cdn.vuetifyjs.com/images/lists/5.jpg",
+    };
 
-<style lang="scss">
+    return {
+      autoUpdate: true,
+      isUpdating: false,
+      name: "Midnight Crew",
+      friends: [],
+      people: [
+        // TODO: https://github.com/vuetifyjs/vuetify/issues/15721
+        // { header: 'Group 1' },
+        { name: "Sandra Adams", group: "Group 1", avatar: srcs[1] },
+        { name: "Ali Connors", group: "Group 1", avatar: srcs[2] },
+        { name: "Trevor Hansen", group: "Group 1", avatar: srcs[3] },
+        { name: "Tucker Smith", group: "Group 1", avatar: srcs[2] },
+        // { divider: true },
+        // { header: 'Group 2' },
+        { name: "Britta Holt", group: "Group 2", avatar: srcs[4] },
+        { name: "Jane Smith ", group: "Group 2", avatar: srcs[5] },
+        { name: "John Smith", group: "Group 2", avatar: srcs[1] },
+        { name: "Sandra Williams", group: "Group 2", avatar: srcs[3] },
+      ],
+      shortcuts: [
+        {
+          icon: "mdi-github",
+          title: "Master",
+          href: "https://github.com/vuetifyjs/vuetify",
+          color: "white",
+        },
+        {
+          icon: "mdi-github",
+          title: "Dev",
+          href: "https://github.com/vuetifyjs/vuetify/tree/dev",
+        },
+        {
+          icon: "mdi-github",
+          title: "Stable",
+          href: "https://github.com/vuetifyjs/vuetify/tree/v2-stable",
+        },
+        {
+          icon: "mdi-github",
+          title: "My Pull Requests",
+          href: "https://github.com/vuetifyjs/vuetify/pulls/johnleider",
+        },
+      ],
+      title: "The summer breeze",
+      timeout: null,
+    };
+  },
+};
+</script>
+
+<style>
 body {
-  background-color: #fcfcfc;
+  background-color: #fcfcfc !important;
 }
 </style>

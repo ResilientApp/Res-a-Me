@@ -1,6 +1,49 @@
 <template>
   <v-app style="width: 100%; height: 100%">
     <v-btn
+      variant="plain"
+      density="compact"
+      style="
+        position: fixed;
+        z-index: 999;
+        color: black;
+        left: 20px;
+        top: 20px;
+        text-transform: none;
+        letter-spacing: 0px;
+      "
+    >
+      About
+    </v-btn>
+    <v-btn
+      variant="plain"
+      density="compact"
+      style="
+        position: fixed;
+        z-index: 999;
+        color: black;
+        left: 80px;
+        top: 20px;
+        text-transform: none;
+        letter-spacing: 0px;
+      "
+    >
+      Settings
+    </v-btn>
+    <v-btn
+      variant="outlined"
+      style="
+        position: fixed;
+        z-index: 999;
+        color: black;
+        right: 130px;
+        top: 20px;
+        text-transform: none;
+      "
+    >
+      Register
+    </v-btn>
+    <v-btn
       variant="flat"
       color="#1a73e8"
       style="
@@ -38,6 +81,9 @@
           item-value="name"
           label="Search People"
           prepend-inner-icon="mdi-magnify"
+          append-inner-icon="mdi-microphone"
+          density="comfortable"
+          auto-select-first
           rounded
           theme="light"
           variant="outlined"
@@ -61,10 +107,22 @@
         </v-autocomplete>
 
         <v-row dense justify="center" class="pt-5 pb-5">
-            <v-btn variant="flat" color="#ededf0" style="text-transform: none;" class="mr-5"> Res-A-Me Search </v-btn>
-            <v-btn variant="flat" color="#ededf0" style="text-transform: none;"> I'm Feeling Lucky </v-btn>
+          <v-btn
+            variant="flat"
+            color="#ededf0"
+            style="text-transform: none; letter-spacing: 0px"
+            class="mr-5"
+          >
+            Res-A-Me Search
+          </v-btn>
+          <v-btn
+            variant="flat"
+            color="#ededf0"
+            style="text-transform: none; letter-spacing: 0px"
+          >
+            I'm Feeling Lucky
+          </v-btn>
         </v-row>
-        
 
         <v-container class="text-center pt-15">
           <v-row justify="center" dense>
@@ -215,5 +273,9 @@ export default {
 <style>
 body {
   background-color: #fcfcfc !important;
+  font: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
+    Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
 }
 </style>

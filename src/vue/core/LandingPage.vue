@@ -31,19 +31,6 @@
       Settings
     </v-btn>
     <v-btn
-      variant="outlined"
-      style="
-        position: fixed;
-        z-index: 999;
-        color: black;
-        right: 130px;
-        top: 20px;
-        text-transform: none;
-      "
-    >
-      Register
-    </v-btn>
-    <v-btn
       variant="flat"
       color="#1a73e8"
       style="

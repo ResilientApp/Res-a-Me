@@ -4,6 +4,7 @@
  */
 import {useData} from "../composables/data.js"
 import RouterView from "../vue/core/RouterView.vue"
+import SearchView from "../vue/core/SearchView.vue"
 import {createRouter, createWebHistory} from "vue-router"
 
 export function createAppRouter() {
@@ -12,8 +13,14 @@ export function createAppRouter() {
     const homeSection = sections[0] || {id: 'home'}
 
     /** Create Home **/
-    const routeList = [{
-        path: '/',
+    const routeList = [
+    {
+        path:"/",
+        name:"newhome",
+        component:SearchView,
+    },
+    {
+        path: '/home',
         name: homeSection['id'],
         component: RouterView
     }]
@@ -23,7 +30,7 @@ export function createAppRouter() {
         let sectionId = sections[i].id
 
         routeList.push({
-            path: '/' + sectionId,
+            path: '/home' + sectionId,
             name: sectionId,
             component: RouterView
         })

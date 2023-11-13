@@ -7,6 +7,7 @@
          v-show="!utils.isTouchDevice() || appDidLoad">
         <router-view />
     </div>
+
 </template>
 
 <script setup>

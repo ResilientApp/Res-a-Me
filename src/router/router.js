@@ -5,6 +5,7 @@
 import {useData} from "../composables/data.js"
 import RouterView from "../vue/core/RouterView.vue"
 import LoginView from "../vue/core/LoginView.vue"
+import LandingPage from "../vue/core/LandingPage.vue"
 import {createRouter, createWebHistory} from "vue-router"
 
 export function createAppRouter() {
@@ -14,6 +15,11 @@ export function createAppRouter() {
 
     /** Create Home **/
     const routeList = [
+        {
+            path: '/',
+            name: "LandingPage",
+            component: LandingPage
+        },
         {
             path: '/login',
             name: "login",

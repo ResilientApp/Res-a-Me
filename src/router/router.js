@@ -2,30 +2,37 @@
  * Created by Ryan Balieiro on 08.23.2023
  * Main router.
  */
-import { useData } from "../composables/data.js"
+import {useData} from "../composables/data.js"
 import RouterView from "../vue/core/RouterView.vue"
-import { createRouter, createWebHistory } from "vue-router"
+import LoginView from "../vue/core/LoginView.vue"
 import LandingPage from "../vue/core/LandingPage.vue"
+import {createRouter, createWebHistory} from "vue-router"
 
 export function createAppRouter() {
     const data = useData()
     const sections = data.getSections()
-    const homeSection = sections[0] || { id: 'home' }
+    const homeSection = sections[0] || {id: 'home'}
 
     /** Create Home **/
-    const routeList = [{
-        path: '/resume',
+    const routeList = [
+        {
+            path: '/',
+            name: "LandingPage",
+            component: LandingPage
+        },
+        {
+            path: '/login',
+            name: "login",
+            component: LoginView
+        },
+        {
+        path: '/home',
         name: homeSection['id'],
         component: RouterView
-    },
-    {
-        path: '/',
-        name: "LandingPage",
-        component: LandingPage
     }]
 
     /** Create Section Routes **/
-    for (let i = 1; i < sections.length; i++) {
+    for(let i = 1 ; i < sections.length ; i++) {
         let sectionId = sections[i].id
 
         routeList.push({

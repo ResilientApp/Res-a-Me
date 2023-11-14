@@ -56,5 +56,7 @@ def modifyProfile(public_key, private_key, metadata, userInfo):
         prepared_transfer_tx, private_keys=private_key
     )
     sent_transfer_tx = db.transactions.send_commit(fulfilled_transfer_tx)
+    return sent_transfer_tx
+
 if __name__ == "__main__":
     alice, bob = generate_keypair(), generate_keypair()

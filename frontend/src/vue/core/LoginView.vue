@@ -15,7 +15,7 @@
                             </v-toolbar>
                             <v-card-text>
                                 <form ref="form" @submit.prevent="isRegister ? register() : login()">
-                                    <v-text-field v-model="username" label="Username or email" required></v-text-field>
+                                    <v-text-field v-model="email" label="email" required></v-text-field>
                                     <v-text-field v-model="password" label="Password" type="password" required></v-text-field>
                                     <v-text-field v-if="isRegister" v-model="confirmPassword" label="Confirm Password" type="password" required></v-text-field>
                                     <div class="red--text">{{errorMessage}}</div>
@@ -63,7 +63,7 @@ export default {
     methods: {
         login() {
             const userData = {
-                username: this.username,
+                email: this.email,
                 password: this.password
             };
 

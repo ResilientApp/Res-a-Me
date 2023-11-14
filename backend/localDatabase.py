@@ -1,4 +1,4 @@
-from resdb import generateKeyForUser, createProfile
+# from resdb import generateKeyForUser, createProfile
 
 # loginDatabase = {}
 loginDatabase = {
@@ -18,7 +18,7 @@ def getLoginInfo(email):
         return loginDatabase[email]
     
 def setLoginInfo(email, password):
-    public_key, private_key = generateKeyForUser()
+    # public_key, private_key = generateKeyForUser()
     new_user = f'user{user_cnt}'
     loginDatabase[email] = {
         "password": password,
@@ -26,9 +26,9 @@ def setLoginInfo(email, password):
     }
     userInfoDatabase[new_user] = {
         "email": email,
-        "publicKey":public_key
+        # "publicKey":public_key
     }
-    userKeyPairDatabase[public_key] = private_key
+    # userKeyPairDatabase[public_key] = private_key
     
 def getUserInfo(userId):
     if userId not in userInfoDatabase:

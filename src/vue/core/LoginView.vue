@@ -19,7 +19,7 @@
                                     <v-text-field v-model="password" label="Password" type="password" required></v-text-field>
                                     <v-text-field v-if="isRegister" v-model="confirmPassword" label="Confirm Password" type="password" required></v-text-field>
                                     <div class="red--text">{{errorMessage}}</div>
-                                    <v-btn type="submit" class="mt-4 toolbar-banner" block>{{isRegister ? stateObj.register.name : stateObj.login.name}}</v-btn>
+                                    <v-btn type="submit" class="mt-4 toolbar-banner" block style="color: white">{{isRegister ? stateObj.register.name : stateObj.login.name}}</v-btn>
                                     <v-row justify="center">
                                         <v-col cols="12" class="text-center">
                                             <div class="grey--text mt-4 yellow-text" @click="isRegister = !isRegister;">

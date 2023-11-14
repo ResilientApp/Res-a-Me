@@ -41,8 +41,7 @@
         top: 20px;
         text-transform: none;
       "
-      @click = "signin()"
-    >
+      @click="signin">
       Sign in
     </v-btn>
 
@@ -200,6 +199,11 @@
 
 <script>
 export default {
+  methods:{
+    signin(){
+      this.$router.push('/login')
+    }
+  },
   data() {
     const srcs = {
       1: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
@@ -254,11 +258,6 @@ export default {
       title: "The summer breeze",
       timeout: null,
     };
-  },
-  method:{
-    signin(){
-      this.$router.push('/login')
-    }
   }
 };
 </script>

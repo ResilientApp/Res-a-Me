@@ -49,7 +49,6 @@ if __name__ == "__main__":
                 "email": "jack@gmail.com",
                 "publicKey":"CX62ckRaUucsVi3cbxCkSAcxR7zsBBNSPPrEHz26X4vz",
                 },
-
     }
     
     userKeyPairDatabase = {

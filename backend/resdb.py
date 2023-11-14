@@ -29,12 +29,32 @@ def createProfile(user, public_key, private_key, metadata):
     fulfilled_token_tx = db.transactions.fulfill(
         prepared_token_tx, private_keys=private_key
     )
-    return fulfilled_token_tx
+    sent_token_tx = db.transactions.send_commit(fulfilled_token_tx)
+    return fulfilled_token_tx, sent_token_tx
 
-def modifyProfile(user, public_key, private_key, metadata, userInfo):
-    tranfer_asset = userInfo["fulfilled_token_tx"]["id"]
+def modifyProfile(public_key, private_key, metadata, userInfo):
+    fulfilled_token_tx = userInfo["fulfilled_token_tx"]
+
+    transfer_asset = userInfo["fulfilled_token_tx"]["id"]
     output_index = 0
-
-
+    transfer_asset = {"id": fulfilled_token_tx["id"]}
+    output_index = 0
+    output = fulfilled_transfer_tx["outputs"][output_index]
+    transfer_input = {
+        "fulfillment": output["condition"]["details"],
+        "fulfills": {"output_index": output_index, "transaction_id": fulfilled_transfer_tx["id"]},
+        "owners_before": output["public_keys"],
+    }
+    prepared_transfer_tx = db.transactions.prepare(
+        operation="TRANSFER",
+        asset=transfer_asset,
+        inputs=transfer_input,
+        metadata=metadata,
+        recipients=[([public_key], 1)],
+    )
+    fulfilled_transfer_tx = db.transactions.fulfill(
+        prepared_transfer_tx, private_keys=private_key
+    )
+    sent_transfer_tx = db.transactions.send_commit(fulfilled_transfer_tx)
 if __name__ == "__main__":
     alice, bob = generate_keypair(), generate_keypair()

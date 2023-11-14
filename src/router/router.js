@@ -4,6 +4,7 @@
  */
 import {useData} from "../composables/data.js"
 import RouterView from "../vue/core/RouterView.vue"
+import LoginView from "../vue/core/LoginView.vue"
 import {createRouter, createWebHistory} from "vue-router"
 
 export function createAppRouter() {
@@ -12,8 +13,14 @@ export function createAppRouter() {
     const homeSection = sections[0] || {id: 'home'}
 
     /** Create Home **/
-    const routeList = [{
-        path: '/',
+    const routeList = [
+        {
+            path: '/',
+            name: "login",
+            component: LoginView
+        },
+        {
+        path: '/home',
         name: homeSection['id'],
         component: RouterView
     }]

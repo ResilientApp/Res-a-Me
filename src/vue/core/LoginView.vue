@@ -62,35 +62,33 @@ export default {
     },
     methods: {
         login() {
-            // const {
-            //     username
-            // } = this;
-            // console.log(username + " logged in")
-
             const userData = {
                 username: this.username,
                 password: this.password
-                };
+            };
 
-            // axios.post('http://127.0.0.1:3033/login', userData)
-            //     .then(response => {
-            //         console.log(response.data);
-            //         // Handle your response here
-            //         // Redirect the user or show a success message
-            //     })
-            //     .catch(error => {
-            //         console.error('There was an error!', error);
-            //         // Handle errors here, such as displaying a notification
-            //     });
             fetch("http://127.0.0.1:3033/login", {
-            method: "POST",
-                body: userData,
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8"
-                }
-            })
-            .then((response) => response.json())
-            .then((json) => console.log(json));
+                    method: "POST",
+                    body: JSON.stringify(userData),
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8",
+                        "Access-Control-Allow-Origin": "*"
+                    }
+                })
+                .then((response) => response.json())
+                .then((json) => {
+                    console.log(json)
+                    if (json.message === "Login successful") {
+                        console.log("Login successful")
+                        this.$router.push('/home');
+                    } else {
+                        this.errorMessage = data.message || "Login failed. Please try again.";
+                    }
+                })
+                .catch(error => {
+                    console.error('There was an error!', error);
+                    this.errorMessage = error.message || "An error occurred. Please try again.";
+                });
         },
         register() {
             if (this.password == this.confirmPassword) {
@@ -119,7 +117,7 @@ export default {
 }
 
 .toolbar-banner {
-  background-color: rgb(var(--v-theme-primary)) !important
+    background-color: rgb(var(--v-theme-primary)) !important
 }
 
 .background-image {
@@ -133,5 +131,3 @@ export default {
     color: #FF4500
 }
 </style>
-
-<!-- #9716f1 -->

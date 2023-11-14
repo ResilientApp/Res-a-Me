@@ -15,7 +15,7 @@ export function createAppRouter() {
     /** Create Home **/
     const routeList = [
         {
-            path: '/',
+            path: '/login',
             name: "login",
             component: LoginView
         },

@@ -41,6 +41,7 @@
         top: 20px;
         text-transform: none;
       "
+      @click = "signin()"
     >
       Sign in
     </v-btn>
@@ -254,6 +255,11 @@ export default {
       timeout: null,
     };
   },
+  method:{
+    signin(){
+      this.$router.push('/login')
+    }
+  }
 };
 </script>
 

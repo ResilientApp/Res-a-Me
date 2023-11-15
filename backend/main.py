@@ -1,4 +1,4 @@
-from localDatabase import getLoginInfo, setLoginInfo, getUserInfo
+from controller import getUserLogin, seUserLogin, getUserInfo, setUserInfo
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
@@ -14,7 +14,7 @@ def login():
     password = data.get('password')
 
     if email and password:
-        user = getLoginInfo(email)
+        user = getUserLogin(email)
         if user and user['password'] == password:
             return jsonify({"message": "Login successful"})
         else:
@@ -30,9 +30,9 @@ def register():
     password = data.get('password')
 
     if email and password:
-        user = getLoginInfo(email)
+        user = getUserLogin(email)
         if not user:
-            setLoginInfo(email, password)
+            seUserLogin(email, password)
             return jsonify({"message": "Register successful"})
         else:
             return jsonify({"message": "email account existed"}), 401

@@ -43,7 +43,7 @@ export default {
     name: "App",
     data() {
         return {
-            username: "",
+            email: "",
             password: "",
             confirmPassword: "",
             isRegister: false,

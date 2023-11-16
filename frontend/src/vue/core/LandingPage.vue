@@ -1,36 +1,6 @@
 <template>
   <v-app style="width: 100%; height: 100%">
     <v-btn
-      variant="plain"
-      density="compact"
-      style="
-        position: fixed;
-        z-index: 999;
-        color: black;
-        left: 20px;
-        top: 20px;
-        text-transform: none;
-        letter-spacing: 0px;
-      "
-    >
-      About
-    </v-btn>
-    <v-btn
-      variant="plain"
-      density="compact"
-      style="
-        position: fixed;
-        z-index: 999;
-        color: black;
-        left: 80px;
-        top: 20px;
-        text-transform: none;
-        letter-spacing: 0px;
-      "
-    >
-      Settings
-    </v-btn>
-    <v-btn
       variant="flat"
       color="#1a73e8"
       style="
@@ -53,9 +23,8 @@
       <v-responsive max-width="550">
         <v-img
           class="mx-auto mt-12 mb-16"
-          max-height="140"
-          max-width="240"
-          src="https://cdn.vuetifyjs.com/docs/images/logos/vuetify-logo-light-text.svg"
+          max-width="340"
+          src="../../../public/images/icons/Res-A-Me.png"
         ></v-img>
 
         <v-autocomplete
@@ -68,7 +37,6 @@
           item-value="name"
           label="Search People"
           prepend-inner-icon="mdi-magnify"
-          append-inner-icon="mdi-microphone"
           density="comfortable"
           auto-select-first
           rounded
@@ -113,7 +81,7 @@
 
         <v-container class="text-center pt-15">
           <v-row justify="center" dense>
-            <v-col v-for="(shortcut, i) in shortcuts" :key="i" cols="auto">
+            <!-- <v-col v-for="(shortcut, i) in shortcuts" :key="i" cols="auto">
               <v-card
                 :href="shortcut.href"
                 class="pa-4"
@@ -134,9 +102,9 @@
                   v-text="shortcut.title"
                 ></div>
               </v-card>
-            </v-col>
+            </v-col> -->
 
-            <v-col cols="auto">
+            <!-- <v-col cols="auto">
               <v-dialog v-model="dialog" max-width="500">
                 <template v-slot:activator="{ props }">
                   <v-card flat width="112" v-bind="props" class="pa-4">
@@ -189,7 +157,7 @@
                   </div>
                 </v-card>
               </v-dialog>
-            </v-col>
+            </v-col> -->
           </v-row>
         </v-container>
       </v-responsive>

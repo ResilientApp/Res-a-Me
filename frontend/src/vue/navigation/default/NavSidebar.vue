@@ -18,13 +18,7 @@
 
         <!-- Footer -->
         <div class="nav-sidebar-footer" v-if="profileData">
-            <!-- Language Picker -->
-            <LanguagePicker />
-
-            <!-- Credits -->
-            <div class="nav-sidebar-footer-credits text-2 mt-3 mb-3">
-                <span v-html="profileData['locales']['credits']"/>
-            </div>
+            <v-btn>Logout</v-btn>
         </div>
     </nav>
 </template>

@@ -72,7 +72,6 @@ export default {
                     body: JSON.stringify(userData),
                     headers: {
                         "Content-type": "application/json; charset=UTF-8",
-                        "Access-Control-Allow-Origin": "*"
                     }
                 })
                 .then((response) => response.json())
@@ -82,7 +81,7 @@ export default {
                         console.log("Login successful")
                         this.$router.push('/home');
                     } else {
-                        this.errorMessage = data.message || "Login failed. Please try again.";
+                        this.errorMessage = "Login failed. Please try again.";
                     }
                 })
                 .catch(error => {

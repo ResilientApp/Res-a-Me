@@ -72,15 +72,20 @@ export default {
                     body: JSON.stringify(userData),
                     headers: {
                         "Content-type": "application/json; charset=UTF-8",
-                    }
+                        "Access-Control-Allow-Origin": "*"
+                    },
+                    credentials: 'include'
                 })
                 .then((response) => response.json())
                 .then((json) => {
-                    console.log(json)
-                    if (json.message === "Login successful") {
+                    if (json.status === 200) {
                         console.log("Login successful")
+                        console.log(json)
+                        sessionStorage.setItem("access_token", json['access_token']);
+                        sessionStorage.setItem("refresh_token", json['refresh_token']);
                         this.$router.push('/home');
-                    } else {
+                    }
+                    else {
                         this.errorMessage = "Login failed. Please try again.";
                     }
                 })

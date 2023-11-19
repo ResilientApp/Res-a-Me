@@ -15,7 +15,7 @@
                             </v-toolbar>
                             <v-card-text>
                                 <form ref="form" @submit.prevent="isRegister ? register() : login()">
-                                    <v-text-field v-model="email" label="email" required></v-text-field>
+                                    <v-text-field v-model="email" :rules="[rules.emailRules]" label="email" required></v-text-field>
                                     <v-text-field v-model="password" label="Password" type="password" required></v-text-field>
                                     <v-text-field v-if="isRegister" v-model="confirmPassword" label="Confirm Password" type="password" required></v-text-field>
                                     <div class="red--text">{{errorMessage}}</div>
@@ -57,46 +57,102 @@ export default {
                     name: 'Login',
                     message: 'Register'
                 }
+            },
+            rules: {
+                emailRules: [
+                    value => !!value || 'E-mail is required',
+                    value => /^[a-z.-]+@[a-z.-]+\.[a-z]+$/i.test(value) || 'Must be a valid e-mail'
+                ]
             }
         };
     },
     methods: {
+        validateEmailFormat() {
+            for (let rule of this.rules.emailRules) {
+                const result = rule(this.email);
+                if (result !== true) {
+                    this.errorMessage = result;
+                    return false;
+                }
+            }
+            return true;
+        },
         login() {
             const userData = {
                 email: this.email,
                 password: this.password
             };
 
+            if (!this.validateEmailFormat()) {
+                return
+            }
+
             fetch("http://127.0.0.1:3033/login", {
-                    method: "POST",
-                    body: JSON.stringify(userData),
-                    headers: {
-                        "Content-type": "application/json; charset=UTF-8",
-                        "Access-Control-Allow-Origin": "*"
-                    }
-                })
-                .then((response) => response.json())
-                .then((json) => {
+                method: "POST",
+                body: JSON.stringify(userData),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Access-Control-Allow-Origin": "*"
+                },
+                credentials: 'include'
+            })
+            .then((response) => response.json())
+            .then((json) => {
+                if (json.status === 200) {
+                    console.log("Login successful")
                     console.log(json)
-                    if (json.message === "Login successful") {
-                        console.log("Login successful")
-                        this.$router.push('/home');
+                    sessionStorage.setItem("access_token", json['access_token']);
+                    sessionStorage.setItem("refresh_token", json['refresh_token']);
+                    this.$router.push('/home');
+                }
+                else {
+                    this.errorMessage = "Login failed. Please try again.";
+                }
+            })
+            .catch(error => {
+                console.error('There was an error!', error);
+                this.errorMessage = error.message || "An error occurred. Please try again.";
+            });
+        },
+        register() {
+            if (this.password === this.confirmPassword) {
+                const userData = {
+                    email: this.email,
+                    password: this.password
+                };
+
+                fetch("http://127.0.0.1:3033/register", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json; charset=UTF-8"
+                    },
+                    body: JSON.stringify(userData)
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(json => {
+                    if (json.message === "Register successful") {
+                        console.log("Registration successful");
+                        // Handle successful registration (e.g., redirect to login page)
+                        this.$router.push('/login');
                     } else {
-                        this.errorMessage = data.message || "Login failed. Please try again.";
+                        // Handle registration error (e.g., show error message)
+                        this.errorMessage = json.message || "Registration failed. Please try again.";
                     }
                 })
                 .catch(error => {
-                    console.error('There was an error!', error);
-                    this.errorMessage = error.message || "An error occurred. Please try again.";
+                    console.error('Registration error:', error);
+                    this.errorMessage = error.message || "An error occurred during registration.";
                 });
-        },
-        register() {
-            if (this.password == this.confirmPassword) {
+
                 this.isRegister = false;
-                this.errorMessage = "";
                 this.$refs.form.reset();
             } else {
-                this.errorMessage = "password did not match"
+                this.errorMessage = "Passwords did not match";
             }
         }
     },

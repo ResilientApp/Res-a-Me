@@ -18,13 +18,8 @@
 
         <!-- Footer -->
         <div class="nav-sidebar-footer" v-if="profileData">
-            <!-- Language Picker -->
-            <LanguagePicker />
-
-            <!-- Credits -->
-            <div class="nav-sidebar-footer-credits text-2 mt-3 mb-3">
-                <span v-html="profileData['locales']['credits']"/>
-            </div>
+            <v-btn @click="logout">Logout</v-btn>
+            <div v-if="errorMessage">{{ errorMessage }}</div>
         </div>
     </nav>
 </template>
@@ -35,10 +30,14 @@ import NavProfileCard from "../partials/NavProfileCard.vue"
 import {computed} from "vue"
 import {useData} from "../../../composables/data.js"
 import {useNavigation} from "../../../composables/navigation.js"
+import { useRouter} from "vue-router"
+import { ref, defineEmits } from "vue";
 
 const emit = defineEmits(['linkClicked'])
 const data = useData()
 const navigation = useNavigation()
+const router = useRouter()
+const errorMessage = ref('');
 
 /**
  * @type {ComputedRef<Object>}
@@ -67,6 +66,38 @@ const _getNavItemClassList = (section) => {
 const _onLinkClicked = (section) => {
     emit('linkClicked', section['id'])
 }
+
+const logout = () => {
+    fetch("http://127.0.0.1:3033/logout", {
+        method: "GET",
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then((json) => {
+        console.log(json)
+        // Handle successful logout
+        // Redirect user to landing page
+        if (json.message === "Logout successful") {
+            console.log(json.message)
+            sessionStorage.clear()
+            router.push('/');
+        } else {
+            errorMessage.value = json.message || "Logout failed. Please try again.";
+        }
+    })
+    .catch(error => {
+        console.error('Logout error:', error);
+        errorMessage.value = error.message || "An error occurred. Please try again.";
+    });
+};
+
 </script>
 
 <style lang="scss" scoped>

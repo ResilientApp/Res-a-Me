@@ -167,6 +167,29 @@
 
 <script>
 export default {
+  mounted() {
+    fetch("http://127.0.0.1:3033/loadUser", {
+        method: "GET",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+        }
+    })
+    .then((response) => response.json())
+    .then((json) => {
+        if (json.status === 200) {
+            console.log("User has logged in")
+            console.log("Logged in user's email: ", json.logged_in_as)
+        }
+        else {
+            this.errorMessage = "User are not logged in";
+        }
+    })
+    .catch(error => {
+        console.error('There was an error!', error);
+        this.errorMessage = error.message || "An error occurred. Please try again.";
+    });
+  },
   methods:{
     signin(){
       this.$router.push('/login')

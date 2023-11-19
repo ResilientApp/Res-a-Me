@@ -15,7 +15,7 @@
                             </v-toolbar>
                             <v-card-text>
                                 <form ref="form" @submit.prevent="isRegister ? register() : login()">
-                                    <v-text-field v-model="email" label="email" required></v-text-field>
+                                    <v-text-field v-model="email" :rules="[rules.emailRules]" label="email" required></v-text-field>
                                     <v-text-field v-model="password" label="Password" type="password" required></v-text-field>
                                     <v-text-field v-if="isRegister" v-model="confirmPassword" label="Confirm Password" type="password" required></v-text-field>
                                     <div class="red--text">{{errorMessage}}</div>
@@ -57,15 +57,35 @@ export default {
                     name: 'Login',
                     message: 'Register'
                 }
+            },
+            rules: {
+                emailRules: [
+                    value => !!value || 'E-mail is required',
+                    value => /^[a-z.-]+@[a-z.-]+\.[a-z]+$/i.test(value) || 'Must be a valid e-mail'
+                ]
             }
         };
     },
     methods: {
+        validateEmailFormat() {
+            for (let rule of this.rules.emailRules) {
+                const result = rule(this.email);
+                if (result !== true) {
+                    this.errorMessage = result;
+                    return false;
+                }
+            }
+            return true;
+        },
         login() {
             const userData = {
                 email: this.email,
                 password: this.password
             };
+
+            if (!this.validateEmailFormat()) {
+                return
+            }
 
             fetch("http://127.0.0.1:3033/login", {
                     method: "POST",

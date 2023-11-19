@@ -95,12 +95,44 @@ export default {
                 });
         },
         register() {
-            if (this.password == this.confirmPassword) {
+            if (this.password === this.confirmPassword) {
+                const userData = {
+                    email: this.email,
+                    password: this.password
+                };
+
+                fetch("http://127.0.0.1:3033/register", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json; charset=UTF-8"
+                    },
+                    body: JSON.stringify(userData)
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(json => {
+                    if (json.message === "Register successful") {
+                        console.log("Registration successful");
+                        // Handle successful registration (e.g., redirect to login page)
+                        this.$router.push('/login');
+                    } else {
+                        // Handle registration error (e.g., show error message)
+                        this.errorMessage = json.message || "Registration failed. Please try again.";
+                    }
+                })
+                .catch(error => {
+                    console.error('Registration error:', error);
+                    this.errorMessage = error.message || "An error occurred during registration.";
+                });
+
                 this.isRegister = false;
-                this.errorMessage = "";
                 this.$refs.form.reset();
             } else {
-                this.errorMessage = "password did not match"
+                this.errorMessage = "Passwords did not match";
             }
         }
     },

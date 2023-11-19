@@ -88,31 +88,31 @@ export default {
             }
 
             fetch("http://127.0.0.1:3033/login", {
-                    method: "POST",
-                    body: JSON.stringify(userData),
-                    headers: {
-                        "Content-type": "application/json; charset=UTF-8",
-                        "Access-Control-Allow-Origin": "*"
-                    },
-                    credentials: 'include'
-                })
-                .then((response) => response.json())
-                .then((json) => {
-                    if (json.status === 200) {
-                        console.log("Login successful")
-                        console.log(json)
-                        sessionStorage.setItem("access_token", json['access_token']);
-                        sessionStorage.setItem("refresh_token", json['refresh_token']);
-                        this.$router.push('/home');
-                    }
-                    else {
-                        this.errorMessage = "Login failed. Please try again.";
-                    }
-                })
-                .catch(error => {
-                    console.error('There was an error!', error);
-                    this.errorMessage = error.message || "An error occurred. Please try again.";
-                });
+                method: "POST",
+                body: JSON.stringify(userData),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Access-Control-Allow-Origin": "*"
+                },
+                credentials: 'include'
+            })
+            .then((response) => response.json())
+            .then((json) => {
+                if (json.status === 200) {
+                    console.log("Login successful")
+                    console.log(json)
+                    sessionStorage.setItem("access_token", json['access_token']);
+                    sessionStorage.setItem("refresh_token", json['refresh_token']);
+                    this.$router.push('/home');
+                }
+                else {
+                    this.errorMessage = "Login failed. Please try again.";
+                }
+            })
+            .catch(error => {
+                console.error('There was an error!', error);
+                this.errorMessage = error.message || "An error occurred. Please try again.";
+            });
         },
         register() {
             if (this.password === this.confirmPassword) {

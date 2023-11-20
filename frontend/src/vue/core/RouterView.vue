@@ -56,6 +56,7 @@ const scrollPositions = {}
  */
 const SECTION_VUE_COMPONENTS = {DefaultSection, CoverSection, InfoSection, ThreadsSection, TimelineSection}
 
+
 /**
  * @param {String} componentName
  * @return {*}

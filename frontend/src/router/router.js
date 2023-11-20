@@ -27,6 +27,22 @@ export function createAppRouter() {
         component: RouterView
     }]
 
+    // Add sections -> Not sure
+    for(let i = 1 ; i < sections.length ; i++) {
+        let sectionId = sections[i].id
+        routeList.push({
+            path: '/' + sectionId,
+            name: sectionId,
+            component: RouterView
+        })
+    }
+
+    routeList.push({
+        path: '/:pathMatch(.*)*',
+        redirect: '/'
+    })
+    // Add end
+
     // Create the router instance
     const router = createRouter({
         history: createWebHistory(import.meta.env.BASE_URL),

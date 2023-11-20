@@ -1,5 +1,20 @@
 <template>
   <v-app style="width: 100%; height: 100%">
+    <p
+      style="
+        position: fixed;
+        z-index: 999;
+        color: black;
+        left: 30px;
+        top: 27px;
+        text-transform: none;
+        letter-spacing: 0px;
+      "
+      id = "userNameDisplay"
+    >
+      Hi, {{ userName }}
+    </p>
+
     <v-btn
       variant="flat"
       color="#1a73e8"
@@ -132,6 +147,7 @@ export default {
     document.getElementById("signinButton").style.display = "none";
     document.getElementById("profileShortcut").style.display = "none";
     document.getElementById("logoutButton").style.display = "none";
+    document.getElementById("userNameDisplay").style.display = "none";
 
     fetch("http://127.0.0.1:3033/loadUser", {
       method: "GET",
@@ -146,8 +162,10 @@ export default {
           // User is logged in
           console.log("User has logged in");
           console.log("Logged in user's email: ", json.logged_in_as);
+          this.userName = json.logged_in_as;
           document.getElementById("profileShortcut").style.display = "block";
           document.getElementById("logoutButton").style.display = "block";
+          document.getElementById("userNameDisplay").style.display = "block";
         } else {
           this.errorMessage = "User are not logged in";
           console.log("User are not logged in");
@@ -208,6 +226,7 @@ export default {
     };
 
     return {
+      userName: "User",
       autoUpdate: true,
       isUpdating: false,
       name: "Midnight Crew",

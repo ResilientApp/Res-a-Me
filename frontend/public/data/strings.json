@@ -39,7 +39,8 @@
             "subject": "Subject",
             "tags": "Tags",
             "whereToFind": "Where to Find",
-            "whereToFindDescription": "${project} is available on the following platforms and services:"
+            "whereToFindDescription": "${project} is available on the following platforms and services:",
+            "search": "Search"
         },
 
         "es": {

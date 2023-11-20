@@ -1,10 +1,5 @@
 <template>
     <div class="nav-header">
-        <!-- Language Picker -->
-        <div class="language-picker-container">
-            <LanguagePicker />
-        </div>
-
         <!-- Main Content -->
         <div class="nav-header-container">
             <!-- Profile Card -->
@@ -27,7 +22,6 @@
 
 <script setup>
 import {computed, onMounted, onUnmounted, watch} from "vue"
-import LanguagePicker from "../../widgets/LanguagePicker.vue"
 import NavProfileCard from "../partials/NavProfileCard.vue"
 import {useData} from "../../../composables/data.js"
 import {useLayout} from "../../../composables/layout.js"

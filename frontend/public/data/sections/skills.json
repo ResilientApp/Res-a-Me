@@ -27,45 +27,6 @@
             "locales": {
                 "en": {"title": null}
             }
-        },
-
-        {
-            "id": "programming",
-            "type": "grid",
-            "progress": "number",
-            "faIcon": "fa fa-code",
-            "locales": {
-                "en": {"title": "Programming"},
-                "es": {"title": "Programación"},
-                "fr": {"title": "Programmation"},
-                "zh": {"title": "编程"}
-            }
-        },
-
-        {
-            "id": "languages",
-            "type": "list",
-            "progress": {"0": "beginner", "20": "rookie", "40": "intermediate", "60": "advanced", "80": "fluent", "100": "native"},
-            "faIcon": "fa fa-language",
-            "locales": {
-                "en": {"title": "Languages"},
-                "es": {"title": "Idiomas"},
-                "fr": {"title": "Langues"},
-                "zh": {"title": "语言"}
-            }
-        },
-
-        {
-            "id": "extra",
-            "type": "grid",
-            "progress": null,
-            "faIcon": "fa fa-marker",
-            "locales": {
-                "en": {"title": "Bonus Skills"},
-                "es": {"title": "Habilidades Adicionales"},
-                "fr": {"title": "Plus Habiletés"},
-                "zh": {"title": "附加技能"}
-            }
         }
     ],
 

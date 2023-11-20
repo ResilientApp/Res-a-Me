@@ -18,12 +18,6 @@
 
                 <!-- Description -->
                 <p v-html="item['locales']['description']" class="thread-item-description text-3 text-normal mb-1 mb-md-2"/>
-
-                <!-- Link -->
-                <a v-if="item['href']" class="text-2" target="_blank" :href="item['href']">
-                    <span>{{ props.linkLabel }}</span>
-                    <i class="fa-solid fa-arrow-up-right-dots ms-1"/>
-                </a>
             </div>
         </li>
 

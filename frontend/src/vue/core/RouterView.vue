@@ -37,9 +37,7 @@ import NavHeader from "../navigation/mobile/NavHeader.vue"
 import NavTabs from "../navigation/mobile/NavTabs.vue"
 
 import DefaultSection from "../sections/_templates/SectionTemplate.vue"
-import ContactSection from "../sections/contact/ContactSection.vue"
 import CoverSection from "../sections/cover/CoverSection.vue"
-import GallerySection from "../sections/gallery/GallerySection.vue"
 import InfoSection from "../sections/info/InfoSection.vue"
 import ThreadsSection from "../sections/threads/ThreadsSection.vue"
 import TimelineSection from "../sections/timeline/TimelineSection.vue"
@@ -56,7 +54,7 @@ const scrollPositions = {}
 /**
  * @type {Object}
  */
-const SECTION_VUE_COMPONENTS = {DefaultSection, ContactSection, CoverSection, GallerySection, InfoSection, ThreadsSection, TimelineSection}
+const SECTION_VUE_COMPONENTS = {DefaultSection, CoverSection, InfoSection, ThreadsSection, TimelineSection}
 
 /**
  * @param {String} componentName

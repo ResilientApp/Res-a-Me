@@ -6,15 +6,8 @@
             <li v-for="item in orderedItems" class="timeline-item">
                 <!-- Logo Wrapper -->
                 <div class="timeline-item-logo" :class="{'timeline-item-logo-bg-primary':!(item['place'] && item['place']['logoUrl'])}">
-                    <!-- If item has an image... -->
-                    <ImageView v-if="item['place'] && item['place']['logoUrl']"
-                               :src="item['place']['logoUrl']"
-                               :alt="item['place']['locales']['name']"
-                               class="timeline-item-img img-fluid rounded-circle"/>
-
                     <!-- Fallback, use font awesome icon... -->
-                    <i v-else  class="timeline-item-fa-icon"
-                               :class="item['place']['faIcon'] ? item['place']['faIcon'] : 'fa-solid fa-clock'"/>
+                    <i class="timeline-item-fa-icon" :class="'fa-solid'"/>
                 </div>
 
                 <!-- Item Content -->
@@ -98,11 +91,11 @@ const _formatItemDate = (item) => {
 @import "/src/scss/_theming.scss";
 
 ul.timeline {
-    --image-size:100px;
-    --image-border-size:7px;
+    --image-size:35px;
+    --image-border-size:9px;
     --line-width:3px;
     --vertical-spacing:80px;
-    --content-padding-top:1rem;
+    --content-padding-top:0.2rem;
 
     @include media-breakpoint-down(md) {
         --image-size:75px;
@@ -153,7 +146,7 @@ ul.timeline {
 
         border: var(--image-border-size) solid $light-3;
         border-radius: 100%;
-        background-color: $light-4;
+        background-color: white;
 
         &-bg-primary {
             background-color: lighten($primary, 20%);
@@ -166,18 +159,18 @@ ul.timeline {
     }
 
     .timeline-item-tail {
-        left: calc(var(--image-size)/4);
+        left: calc(var(--image-size)/6);
         min-height: calc(var(--image-size)/2);
 
         .timeline-item-logo {
-            width: calc(var(--image-size)/2);
-            height: calc(var(--image-size)/2);
-            background-color: $light-4;
+            width: calc(var(--image-size)/1.5);
+            height: calc(var(--image-size)/1.5);
+            background-color: $light-3;
         }
     }
 
     .timeline-item-content {
-        margin-left: calc(var(--image-size) + calc(var(--image-size)/5));
+        margin-left: calc(var(--image-size) + calc(var(--image-size)/2));
     }
 
     .timeline-item-content-header {

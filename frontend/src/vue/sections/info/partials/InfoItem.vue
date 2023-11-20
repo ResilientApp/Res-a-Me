@@ -1,7 +1,7 @@
 <template>
     <div class="info-item">
         <!-- Icon -->
-        <CircleIcon :src="item['imageIconUrl'] || item['faIcon'] || 'fa-regular fa-sticky-note'"
+        <CircleIcon :src="'fa-solid fa-circle fa-xs'"
                     :type="'standard'"
                     :color="_getItemColor(item)"
                     :text-class="_getItemFontAwesomeTextClass(item)"

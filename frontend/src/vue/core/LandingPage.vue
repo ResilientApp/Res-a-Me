@@ -11,7 +11,9 @@
         top: 20px;
         text-transform: none;
       "
-      @click="signin">
+      id="signinButton"
+      @click="signin"
+    >
       Sign in
     </v-btn>
 
@@ -81,7 +83,12 @@
 
         <v-container class="text-center pt-15">
           <v-row justify="center" dense>
-            <!-- <v-col v-for="(shortcut, i) in shortcuts" :key="i" cols="auto">
+            <v-col
+              v-for="(shortcut, i) in shortcuts"
+              :key="i"
+              cols="auto"
+              id="profileShortcut"
+            >
               <v-card
                 :href="shortcut.href"
                 class="pa-4"
@@ -102,7 +109,7 @@
                   v-text="shortcut.title"
                 ></div>
               </v-card>
-            </v-col> -->
+            </v-col>
 
             <!-- <v-col cols="auto">
               <v-dialog v-model="dialog" max-width="500">
@@ -169,31 +176,36 @@
 export default {
   mounted() {
     fetch("http://127.0.0.1:3033/loadUser", {
-        method: "GET",
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-          "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
-        }
+      method: "GET",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        Authorization: `Bearer ` + sessionStorage.getItem("access_token"),
+      },
     })
-    .then((response) => response.json())
-    .then((json) => {
+      .then((response) => response.json())
+      .then((json) => {
         if (json.status === 200) {
-            console.log("User has logged in")
-            console.log("Logged in user's email: ", json.logged_in_as)
+          // User is logged in
+          console.log("User has logged in");
+          console.log("Logged in user's email: ", json.logged_in_as);
+          document.getElementById("signinButton").disabled = true;
+          document.getElementById("profileShortcut").style.display = "block";
+        } else {
+          this.errorMessage = "User are not logged in";
+          document.getElementById("signinButton").disabled = false;
+          document.getElementById("profileShortcut").style.display = "none";
         }
-        else {
-            this.errorMessage = "User are not logged in";
-        }
-    })
-    .catch(error => {
-        console.error('There was an error!', error);
-        this.errorMessage = error.message || "An error occurred. Please try again.";
-    });
+      })
+      .catch((error) => {
+        console.error("There was an error!", error);
+        this.errorMessage =
+          error.message || "An error occurred. Please try again.";
+      });
   },
-  methods:{
-    signin(){
-      this.$router.push('/login')
-    }
+  methods: {
+    signin() {
+      this.$router.push("/login");
+    },
   },
   data() {
     const srcs = {
@@ -249,7 +261,7 @@ export default {
       title: "The summer breeze",
       timeout: null,
     };
-  }
+  },
 };
 </script>
 

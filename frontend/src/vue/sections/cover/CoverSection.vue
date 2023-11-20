@@ -12,9 +12,7 @@
         <!-- Description -->
         <p class="cover-description lead text-normal mb-4 mb-md-5"
            v-html="props.sectionData.content['locales']['bio']"/>
-
-        <!-- Social Links -->
-        <SocialLinks :items="props.sectionData.content['items']['socialCircles']"/>
+        
     </SectionTemplate>
 </template>
 
@@ -24,7 +22,6 @@ import {computed} from "vue"
 import {useData} from "../../../composables/data.js"
 import {useNavigation} from "../../../composables/navigation.js"
 import InlineList from "../../widgets/InlineList.vue"
-import SocialLinks from "../../widgets/SocialLinks.vue"
 
 const data = useData()
 const navigation = useNavigation()

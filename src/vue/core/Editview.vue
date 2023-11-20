@@ -91,6 +91,7 @@ export default {
         //skill data
         const skill_response = await axios.get('../../../data/sections/skills.json');
         const skill_data = skill_response.data;
+        // console.log(skill_data)
         const skill_transformedArray = skill_data.items.abilities.map((item, index) => {
           const { faIcon, locales } = item;
           const { title, description } = locales.en;
@@ -109,12 +110,14 @@ export default {
         const profile_data = profile_response.data;
         const description = cover_data.locales.en.bio;
         const name = profile_data.name;
+        const imgurl = profile_data.profilePictureUrl;
         const position = profile_data.locales.en.role;
         const address = profile_data.contact.address.value;
         const email = profile_data.contact.email.value;
         const phone = profile_data.contact.phone.valueShort;
         const about_transformedArray = {
           name,
+          imgurl,
           position,
           description,
           address,

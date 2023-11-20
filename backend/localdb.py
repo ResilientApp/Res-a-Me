@@ -17,6 +17,7 @@ def getUserInfoDatabase(user_id):
         return userInfoDatabase[user_id]
 
 def setUserInfoDatabase(user_id, email = None, public_key = None, metadata = None):
+    userInfoDatabase[user_id] = {}
     if email: userInfoDatabase[user_id]["email"] = email
     if public_key: userInfoDatabase[user_id]["public_key"] = public_key
     if metadata: userInfoDatabase[user_id]["metadata"] = metadata

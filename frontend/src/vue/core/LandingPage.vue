@@ -12,7 +12,7 @@
         text-transform: none;
       "
       id="signinButton"
-      @click="signin"
+      @click="this.$router.push('/login')"
     >
       Sign in
     </v-btn>
@@ -81,24 +81,19 @@
           </v-btn>
         </v-row>
 
-        <v-container class="text-center pt-15">
+        <v-container class="text-center pt-15" id="profileShortcut">
           <v-row justify="center" dense>
-            <v-col
-              v-for="(shortcut, i) in shortcuts"
-              :key="i"
-              cols="auto"
-              id="profileShortcut"
-            >
+            <v-col cols="auto">
               <v-card
-                :href="shortcut.href"
                 class="pa-4"
                 flat
                 rel="noopener noreferer"
                 target="_blank"
                 width="112"
+                @click="this.$router.push('/home')"
               >
                 <v-avatar
-                  :icon="shortcut.icon"
+                  icon= mdi-github
                   color="black"
                   variant="tonal"
                   class="mb-2"
@@ -106,65 +101,10 @@
 
                 <div
                   class="text-caption text-truncate"
-                  v-text="shortcut.title"
-                ></div>
+                >Profile</div>
               </v-card>
             </v-col>
 
-            <!-- <v-col cols="auto">
-              <v-dialog v-model="dialog" max-width="500">
-                <template v-slot:activator="{ props }">
-                  <v-card flat width="112" v-bind="props" class="pa-4">
-                    <v-avatar
-                      icon="mdi-plus"
-                      color="black"
-                      variant="tonal"
-                      class="mb-2"
-                    ></v-avatar>
-
-                    <div class="text-caption text-truncate">Add shortcut</div>
-                  </v-card>
-                </template>
-
-                <v-card title="Add shortcut" rounded="lg">
-                  <template v-slot:text>
-                    <v-label class="text-caption">Name</v-label>
-                    <v-text-field
-                      density="compact"
-                      variant="solo-filled"
-                      flat
-                    ></v-text-field>
-
-                    <v-label class="text-caption">URL</v-label>
-
-                    <v-text-field
-                      density="compact"
-                      variant="solo-filled"
-                      flat
-                    ></v-text-field>
-                  </template>
-
-                  <div class="py-4 px-5 text-end">
-                    <v-btn
-                      border
-                      class="text-none me-2"
-                      color="blue"
-                      text="Cancel"
-                      variant="text"
-                      @click="dialog = false"
-                    ></v-btn>
-
-                    <v-btn
-                      class="text-none"
-                      color="blue"
-                      text="Done"
-                      variant="flat"
-                      @click="dialog = false"
-                    ></v-btn>
-                  </div>
-                </v-card>
-              </v-dialog>
-            </v-col> -->
           </v-row>
         </v-container>
       </v-responsive>
@@ -175,6 +115,9 @@
 <script>
 export default {
   mounted() {
+    document.getElementById("signinButton").style.display = "none";
+    document.getElementById("profileShortcut").style.display = "none";
+
     fetch("http://127.0.0.1:3033/loadUser", {
       method: "GET",
       headers: {
@@ -188,12 +131,10 @@ export default {
           // User is logged in
           console.log("User has logged in");
           console.log("Logged in user's email: ", json.logged_in_as);
-          document.getElementById("signinButton").disabled = true;
           document.getElementById("profileShortcut").style.display = "block";
         } else {
           this.errorMessage = "User are not logged in";
-          document.getElementById("signinButton").disabled = false;
-          document.getElementById("profileShortcut").style.display = "none";
+          document.getElementById("signinButton").style.display = "block";
         }
       })
       .catch((error) => {
@@ -203,9 +144,6 @@ export default {
       });
   },
   methods: {
-    signin() {
-      this.$router.push("/login");
-    },
   },
   data() {
     const srcs = {
@@ -234,29 +172,6 @@ export default {
         { name: "Jane Smith ", group: "Group 2", avatar: srcs[5] },
         { name: "John Smith", group: "Group 2", avatar: srcs[1] },
         { name: "Sandra Williams", group: "Group 2", avatar: srcs[3] },
-      ],
-      shortcuts: [
-        {
-          icon: "mdi-github",
-          title: "Master",
-          href: "https://github.com/vuetifyjs/vuetify",
-          color: "white",
-        },
-        {
-          icon: "mdi-github",
-          title: "Dev",
-          href: "https://github.com/vuetifyjs/vuetify/tree/dev",
-        },
-        {
-          icon: "mdi-github",
-          title: "Stable",
-          href: "https://github.com/vuetifyjs/vuetify/tree/v2-stable",
-        },
-        {
-          icon: "mdi-github",
-          title: "My Pull Requests",
-          href: "https://github.com/vuetifyjs/vuetify/pulls/johnleider",
-        },
       ],
       title: "The summer breeze",
       timeout: null,

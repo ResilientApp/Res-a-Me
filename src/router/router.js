@@ -4,7 +4,7 @@
  */
 import {useData} from "../composables/data.js"
 import RouterView from "../vue/core/RouterView.vue"
-import SearchView from "../vue/core/SearchView.vue"
+import EditView from "../vue/core/EditView.vue"
 import {createRouter, createWebHistory} from "vue-router"
 
 export function createAppRouter() {
@@ -15,9 +15,9 @@ export function createAppRouter() {
     /** Create Home **/
     const routeList = [
     {
-        path:"/",
-        name:"newhome",
-        component:SearchView,
+        path: '/',
+        name: "editSection",
+        component: EditView
     },
     {
         path: '/home',

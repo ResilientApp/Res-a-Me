@@ -334,7 +334,6 @@ export function useData() {
 
         return localizedEntries
     }
-
     return {
         fetchEssentials,
         fetchAll,

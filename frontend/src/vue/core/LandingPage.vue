@@ -24,7 +24,7 @@
         <v-img
           class="mx-auto mt-12 mb-16"
           max-width="340"
-          src="../../../public/images/icons/Res-A-Me.png"
+          src="/images/icons/Res-A-Me.png"
         ></v-img>
 
         <v-autocomplete
@@ -183,6 +183,7 @@ export default {
         }
         else {
             this.errorMessage = "User are not logged in";
+            console.log("User are not logged in")
         }
     })
     .catch(error => {

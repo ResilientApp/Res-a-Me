@@ -43,6 +43,9 @@
                           <v-text-field
                             class="pa-2"
                             v-model="edu.startDate"
+                            :rules="[
+                                () => isStartDateValid(edu) || 'This field is required'
+                            ]"
                             type="date"
                             :counter="10"
                             label="Start Date"
@@ -52,6 +55,9 @@
                           <v-text-field
                             class="pa-2"
                             v-model="edu.endDate"
+                            :rules="[
+                                () => isEndDateValid(edu) || 'This field is required'
+                            ]"
                             type="date"
                             :counter="10"
                             label="End Date"
@@ -83,7 +89,7 @@
               </div>
             </template>
             <div class="d-flex justify-center">
-              <v-btn color="black" @click="addNewEdu()"
+              <v-btn color="grey" @click="addNewEdu()"
                       >Add more
                         <v-icon
                           size="x-large"
@@ -110,15 +116,21 @@
       
       setup(props,{emit}) {
 
-          watch(() => props.educations, (newEdus, oldEdus) => {
-            console.log('New value:', newEdus);
-            console.log('Old value:', oldEdus);
-          });
+          // watch(() => props.educations, (newEdus, oldEdus) => {
+          //   console.log('New value:', newEdus);
+          //   console.log('Old value:', oldEdus);
+          // });
           const isSchoolnameValid = (edu) => {
               return !!edu.schoolName;
           };
           const isDiplomaValid = (edu) => {
               return !!edu.diploma;
+          };
+          const isStartDateValid = (edu) => {
+              return !!edu.startDate;
+          };
+          const isEndDateValid = (edu) => {
+              return !!edu.endDate;
           };
           const isDescriptionValid = (edu) => {
               return !!edu.description;
@@ -138,6 +150,8 @@
               educations.forEach((edu, index) => {
                 if (!isSchoolnameValid(edu) ||
                     !isDiplomaValid(edu) ||
+                    !isStartDateValid(edu) ||
+                    !isEndDateValid(edu) ||
                     !isDescriptionValid(edu)) {
                     allRulesPassed = false;
                 }
@@ -157,6 +171,8 @@
             isSchoolnameValid,
             isDiplomaValid,
             isDescriptionValid,
+            isStartDateValid,
+            isEndDateValid
           };
       },
   

@@ -32,6 +32,9 @@
                           <v-text-field
                             class="pa-2"
                             v-model="award.date"
+                            :rules="[
+                                () => isDateValid(award) || 'This field is required'
+                            ]"
                             type="date"
                             :counter="20"
                             label="Date"
@@ -74,7 +77,7 @@
               </div>
             </template>
             <div class="d-flex justify-center">
-              <v-btn color="black" @click="addNewAward()"
+              <v-btn color="grey" @click="addNewAward()"
                       >Add more
                         <v-icon
                           size="x-large"
@@ -110,6 +113,9 @@
           };
           const isCompanySchoolValid = (award) => {
               return !!award.company_school;
+          };
+          const isDateValid = (award) => {
+              return !!award.date;
           };
           const isDescriptionValid = (award) => {
               return !!award.description;
@@ -147,7 +153,8 @@
             saveAward,
             isTitleValid,
             isCompanySchoolValid,
-            isDescriptionValid
+            isDescriptionValid,
+            isDateValid
           };
       },
   

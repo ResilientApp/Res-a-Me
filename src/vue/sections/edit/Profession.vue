@@ -43,6 +43,9 @@
                           <v-text-field
                             class="pa-2"
                             v-model="pro.startDate"
+                            :rules="[
+                                () => isStartDateValid(pro) || 'This field is required'
+                            ]"
                             type="date"
                             :counter="10"
                             label="Start Date"
@@ -52,6 +55,9 @@
                           <v-text-field
                             class="pa-2"
                             v-model="pro.endDate"
+                            :rules="[
+                                () => isEndDateValid(pro) || 'This field is required'
+                            ]"
                             type="date"
                             :counter="10"
                             label="End Date"
@@ -83,7 +89,7 @@
               </div>
             </template>
             <div class="d-flex justify-center">
-              <v-btn color="black" @click="addNewPro()"
+              <v-btn color="grey" @click="addNewPro()"
                       >Add more
                         <v-icon
                           size="x-large"
@@ -110,15 +116,21 @@
       
       setup(props,{emit}) {
 
-          watch(() => props.professions, (newPros, oldPros) => {
-            console.log('New value:', newPros);
-            console.log('Old value:', oldPros);
-          });
+          // watch(() => props.professions, (newPros, oldPros) => {
+          //   console.log('New value:', newPros);
+          //   console.log('Old value:', oldPros);
+          // });
           const isCompanyValid = (pro) => {
               return !!pro.company;
           };
           const isPositionValid = (pro) => {
               return !!pro.position;
+          };
+          const isStartDateValid = (pro) => {
+              return !!pro.startDate;
+          };
+          const isEndDateValid = (pro) => {
+              return !!pro.endDate;
           };
           const isDescriptionValid = (pro) => {
               return !!pro.description;
@@ -138,6 +150,8 @@
               professions.forEach((pro, index) => {
                 if (!isCompanyValid(pro) ||
                     !isPositionValid(pro) ||
+                    !isStartDateValid(pro) ||
+                    !isEndDateValid(pro) ||
                     !isDescriptionValid(pro)) {
                     allRulesPassed = false;
                 }
@@ -157,6 +171,8 @@
             isCompanyValid,
             isPositionValid,
             isDescriptionValid,
+            isStartDateValid,
+            isEndDateValid
           };
       },
   

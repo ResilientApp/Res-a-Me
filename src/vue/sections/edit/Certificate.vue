@@ -32,6 +32,9 @@
                           <v-text-field
                             class="pa-2"
                             v-model="certifi.date"
+                            :rules="[
+                                () => isDateValid(certifi) || 'This field is required'
+                            ]"
                             :counter="20"
                             label="Date"
                             type="date"
@@ -74,7 +77,7 @@
               </div>
             </template>
             <div class="d-flex justify-center">
-              <v-btn color="black" @click="addNewCer()"
+              <v-btn color="grey" @click="addNewCer()"
                       >Add more
                         <v-icon
                           size="x-large"
@@ -111,6 +114,9 @@
           const isCompanySchoolValid = (certifi) => {
               return !!certifi.company_school;
           };
+          const isDateValid = (certifi) => {
+              return !!certifi.date;
+          };
           const isDescriptionValid = (edu) => {
               return !!edu.description;
           };
@@ -129,6 +135,7 @@
             certifications.forEach((cer, index) => {
                 if (!isTitleValid(cer) ||
                     !isCompanySchoolValid(cer) ||
+                    !isDateValid(cer) ||
                     !isDescriptionValid(cer)) {
                     allRulesPassed = false;
                 }
@@ -147,7 +154,8 @@
             saveCer,
             isTitleValid,
             isCompanySchoolValid,
-            isDescriptionValid
+            isDescriptionValid,
+            isDateValid
           };
       },
   

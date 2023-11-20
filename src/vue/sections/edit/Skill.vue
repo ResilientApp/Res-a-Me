@@ -13,7 +13,7 @@
     </v-expansion-panel-title>
         <v-expansion-panel-text>
           <template v-for="(skill, index) in skills" :key="index">
-            <div>
+            <div >
               <v-row no-gutters>
                 <v-col cols="2">
                   <v-text-field
@@ -38,7 +38,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col class="button-container">
-                    <v-btn @click="deleteSkill(index)" class="ml-3 mb-4"
+                    <v-btn @click="deleteSkill(index)" class="mr-2 mb-4"
                     >delete
                       <v-icon color="red"
                         size="x-large"

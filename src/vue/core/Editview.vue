@@ -10,7 +10,7 @@
           (Remember to save changes before you leave)
       </span>
     </h1>
-    <v-expansion-panels>
+    <v-expansion-panels v-model="panel">
         <About :about="about" @save-about="handleSaveAbout"/>
         <Education :educations="educations" @delete-edu="handleDeleteEdu" @add-edu="handleAddEdu" @save-edu="handleSaveEdu"/>
         <Profession :professions="professions" @delete-pro="handleDeletePro" @add-pro="handleAddPro" @save-pro="handleSavePro"/>
@@ -41,6 +41,7 @@ export default {
     Award,
   },
   data:()=>({
+    panel:[0],
     defaultSkill: {
       id: 0,
       name: 'New skill',
@@ -225,7 +226,7 @@ export default {
           this.skills.forEach((skill, idx) => {
             skill.id = idx;
           });
-          // console.log(this.skills) //Post new skills to backend
+          console.log("after delete skill:",this.skills) //Post new skills to backend
         }
     },
     handleAddSkill(){
@@ -235,15 +236,15 @@ export default {
       this.skills.forEach((skill, idx) => {
         skill.id = idx;
       });
-      // console.log(this.skills); // Post new skills to backend
+      console.log("after add skill:",this.skills); // Post new skills to backend
     },
     handleSaveSkill(skills){
       this.skills = skills;
-      // console.log(this.skills) //Post new skills to backend
+      console.log("after save skill",this.skills) //Post new skills to backend
     },
     handleSaveAbout(about){
       this.about = Object.assign({}, this.about, about);
-      console.log(this.about) //Post new about to backend
+      console.log("after save about",this.about) //Post new about to backend
     },
     handleDeleteEdu(index){
       if (confirm('Are you sure you want to delete this item?')) {
@@ -251,7 +252,7 @@ export default {
           this.educations.forEach((edu, idx) => {
             edu.id = idx;
           });
-          // console.log(this.educations) //Post new educations to backend
+          console.log("after delete education:",this.educations) //Post new educations to backend
         }
     },
     handleAddEdu(){
@@ -261,11 +262,11 @@ export default {
       this.educations.forEach((edu, idx) => {
         edu.id = idx;
       });
-      // console.log(this.educations); // Post new educations to backend
+      console.log("after add education:",this.educations); // Post new educations to backend
     },
     handleSaveEdu(educations){
       this.educations = educations;
-      // console.log(this.educations) //Post new educations to backend
+      console.log("after save education:",this.educations) //Post new educations to backend
     },
     handleDeletePro(index){
       if (confirm('Are you sure you want to delete this item?')) {
@@ -273,7 +274,7 @@ export default {
           this.professions.forEach((edu, idx) => {
             edu.id = idx;
           });
-          // console.log(this.professions) //Post new professions to backend
+          console.log("after delete profession:",this.professions) //Post new professions to backend
         }
     },
     handleAddPro(){
@@ -283,11 +284,11 @@ export default {
       this.professions.forEach((edu, idx) => {
         edu.id = idx;
       });
-      // console.log(this.professions); // Post new professions to backend
+      console.log("after add profession:",this.professions); // Post new professions to backend
     },
     handleSavePro(professions){
       this.professions = professions;
-      // console.log(this.professions) //Post new professions to backend
+      console.log("after save profession:",this.professions) //Post new professions to backend
     },
     handleDeleteCer(index){
       if (confirm('Are you sure you want to delete this item?')) {
@@ -295,7 +296,7 @@ export default {
           this.certifications.forEach((cer, idx) => {
             cer.id = idx;
           });
-          // console.log(this.professions) //Post new professions to backend
+          console.log("after delete certification:",this.certifications) //Post new professions to backend
         }
     },
     handleAddCer(){
@@ -305,11 +306,11 @@ export default {
       this.certifications.forEach((cer, idx) => {
         cer.id = idx;
       });
-      // console.log(this.certifications); // Post new certifications to backend
+      console.log("after add certification:",this.certifications); // Post new certifications to backend
     },
     handleSaveCer(certifications){
       this.certifications = certifications;
-      console.log(this.certifications) //Post new certifications to backend
+      console.log("after save certificate",this.certifications) //Post new certifications to backend
     },
     handleDeleteAward(index){
       if (confirm('Are you sure you want to delete this item?')) {
@@ -317,7 +318,7 @@ export default {
           this.awards.forEach((award, idx) => {
             award.id = idx;
           });
-          // console.log(this.awards) //Post new awards to backend
+          console.log("after delete award:",this.awards) //Post new awards to backend
         }
     },
     handleAddAward(){
@@ -327,11 +328,11 @@ export default {
       this.awards.forEach((award, idx) => {
         award.id = idx;
       });
-      // console.log(this.awards); // Post new awards to backend
+      console.log("after add award:",this.awards); // Post new awards to backend
     },
     handleSaveAward(awards){
       this.awards = awards;
-      // console.log(this.awards) //Post new awards to backend
+      console.log("after save award:",this.awards) //Post new awards to backend
     },
 
   },
@@ -342,8 +343,6 @@ export default {
 </script>
 
 <style>
-.title{
-  font-weight: 900;
-  font-size: 2.5rem;
-}
+
+
 </style>

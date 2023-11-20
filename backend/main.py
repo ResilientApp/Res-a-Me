@@ -1,4 +1,4 @@
-from controller import getUserLogin, seUserLogin, getUserInfo, setUserInfo
+from controller import getUserLogin, setUserLogin, getUserInfo, setUserInfo
 from flask import Flask, request, jsonify
 from flask_jwt_extended import create_access_token, create_refresh_token, get_jwt_identity, jwt_required, JWTManager
 from flask_cors import CORS
@@ -24,12 +24,12 @@ def register():
     if email and password:
         user = getUserLogin(email)
         if not user:
-            seUserLogin(email, password)
-            return jsonify({"message": "Register successful"}, status = 200)
+            setUserLogin(email, password)
+            return jsonify(message = "Register successful", status = 200)
         else:
-            return jsonify({"message": "email account existed"}, status = 401)
+            return jsonify(message = "email account existed", status = 401)
     else:
-        return jsonify({"message": "email and password are required"}, status = 400)
+        return jsonify(message = "email and password are required", status = 400)
 
 
 # Create a route to authenticate your users and return JWTs. The
@@ -46,9 +46,9 @@ def login():
             refresh_token = create_refresh_token(identity=email)
             return jsonify(access_token=access_token, refresh_token=refresh_token, status = 200)
         else:
-            return jsonify({"message": "Invalid email or password"}, status = 401)
+            return jsonify(message = "Invalid email or password", status = 401)
     else:
-        return jsonify({"message": "email and password are required"}, status = 400)
+        return jsonify(message = "email and password are required", status = 400)
 
 
 @app.route('/refresh', methods=['POST'])
@@ -76,7 +76,7 @@ def load_logged_in_user():
 def logout():
     print("Logout")
     # session.clear()
-    return jsonify({"message": "Logout successful"})
+    return jsonify(message = "Logout successful", status = 200)
 
 
 # @app.route('/get_user_data/<email>', methods=['GET'])

@@ -34,12 +34,10 @@
 
     <!-- Footer -->
     <div class="nav-sidebar-footer" v-if="profileData">
-      <v-row>
-        <v-col>
+      <v-col>
           <v-btn variant="flat" @click="logout" color="#9716f1">Logout</v-btn>
           <div v-if="errorMessage">{{ errorMessage }}</div>
-        </v-col>
-      </v-row>
+      </v-col>
     </div>
   </nav>
 </template>

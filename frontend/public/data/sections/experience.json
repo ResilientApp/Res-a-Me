@@ -97,7 +97,7 @@
         {
             "id": "experience_item_4",
             "place": "@link{places.coursera}",
-            "period": ["2022/10", "now"],
+            "period": ["2022/10", "2023/11"],
             "locales": {
                 "en": {
                     "title": "UX Design Full-Time Professor",

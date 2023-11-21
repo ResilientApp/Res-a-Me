@@ -86,7 +86,7 @@ const _fetchAndParseItemsFor = (subcategory) => {
                 : parsedPercentage
         }
     }
-
+    // console.log(items)
     return items
 }
 </script>

@@ -1,4 +1,5 @@
-from controller import getUserLogin, setUserLogin, getUserInfo, setUserInfo
+import json
+from controller import getUserLogin, seUserLogin, getUserInfo, setUserInfo
 from flask import Flask, request, jsonify
 from flask_jwt_extended import create_access_token, create_refresh_token, get_jwt_identity, jwt_required, JWTManager
 from flask_cors import CORS
@@ -70,13 +71,36 @@ def load_logged_in_user():
         return jsonify(logged_in_as=current_user, status = 200)
     else:
         return jsonify(status = 401)
-
     
 @app.route('/logout', methods=["GET"])
 def logout():
     print("Logout")
     # session.clear()
     return jsonify(message = "Logout successful", status = 200)
+
+@app.route('/load/<user_id>', methods=['GET'])
+def load_resume(user_id):
+    try:
+        with open(f'resumes/{user_id}.json', 'r') as f:
+            data = json.load(f)
+        return jsonify(data)
+    except FileNotFoundError:
+        return jsonify({"message": "Resume not found"}), 404
+
+@app.route('/edit/<user_id>', methods=['POST'])
+def edit_resume(user_id):
+    data = request.get_json()
+
+    if data is None:
+        return jsonify({"message": "No data provided"}), 400
+
+    try:
+        with open(f'resumes/{user_id}.json', 'w') as f:
+            json.dump(data, f, indent=4)
+        return jsonify({"message": "Resume updated successfully"})
+    except Exception as e:
+        return jsonify({"message": str(e)}), 500
+        
 
 
 # @app.route('/get_user_data/<email>', methods=['GET'])

@@ -25,7 +25,7 @@
           </button>
         </li>
         <li class="nav-item">
-          <button class="nav-link" @click="editButton">
+          <button class="nav-link" @click="router.push('/edit')">
             <i class="fa-solid fa-pen-to-square"></i> Edit Resume
           </button>
         </li>

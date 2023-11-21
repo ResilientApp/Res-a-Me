@@ -1,5 +1,6 @@
 import json
 import requests
+import os
 
 def test_load_resume():
     response = requests.get('http://localhost:3033/load/userjack123')
@@ -31,7 +32,31 @@ def test_edit_resume():
 
     assert response.status_code == 200
     assert data['message'] == "Resume updated successfully"
+def test_search():
+    # Directory containing the JSON files
+    directory = 'resumes'
+
+    # List to store the partial content
+    partial_content = []
+
+    # Iterate over all files in the directory
+    for filename in os.listdir(directory):
+        # Check if the file is a JSON file
+        if filename.endswith('.json'):
+            # Open the file
+            with open(os.path.join(directory, filename), 'r') as f:
+                # Load the JSON data
+                data = json.load(f)
+                # Extract the "name" and "title" fields
+                partial_data = {key: data.get(key, None) for key in ['name', 'title']}
+                # Add the partial data to the list
+                partial_content.append(partial_data)
+
+    # Print the partial content
+    for item in partial_content:
+        print(item)
 
 if __name__ == '__main__':
     test_load_resume()
     test_edit_resume()
+    # test_search()

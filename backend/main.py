@@ -65,6 +65,7 @@ def edit_resume(user_id):
         return jsonify({"message": str(e)}), 500
         
 
+
 # @app.route('/get_user_data/<email>', methods=['GET'])
 # def get_user_data(username):
 #     user = getUserInfo(username)

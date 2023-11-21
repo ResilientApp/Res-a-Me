@@ -9,7 +9,6 @@ import {useNavigation} from "./composables/navigation.js"
 import {createAppRouter} from "./router/router.js"
 import {createApp} from "vue"
 import App from './vue/core/App.vue'
-import mitt from 'mitt'
 
 import { createVuetify } from 'vuetify'
 import 'vuetify/styles'

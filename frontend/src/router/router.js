@@ -1,13 +1,14 @@
-import {useData} from "../composables/data.js"
+import { useData } from "../composables/data.js"
 import RouterView from "../vue/core/RouterView.vue"
 import LoginView from "../vue/core/LoginView.vue"
+import EditView from "../vue/core/EditView.vue"
 import LandingPage from "../vue/core/LandingPage.vue"
-import {createRouter, createWebHistory} from "vue-router"
+import { createRouter, createWebHistory } from "vue-router"
 
 export function createAppRouter() {
     const data = useData();
     const sections = data.getSections();
-    const homeSection = sections[0] || {id: 'home'};
+    const homeSection = sections[0] || { id: 'home' };
 
     /** Create Home **/
     const routeList = [
@@ -22,13 +23,18 @@ export function createAppRouter() {
             component: LoginView
         },
         {
-        path: '/home',
-        name: homeSection['id'],
-        component: RouterView
-    }]
+            path: '/home',
+            name: homeSection['id'],
+            component: RouterView
+        },
+        {
+            path: '/edit',
+            name: "edit",
+            component: EditView
+        },]
 
     // Add sections -> Not sure
-    for(let i = 1 ; i < sections.length ; i++) {
+    for (let i = 1; i < sections.length; i++) {
         let sectionId = sections[i].id
         routeList.push({
             path: '/' + sectionId,
@@ -62,7 +68,7 @@ export function createAppRouter() {
                     "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
                 }
             });
-    
+
             const json = await response.json();
 
             if (json.status === 200) {
@@ -76,7 +82,7 @@ export function createAppRouter() {
                         "Authorization": `Bearer ` + sessionStorage.getItem('refresh_token'),
                     }
                 });
-    
+
                 const refreshJson = await refreshResponse.json();
                 if (refreshJson.status === 200) {
                     // update new access token with refresh token

@@ -3,7 +3,11 @@ import requests
 import os
 
 def test_load_resume():
-    response = requests.get('http://localhost:3033/load/userjack123')
+    url = 'http://localhost:3033/load/jack@gmail.com'
+    headers = {'Content-Type': 'application/json'}
+    data = {"category": "About"}
+
+    response = requests.post(url, headers=headers, data=json.dumps(data))
 
     print("Status code:", response.status_code)
     print("Response data:", response.text)
@@ -11,16 +15,16 @@ def test_load_resume():
     data = response.json()
 
     assert response.status_code == 200
-    assert 'message' not in data  # assuming the JSON file doesn't contain 'message' key
+    assert 'message' not in data
 
 def test_edit_resume():
-    url = 'http://localhost:3033/edit/userjack123'
+    url = 'http://localhost:3033/edit/jack@gmail.com'
     headers = {'Content-Type': 'application/json'}
     data = {
-        "name": "Jack Chen",
-        "email": "jack@gmail.com",
-        "title": "Senior Full-stack engineer in Amazon",
-        "education": "Master's of Computer Science in UCD"
+        "category": "About",
+        "name": "New Name",
+        "title": "New Title",
+        # Add more fields as necessary
     }
 
     response = requests.post(url, headers=headers, data=json.dumps(data))
@@ -31,7 +35,8 @@ def test_edit_resume():
     data = response.json()
 
     assert response.status_code == 200
-    assert data['message'] == "Resume updated successfully"
+    assert data['message'] == "About updated successfully"
+
 def test_search():
     # Directory containing the JSON files
     directory = 'resumes'
@@ -57,6 +62,6 @@ def test_search():
         print(item)
 
 if __name__ == '__main__':
-    test_load_resume()
+    # test_load_resume()
     test_edit_resume()
     # test_search()

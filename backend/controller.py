@@ -16,7 +16,7 @@ def getUserInfo(email):
     #info = getProfile(user["transaction_id"])
     return info
 
-def setUserInfo(email):
+def setUserInfo(email, about = False, experience = False, education = False, skill = False, achievements = False):
     setUserInfoDatabase(email = email)
 
 def getUserList():

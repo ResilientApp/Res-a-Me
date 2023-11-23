@@ -78,14 +78,17 @@ def logout():
     # session.clear()
     return jsonify(message = "Logout successful", status = 200)
 
-@app.route('/load', methods=['POST'])
+@app.route('/loadResume', methods=['POST'])
 @jwt_required()
 def load_resume():
     user_id = get_jwt_identity()
+    print(user_id)
     data = request.get_json()
-    
+    # print(data)
     category = data.get('category')
+    
     if not category:
+        # print(data)
         return jsonify({"message": "Category is required"}), 400
 
     try:
@@ -95,19 +98,23 @@ def load_resume():
     except FileNotFoundError:
         return jsonify({"message": f"{category} not found for {user_id}"}), 404
 
-@app.route('/edit', methods=['POST'])
+@app.route('/editResume', methods=['POST'])
 @jwt_required()
 def edit_resume():
     user_id = get_jwt_identity()
-    data = request.get_json()
+    response_data = request.get_json()
     
-    category = data.get('category')
+    category = response_data.get('category')
     if not category:
         return jsonify({"message": "Category is required"}), 400
 
     try:
+        data = response_data.get('data')
         with open(f'resumes/{user_id}/{category}.json', 'w') as f:
-            json.dump(data, f, indent=4)
+            # print("here: ", json.loads(data))
+            # print("length: ", len(json.loads(data)))
+            for item in json.loads(data):
+                json.dump(item, f, indent=4)
         return jsonify({"message": f"{category} updated successfully"})
     except FileNotFoundError:
         return jsonify({"message": f"{category} not found for {user_id}"}), 404

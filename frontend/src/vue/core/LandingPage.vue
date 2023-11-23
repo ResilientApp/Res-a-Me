@@ -10,7 +10,7 @@
         text-transform: none;
         letter-spacing: 0px;
       "
-      id = "userNameDisplay"
+      id="userNameDisplay"
     >
       Hi, {{ userName }}
     </p>
@@ -58,11 +58,11 @@
         <v-img
           class="mx-auto mt-12 mb-16"
           max-width="340"
-          src="../../../public/images/icons/Res-A-Me.png"
+          src="/images/icons/Res-A-Me.png"
         ></v-img>
 
         <v-autocomplete
-          v-model="friends"
+          v-model="query"
           :disabled="isUpdating"
           :items="people"
           chips
@@ -101,6 +101,7 @@
             color="#ededf0"
             style="text-transform: none; letter-spacing: 0px"
             class="mr-5"
+            @click="routeToResume()"
           >
             Res-A-Me Search
           </v-btn>
@@ -109,7 +110,7 @@
             color="#ededf0"
             style="text-transform: none; letter-spacing: 0px"
           >
-            I'm Feeling Lucky
+            Make Connections
           </v-btn>
         </v-row>
 
@@ -122,7 +123,6 @@
                 rel="noopener noreferer"
                 target="_blank"
                 width="112"
-                @click="this.$router.push('/home')"
               >
                 <v-avatar
                   icon="mdi-account"
@@ -203,6 +203,7 @@ export default {
             document.getElementById("logoutButton").style.display = "none";
             document.getElementById("signinButton").style.display = "block";
             document.getElementById("profileShortcut").style.display = "none";
+            document.getElementById("userNameDisplay").style.display = "none";
             alert("Logout successful");
           } else {
             errorMessage.value =
@@ -214,6 +215,12 @@ export default {
           errorMessage.value =
             error.message || "An error occurred. Please try again.";
         });
+    },
+    routeToResume() {
+      this.$router.push({
+        path: "/home",
+        query: { query: this.query },
+      });
     },
   },
   data() {
@@ -230,7 +237,7 @@ export default {
       autoUpdate: true,
       isUpdating: false,
       name: "Midnight Crew",
-      friends: [],
+      query: [],
       people: [
         // TODO: https://github.com/vuetifyjs/vuetify/issues/15721
         // { header: 'Group 1' },

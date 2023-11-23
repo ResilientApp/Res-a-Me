@@ -33,7 +33,6 @@ export function createAppRouter() {
             component: EditView
         },]
 
-    // Add sections -> Not sure
     for (let i = 1; i < sections.length; i++) {
         let sectionId = sections[i].id
         routeList.push({
@@ -47,7 +46,6 @@ export function createAppRouter() {
         path: '/:pathMatch(.*)*',
         redirect: '/'
     })
-    // Add end
 
     // Create the router instance
     const router = createRouter({

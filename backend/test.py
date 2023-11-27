@@ -61,7 +61,27 @@ def test_search():
     for item in partial_content:
         print(item)
 
+# @app.route('/userList', methods=['GET'])
+# def userList():
+#     users = getUserListDatabase()
+#     return jsonify(user_list=users, status = 200)
+
+def test_user_list():
+    url = 'http://localhost:3033/userList'
+    headers = {'Content-Type': 'application/json'}
+
+    response = requests.get(url, headers=headers)
+
+    print("Status code:", response.status_code)
+    print("Response data:", response.text)
+
+    data = response.json()
+
+    assert response.status_code == 200
+    assert 'user_list' in data
+
 if __name__ == '__main__':
     # test_load_resume()
-    test_edit_resume()
+    # test_edit_resume()
     # test_search()
+    test_user_list()

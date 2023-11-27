@@ -47,38 +47,37 @@ loginDatabase = {
             "password": "jackjack",
         }
     }
-# loginDatabase = {}
-userInfoDatabase = {}
-userKeyPairDatabase = {}
-userListDatabase = []
-
-if __name__ == "__main__":
-    loginDatabase = {
+# # loginDatabase = {}
+# userInfoDatabase = {}
+# userKeyPairDatabase = {}
+# userListDatabase = []
+loginDatabase = {
         "jack@gmail.com":{
             "password": "jackjack",
         }
     }
 
-    userInfoDatabase = {
-        "jack@gmail.com":{
-            "public_key": "CX62ckRaUucsVi3cbxCkSAcxR7zsBBNSPPrEHz26X4vz",
-            "transaction_id": "12342356"
-            },
-    }
-    
-    userKeyPairDatabase = {
-        "CX62ckRaUucsVi3cbxCkSAcxR7zsBBNSPPrEHz26X4vz": "DZBpCfHDsQhvy9vLkcRKYskfSaXwrGQTfzzKVJTvzQN9"
-    }
-
-    userListDatabase = [
-        {
-            "email": "jack@gmail.com",
-            "name": "Jack",
-            "position": "Software Engineer"
+userInfoDatabase = {
+    "jack@gmail.com":{
+        "public_key": "CX62ckRaUucsVi3cbxCkSAcxR7zsBBNSPPrEHz26X4vz",
+        "transaction_id": "12342356"
         },
-        {
-            "email": "elliot@gmail.com",
-            "name": "Elliot",
-            "position": "Software Engineer"
-        }
-    ]
+}
+    
+userKeyPairDatabase = {
+    "CX62ckRaUucsVi3cbxCkSAcxR7zsBBNSPPrEHz26X4vz": "DZBpCfHDsQhvy9vLkcRKYskfSaXwrGQTfzzKVJTvzQN9"
+}
+
+userListDatabase = [
+    {
+        "email": "jack@gmail.com",
+        "name": "Jack",
+        "position": "Software Engineer"
+    },
+    {
+        "email": "elliot@gmail.com",
+        "name": "Elliot",
+        "position": "Software Engineer"
+    }
+]
+    

@@ -4,6 +4,7 @@ from flask import Flask, request, jsonify
 from flask_jwt_extended import create_access_token, create_refresh_token, get_jwt_identity, jwt_required, JWTManager
 from flask_cors import CORS
 from datetime import timedelta
+from localdb import getUserListDatabase
 
 app = Flask(__name__)
 
@@ -119,7 +120,10 @@ def edit_resume():
     except FileNotFoundError:
         return jsonify({"message": f"{category} not found for {user_id}"}), 404
         
-
+@app.route('/userList', methods=['GET'])
+def userList():
+    users = getUserListDatabase()
+    return jsonify(user_list=users, status = 200)
 
 # @app.route('/get_user_data/<email>', methods=['GET'])
 # def get_user_data(username):

@@ -37,35 +37,6 @@ def test_edit_resume():
     assert response.status_code == 200
     assert data['message'] == "About updated successfully"
 
-def test_search():
-    # Directory containing the JSON files
-    directory = 'resumes'
-
-    # List to store the partial content
-    partial_content = []
-
-    # Iterate over all files in the directory
-    for filename in os.listdir(directory):
-        # Check if the file is a JSON file
-        if filename.endswith('.json'):
-            # Open the file
-            with open(os.path.join(directory, filename), 'r') as f:
-                # Load the JSON data
-                data = json.load(f)
-                # Extract the "name" and "title" fields
-                partial_data = {key: data.get(key, None) for key in ['name', 'title']}
-                # Add the partial data to the list
-                partial_content.append(partial_data)
-
-    # Print the partial content
-    for item in partial_content:
-        print(item)
-
-# @app.route('/userList', methods=['GET'])
-# def userList():
-#     users = getUserListDatabase()
-#     return jsonify(user_list=users, status = 200)
-
 def test_user_list():
     url = 'http://localhost:3033/userList'
     headers = {'Content-Type': 'application/json'}
@@ -80,8 +51,24 @@ def test_user_list():
     assert response.status_code == 200
     assert 'user_list' in data
 
+def test_update_resume():
+    url = 'http://localhost:3033/updateResume'
+    headers = {'Content-Type': 'application/json'}
+    data = {"email": "jack@gmail.com"}
+
+    response = requests.post(url, headers=headers, data=json.dumps(data))
+
+    print("Status code:", response.status_code)
+    print("Response data:", response.text)
+
+    data = response.json()
+
+    assert response.status_code == 200
+    assert data['message'] == "Files replaced successfully"
+
 if __name__ == '__main__':
     # test_load_resume()
     # test_edit_resume()
     # test_search()
-    test_user_list()
+    # test_user_list()
+    test_update_resume()

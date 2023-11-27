@@ -1,10 +1,13 @@
 import json
+import shutil
+import os
 from controller import getUserLogin, setUserLogin, getUserInfo, setUserInfo
 from flask import Flask, request, jsonify
 from flask_jwt_extended import create_access_token, create_refresh_token, get_jwt_identity, jwt_required, JWTManager
 from flask_cors import CORS
 from datetime import timedelta
 from localdb import getUserListDatabase
+
 
 app = Flask(__name__)
 
@@ -124,6 +127,26 @@ def edit_resume():
 def userList():
     users = getUserListDatabase()
     return jsonify(user_list=users, status = 200)
+
+@app.route('/updateResume', methods=['POST'])
+def update_resume():
+    data = request.get_json()
+    email = data.get('email')
+
+    if not email:
+        return jsonify({"message": "Email is required"}), 400
+
+    source_dir = f'resumes/{email}'
+    target_dir = '../frontend/public/data/sections'
+
+    if not os.path.exists(source_dir):
+        return jsonify({"message": "No resume found for this email"}), 404
+
+    for filename in os.listdir(source_dir):
+        if filename.endswith('.json'):
+            shutil.copy(os.path.join(source_dir, filename), target_dir)
+
+    return jsonify({"message": "Files replaced successfully"})
 
 # @app.route('/get_user_data/<email>', methods=['GET'])
 # def get_user_data(username):

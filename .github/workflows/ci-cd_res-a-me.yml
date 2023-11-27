@@ -6,7 +6,7 @@ name: Build and deploy Node.js app to Azure Web App - Res-A-Me
 on:
   push:
     branches: "*"
-  merge:
+  pull_request:
     branches: "*"
 
 jobs:

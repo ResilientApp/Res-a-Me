@@ -1,7 +1,7 @@
 <template>
     <SectionTemplate :section-data="props.sectionData">
         <div class="info-row row gx-4 gx-xl-5">
-            <div v-for="subcategory in props.sectionData['content']['subcategories']" class="col-12 subcategory-col">
+            <div v-for="subcategory in props.sectionData['content']['subcategories'].filter(subcategory => subcategory.id === 'abilities')" class="col-12 subcategory-col">
                 <!-- Subcategory Title -->
                 <SubHeading v-if="subcategory['locales']['title']"
                             :title="subcategory['locales']['title']"

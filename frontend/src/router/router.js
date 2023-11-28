@@ -1,7 +1,7 @@
 import { useData } from "../composables/data.js"
 import RouterView from "../vue/core/RouterView.vue"
 import LoginView from "../vue/core/LoginView.vue"
-import EditView from "../vue/core/EditView.vue"
+import EditView from "../vue/core/Editview.vue"
 import LandingPage from "../vue/core/LandingPage.vue"
 import { createRouter, createWebHistory } from "vue-router"
 

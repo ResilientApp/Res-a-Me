@@ -89,8 +89,18 @@ export default {
     onMounted(async () => {
       try {
         //skill data
-        const skill_response = await axios.get('../../../data/sections/skills.json');
-        const skill_data = skill_response.data;
+        // const skill_response = await axios.get('../../../data/sections/skills.json');
+        // const skill_data = skill_response.data;
+        const skill_response = await fetch("http://127.0.0.1:3033/loadResume", {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Access-Control-Allow-Origin": "*",
+                    "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+                },
+                body :JSON.stringify({"category": "Skills"}),
+            });
+        const skill_data = await skill_response.json();
         // console.log(skill_data)
         const skill_transformedArray = skill_data.items.abilities.map((item, index) => {
           const { faIcon, locales } = item;
@@ -243,7 +253,18 @@ export default {
     },
     handleSaveSkill(skills){
       this.skills = skills;
+      // const merge_skills = Object.assign({}, this.skills);
       console.log("after save skill",this.skills) //Post new skills to backend
+      const skill_response = fetch("http://127.0.0.1:3033/editResume", {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Access-Control-Allow-Origin": "*",
+                    "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+                },
+                body :JSON.stringify({"category": "Skills","data": JSON.stringify(this.skills)}),
+            });
+      // console.log("after save skill",this.skills) //Post new skills to backend
     },
     handleSaveAbout(about){
       this.about = Object.assign({}, this.about, about);

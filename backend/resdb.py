@@ -29,10 +29,10 @@ def createProfile(user, public_key, private_key):
         prepared_token_tx, private_keys=private_key
     )
     sent_token_tx = db.transactions.send_commit(fulfilled_tx)
-    # return sent_token_tx
+    return sent_token_tx[4:]
 
-def modifyProfile(public_key, private_key, metadata, userInfo):
-    fulfilled_tx = db.transactions.retrieve(txid=userInfo["fulfilled_tx"])
+def modifyProfile(public_key, private_key, metadata, transaction_id):
+    fulfilled_tx = db.transactions.retrieve(txid=transaction_id)
 
     transfer_asset = {"id": fulfilled_tx["id"]}
     output_index = 0
@@ -53,9 +53,10 @@ def modifyProfile(public_key, private_key, metadata, userInfo):
         prepared_transfer_tx, private_keys=private_key
     )
     sent_transfer_tx = db.transactions.send_commit(fulfilled_tx)
-    # return sent_transfer_tx
+    return sent_transfer_tx[4:]
 
-# def getProfile()
+# def getProfile(transaction_id)
+    # return db.transactions.retrieve(txid = transaction_id)["metadata"]
 
 if __name__ == "__main__":
     alice, bob = generate_keypair(), generate_keypair()

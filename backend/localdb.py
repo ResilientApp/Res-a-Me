@@ -1,3 +1,12 @@
+loginDatabase = {}
+userInfoDatabase = {}
+userKeyPairDatabase = {}
+userListDatabase = []
+def __init__():
+    loginDatabase = {}
+    userInfoDatabase = {}
+    userKeyPairDatabase = {}
+    userListDatabase = []
 def getUserLoginDatabase(email):
     if email not in loginDatabase:
         return False
@@ -15,9 +24,10 @@ def getUserInfoDatabase(email):
     else:
         return userInfoDatabase[email]
 
-def setUserInfoDatabase(email, public_key = None):
+def setUserInfoDatabase(email, public_key = None, transaction_id = None):
     userInfoDatabase[email] = {}
     if public_key: userInfoDatabase[email]["public_key"] = public_key
+    if transaction_id: userInfoDatabase[email]["transaction_id"] = transaction_id
 
 def getUserKeyPairDatabase(public_key):
     if public_key not in userKeyPairDatabase:
@@ -26,9 +36,7 @@ def getUserKeyPairDatabase(public_key):
         return userKeyPairDatabase[public_key]
 
 def setUserKeyPairDatabase(public_key, private_key):
-    if public_key in userKeyPairDatabase:
-        return False
-    else:
+    if public_key not in userKeyPairDatabase:
         userKeyPairDatabase[public_key] = private_key
 
 def getUserListDatabase():
@@ -42,15 +50,6 @@ def setUserListDatabase(email, name, position):
     }
     userListDatabase.append(new_user)
 
-loginDatabase = {
-        "jack@gmail.com":{
-            "password": "jackjack",
-        }
-    }
-# loginDatabase = {}
-userInfoDatabase = {}
-userKeyPairDatabase = {}
-userListDatabase = []
 
 if __name__ == "__main__":
     loginDatabase = {

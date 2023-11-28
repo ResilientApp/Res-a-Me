@@ -123,13 +123,16 @@
                 rel="noopener noreferer"
                 target="_blank"
                 width="112"
+                @click="this.$router.push('/home')"
               >
-                <v-avatar
-                  icon="mdi-account"
-                  color="black"
+                <v-avatar color="black"
                   variant="tonal"
-                  class="mb-2"
-                ></v-avatar>
+                  class="mb-2">
+                  <v-img
+                    :src=shortCutIcon
+                    alt="John"
+                  ></v-img>
+                </v-avatar>
 
                 <div class="text-caption text-truncate">My Resume</div>
               </v-card>
@@ -233,6 +236,7 @@ export default {
     };
 
     return {
+      shortCutIcon: "../../public/images/pictures/avatar.png",
       userName: "User",
       autoUpdate: true,
       isUpdating: false,

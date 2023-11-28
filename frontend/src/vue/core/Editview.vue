@@ -98,7 +98,7 @@ export default {
                     "Access-Control-Allow-Origin": "*",
                     "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
                 },
-                body :JSON.stringify({"category": "Skills"}),
+                body :JSON.stringify({"category": "skills"}),
             });
         const skill_data = await skill_response.json();
         // console.log(skill_data)

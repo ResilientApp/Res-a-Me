@@ -69,6 +69,5 @@ def test_update_resume():
 if __name__ == '__main__':
     # test_load_resume()
     # test_edit_resume()
-    # test_search()
     # test_user_list()
     test_update_resume()

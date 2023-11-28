@@ -1,7 +1,7 @@
 import json
 import shutil
 import os
-from controller import getUserLogin, setUserLogin, getUserInfo, setUserInfo, getUserList, getUserResume, setUserResume
+from controller import getUserLogin, setUserLogin, getUserList, getUserResume, setUserResume#, getUserInfoCategory, setUserInfoCategory, getUserInfoAll
 from flask import Flask, request, jsonify
 from flask_jwt_extended import create_access_token, create_refresh_token, get_jwt_identity, jwt_required, JWTManager
 from flask_cors import CORS

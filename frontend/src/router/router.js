@@ -10,6 +10,8 @@ export function createAppRouter() {
     const sections = data.getSections();
     const homeSection = sections[0] || { id: 'home' };
 
+    const protectedRoutes = ['edit', homeSection['id']];
+
     /** Create Home **/
     const routeList = [
         {
@@ -33,6 +35,7 @@ export function createAppRouter() {
             component: EditView
         },]
 
+    // Add sections -> Not sure
     for (let i = 1; i < sections.length; i++) {
         let sectionId = sections[i].id
         routeList.push({
@@ -46,6 +49,7 @@ export function createAppRouter() {
         path: '/:pathMatch(.*)*',
         redirect: '/'
     })
+    // Add end
 
     // Create the router instance
     const router = createRouter({
@@ -98,9 +102,16 @@ export function createAppRouter() {
         console.log("isAuthenticated = ", isAuthenticated)
 
         if (to.name === 'login' && isAuthenticated) {
-            next({ name: homeSection['id'] }); // Redirect to home if trying to access login while authenticated
+            // Redirect to home page if trying to access login page while authenticated
+            next({ name: homeSection['id'] });
         } else {
-            next(); // Otherwise, proceed as normal
+            if (protectedRoutes.includes(to.name) && !isAuthenticated) {
+                // Redirect to login page if trying to access a protected route while not authenticated
+                next({ name: 'login' });
+            } else {
+                // Proceed as normal for other routes or if authenticated
+                next();
+            }
         }
     });
 

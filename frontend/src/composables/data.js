@@ -112,6 +112,7 @@ export function useData() {
      */
     const getProfile = () => {
         _updateLocalization()
+        console.log(_localizedData.entries)
         return _localizedData.entries.profile
     }
 

@@ -31,7 +31,7 @@
                         <v-col cols="4">
                           <v-text-field
                             class="pa-2"
-                            v-model="edu.diploma"
+                            v-model="edu.title"
                             :rules="[
                                 () => isDiplomaValid(edu) || 'This field is required'
                             ]"
@@ -124,7 +124,7 @@
               return !!edu.schoolName;
           };
           const isDiplomaValid = (edu) => {
-              return !!edu.diploma;
+              return !!edu.title;
           };
           const isStartDateValid = (edu) => {
               return !!edu.startDate;

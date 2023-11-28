@@ -108,7 +108,7 @@ export default {
 
           return {
             id: index,
-            name: title || '',
+            title: title || '',
             description: description || '',
           };
         });
@@ -120,15 +120,15 @@ export default {
         const profile_data = profile_response.data;
         const description = cover_data.locales.en.bio;
         const name = profile_data.name;
-        const imgurl = profile_data.profilePictureUrl;
-        const position = profile_data.locales.en.role;
+        const profilePictureUrl = profile_data.profilePictureUrl;
+        const role = profile_data.locales.en.role;
         const address = profile_data.contact.address.value;
         const email = profile_data.contact.email.value;
         const phone = profile_data.contact.phone.valueShort;
         const about_transformedArray = {
           name,
-          imgurl,
-          position,
+          profilePictureUrl,
+          role,
           description,
           address,
           email,
@@ -150,7 +150,7 @@ export default {
           const dateE = new Date(yearE, monthE - 1);
           const formattedDateE = dateE.toISOString().split('T')[0];
           return{
-              diploma: item.locales.en.title,
+              title: item.locales.en.title,
               schoolName: item.place.split('{places.')[1].split('}')[0],
               startDate: formattedDateS,
               endDate: formattedDateE,
@@ -174,7 +174,7 @@ export default {
             const dateE = new Date(yearE, monthE - 1);
             const formattedDateE = dateE.toISOString().split('T')[0];
             return{
-                position: item.locales.en.title,
+                title: item.locales.en.title,
                 company: item.place.split('{places.')[1].split('}')[0],
                 startDate: formattedDateS,
                 endDate: formattedDateE,

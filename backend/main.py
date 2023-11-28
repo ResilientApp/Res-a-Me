@@ -12,9 +12,13 @@ app = Flask(__name__)
 
 # Setup the Flask-JWT-Extended extension
 app.config["JWT_SECRET_KEY"] = "super-secret"
-app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(seconds=30)
-app.config['JWT_REFRESH_TOKEN_EXPIRES'] = timedelta(seconds=60)
+app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(minutes=30)
+app.config['JWT_REFRESH_TOKEN_EXPIRES'] = timedelta(minutes=60)
 jwt = JWTManager(app)
+
+
+# Setup the image upload folder
+app.config['UPLOAD_FOLDER'] = "../frontend/public/images/pictures"
 
 CORS(app, supports_credentials=True)
 
@@ -139,6 +143,35 @@ def update_resume():
             shutil.copy(os.path.join(source_dir, filename), target_dir)
 
     return jsonify({"message": "Files replaced successfully"})
+
+def allowed_file(filename):
+    return '.' in filename and \
+        filename.rsplit('.', 1)[1].lower() in {'png'}
+
+@app.route('/upload', methods=['POST'])
+@jwt_required()
+def upload():
+    print("Upload")
+    current_user_email = get_jwt_identity()
+    
+    if 'image' not in request.files:
+        return jsonify(message = "No file part", status=400)
+
+    file = request.files['image']
+
+    if file.filename == '':
+        return jsonify(message = "No selected file", status=400)
+
+    if file and allowed_file(file.filename):
+        filename = current_user_email + ".png"
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        print(file_path)
+        file.save(file_path)
+        return jsonify(message="Upload successful", status=200, path=file_path)
+
+    return jsonify(message="File type not allowed", status=400)
+
+
 
 # @app.route('/get_user_data/<email>', methods=['GET'])
 # def get_user_data(username):

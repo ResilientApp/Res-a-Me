@@ -28,9 +28,9 @@
                 </v-col>
                 <v-col>
                     <v-text-field class="pa-2"
-                    v-model="about.position"
+                    v-model="about.role"
                     :rules="[
-                        () => !!about.position || 'This field is required',
+                        () => !!about.role || 'This field is required',
                         () => isPositionValid() || 'Position must be at least 2 characters and less than 20 characters'
                     ]"
                     :counter="20"
@@ -87,6 +87,16 @@
                     ></v-text-field>
             </v-row>
             <div class="d-flex justify-center">
+                <form @submit.prevent="uploadImage">
+                    <input type="file" @change="handleFileChange" accept="image/png">
+                    <v-btn class="ml-5" @click="upload(about)"
+                        >Upload
+                        <v-icon color="green" 
+                            size="x-large"
+                            icon="mdi-content-upload"
+                        ></v-icon>
+                    </v-btn>
+                </form>
                 <v-btn class="ml-5" @click="saveAbout(about)"
                     >Save
                       <v-icon color="green" 
@@ -114,7 +124,7 @@ export default {
             return !!props.about.name && props.about.name.length >= 2 && props.about.name.length <= 20;
         };
         const isPositionValid = () => {
-            return !!props.about.position && props.about.position.length >= 2 && props.about.position.length <= 20;
+            return !!props.about.role && props.about.role.length >= 2 && props.about.role.length <= 20;
         };
         const isAddressValid = () => {
             return !!props.about.address && props.about.address.length <= 50;
@@ -151,6 +161,43 @@ export default {
             }
         }
         
+        const selectedFile = ref(null);
+        const handleFileChange = (event) => {
+            selectedFile.value = event.target.files[0];
+        };
+
+        const upload = (about) => {
+            if (!selectedFile.value) {
+                alert("Please select a file first.");
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('image', selectedFile.value);
+
+            // Append other 'about' details to formData if needed
+            // for (const key in about) {
+            //   formData.append(key, about[key]);
+            // }
+
+            fetch('http://127.0.0.1:3033/upload', {
+                method: 'POST',
+                headers: {
+                    Authorization: `Bearer ` + sessionStorage.getItem("access_token"),
+                },
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Upload successful:', data);
+                // Handle successful upload
+            })
+            .catch((error) => {
+                console.error('Upload error:', error);
+                // Handle upload error
+            });
+            };
+        
 
         return {
           saveAbout,
@@ -160,6 +207,8 @@ export default {
           isPhoneValid,
           isEmailValid,
           isDescriptionValid,
+          handleFileChange,
+          upload,
         };
     },
     

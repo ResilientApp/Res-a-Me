@@ -18,9 +18,9 @@
                 <v-col cols="2">
                   <v-text-field
                     class="pa-2"
-                    v-model="skill.name"
+                    v-model="skill.title"
                     :rules="[
-                        () => !!skill.name || 'This field is required'
+                        () => !!skill.title || 'This field is required'
                     ]"
                     :counter="20"
                     label="Skill"
@@ -96,7 +96,7 @@
 
           skills.forEach((skill, index) => {
             // Check each skill's properties for validation
-            if (!skill.name || !skill.description) {
+            if (!skill.title || !skill.description) {
               allRulesPassed = false;
             }
           });

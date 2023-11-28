@@ -1,7 +1,7 @@
 import { useData } from "../composables/data.js"
 import RouterView from "../vue/core/RouterView.vue"
 import LoginView from "../vue/core/LoginView.vue"
-import EditView from "../vue/core/EditView.vue"
+import EditView from "../vue/core/Editview.vue"
 import LandingPage from "../vue/core/LandingPage.vue"
 import { createRouter, createWebHistory } from "vue-router"
 
@@ -9,6 +9,8 @@ export function createAppRouter() {
     const data = useData();
     const sections = data.getSections();
     const homeSection = sections[0] || { id: 'home' };
+
+    const protectedRoutes = ['edit', homeSection['id']];
 
     /** Create Home **/
     const routeList = [
@@ -98,9 +100,16 @@ export function createAppRouter() {
         console.log("isAuthenticated = ", isAuthenticated)
 
         if (to.name === 'login' && isAuthenticated) {
-            next({ name: homeSection['id'] }); // Redirect to home if trying to access login while authenticated
+            // Redirect to home page if trying to access login page while authenticated
+            next({ name: homeSection['id'] });
         } else {
-            next(); // Otherwise, proceed as normal
+            if (protectedRoutes.includes(to.name) && !isAuthenticated) {
+                // Redirect to login page if trying to access a protected route while not authenticated
+                next({ name: 'login' });
+            } else {
+                // Proceed as normal for other routes or if authenticated
+                next();
+            }
         }
     });
 

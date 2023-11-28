@@ -89,8 +89,18 @@ export default {
     onMounted(async () => {
       try {
         //skill data
-        const skill_response = await axios.get('../../../data/sections/skills.json');
-        const skill_data = skill_response.data;
+        // const skill_response = await axios.get('../../../data/sections/skills.json');
+        // const skill_data = skill_response.data;
+        const skill_response = await fetch("http://127.0.0.1:3033/loadResume", {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Access-Control-Allow-Origin": "*",
+                    "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+                },
+                body :JSON.stringify({"category": "skills"}),
+            });
+        const skill_data = await skill_response.json();
         // console.log(skill_data)
         const skill_transformedArray = skill_data.items.abilities.map((item, index) => {
           const { faIcon, locales } = item;
@@ -98,7 +108,7 @@ export default {
 
           return {
             id: index,
-            name: title || '',
+            title: title || '',
             description: description || '',
           };
         });
@@ -110,15 +120,15 @@ export default {
         const profile_data = profile_response.data;
         const description = cover_data.locales.en.bio;
         const name = profile_data.name;
-        const imgurl = profile_data.profilePictureUrl;
-        const position = profile_data.locales.en.role;
+        const profilePictureUrl = profile_data.profilePictureUrl;
+        const role = profile_data.locales.en.role;
         const address = profile_data.contact.address.value;
         const email = profile_data.contact.email.value;
         const phone = profile_data.contact.phone.valueShort;
         const about_transformedArray = {
           name,
-          imgurl,
-          position,
+          profilePictureUrl,
+          role,
           description,
           address,
           email,
@@ -140,7 +150,7 @@ export default {
           const dateE = new Date(yearE, monthE - 1);
           const formattedDateE = dateE.toISOString().split('T')[0];
           return{
-              diploma: item.locales.en.title,
+              title: item.locales.en.title,
               schoolName: item.place.split('{places.')[1].split('}')[0],
               startDate: formattedDateS,
               endDate: formattedDateE,
@@ -164,7 +174,7 @@ export default {
             const dateE = new Date(yearE, monthE - 1);
             const formattedDateE = dateE.toISOString().split('T')[0];
             return{
-                position: item.locales.en.title,
+                title: item.locales.en.title,
                 company: item.place.split('{places.')[1].split('}')[0],
                 startDate: formattedDateS,
                 endDate: formattedDateE,
@@ -243,7 +253,18 @@ export default {
     },
     handleSaveSkill(skills){
       this.skills = skills;
+      // const merge_skills = Object.assign({}, this.skills);
       console.log("after save skill",this.skills) //Post new skills to backend
+      const skill_response = fetch("http://127.0.0.1:3033/editResume", {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Access-Control-Allow-Origin": "*",
+                    "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+                },
+                body :JSON.stringify({"category": "Skills","data": JSON.stringify(this.skills)}),
+            });
+      // console.log("after save skill",this.skills) //Post new skills to backend
     },
     handleSaveAbout(about){
       this.about = Object.assign({}, this.about, about);

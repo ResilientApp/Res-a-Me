@@ -31,7 +31,7 @@
                         <v-col cols="4">
                           <v-text-field
                             class="pa-2"
-                            v-model="pro.position"
+                            v-model="pro.title"
                             :rules="[
                                 () => isPositionValid(pro) || 'This field is required'
                             ]"
@@ -124,7 +124,7 @@
               return !!pro.company;
           };
           const isPositionValid = (pro) => {
-              return !!pro.position;
+              return !!pro.title;
           };
           const isStartDateValid = (pro) => {
               return !!pro.startDate;

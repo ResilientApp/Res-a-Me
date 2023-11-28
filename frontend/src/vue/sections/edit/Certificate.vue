@@ -33,11 +33,11 @@
                             class="pa-2"
                             v-model="certifi.date"
                             :rules="[
-                                () => isDateValid(certifi) || 'This field is required'
+                                () => !!certifi.date || 'This field is required',
+                                () => isDateValid(certifi) || 'Date must be in YYYY/MM format'
                             ]"
                             :counter="20"
                             label="Date"
-                            type="date"
                           ></v-text-field>
                         </v-col>
                         <v-col >
@@ -64,9 +64,9 @@
                         ></v-text-field>
                       </v-row>
                     </v-col>
-                    <v-col class="button-container mr-2">
-                      <v-btn @click="deleteCer(index)" color="red-lighten-1"
-                      > delete
+                    <v-col class="button-container">
+                      <v-btn @click="deleteCer(index)" color="red-lighten-2"
+                      >
                         <v-icon
                           size="x-large"
                           icon="mdi-trash-can"
@@ -115,7 +115,7 @@
               return !!certifi.company_school;
           };
           const isDateValid = (certifi) => {
-              return !!certifi.date;
+              return !!certifi.date && /\b\d{4}\/(0[1-9]|1[0-2])\b/.test(certifi.date);;
           };
           const isDescriptionValid = (edu) => {
               return !!edu.description;

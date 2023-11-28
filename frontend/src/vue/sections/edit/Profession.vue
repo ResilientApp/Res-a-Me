@@ -31,7 +31,7 @@
                         <v-col cols="4">
                           <v-text-field
                             class="pa-2"
-                            v-model="pro.position"
+                            v-model="pro.title"
                             :rules="[
                                 () => isPositionValid(pro) || 'This field is required'
                             ]"
@@ -44,9 +44,9 @@
                             class="pa-2"
                             v-model="pro.startDate"
                             :rules="[
-                                () => isStartDateValid(pro) || 'This field is required'
+                                () => !!pro.startDate || 'This field is required',
+                                () => isStartDateValid(pro) || 'Date must be in YYYY/MM format'
                             ]"
-                            type="date"
                             :counter="10"
                             label="Start Date"
                           ></v-text-field>
@@ -56,9 +56,9 @@
                             class="pa-2"
                             v-model="pro.endDate"
                             :rules="[
-                                () => isEndDateValid(pro) || 'This field is required'
+                                () => !!pro.endDate || 'This field is required',
+                                () => isEndDateValid(pro) || 'Date must be in YYYY/MM format'
                             ]"
-                            type="date"
                             :counter="10"
                             label="End Date"
                           ></v-text-field>
@@ -76,9 +76,9 @@
                         ></v-text-field>
                       </v-row>
                     </v-col>
-                    <v-col class="button-container mr-2">
-                      <v-btn @click="deletePro(index)" color="red-lighten-1"
-                      > delete
+                    <v-col class="button-container">
+                      <v-btn @click="deletePro(index)" color="red-lighten-2"
+                      >
                         <v-icon
                           size="x-large"
                           icon="mdi-trash-can"
@@ -124,13 +124,13 @@
               return !!pro.company;
           };
           const isPositionValid = (pro) => {
-              return !!pro.position;
+              return !!pro.title;
           };
           const isStartDateValid = (pro) => {
-              return !!pro.startDate;
+              return !!pro.startDate && /\b\d{4}\/(0[1-9]|1[0-2])\b/.test(pro.startDate);
           };
           const isEndDateValid = (pro) => {
-              return !!pro.endDate;
+              return !!pro.endDate && /\b\d{4}\/(0[1-9]|1[0-2])\b/.test(pro.endDate);;
           };
           const isDescriptionValid = (pro) => {
               return !!pro.description;

@@ -28,9 +28,9 @@
                 </v-col>
                 <v-col>
                     <v-text-field class="pa-2"
-                    v-model="about.position"
+                    v-model="about.role"
                     :rules="[
-                        () => !!about.position || 'This field is required',
+                        () => !!about.role || 'This field is required',
                         () => isPositionValid() || 'Position must be at least 2 characters and less than 20 characters'
                     ]"
                     :counter="20"
@@ -87,9 +87,9 @@
                     ></v-text-field>
             </v-row>
             <div class="d-flex justify-center">
-                <v-btn class="ml-5" @click="saveAbout(about)"
+                <v-btn color="green" class="ml-5" @click="saveAbout(about)"
                     >Save
-                      <v-icon color="green" 
+                      <v-icon 
                         size="x-large"
                         icon="mdi-content-save"
                       ></v-icon>
@@ -114,7 +114,7 @@ export default {
             return !!props.about.name && props.about.name.length >= 2 && props.about.name.length <= 20;
         };
         const isPositionValid = () => {
-            return !!props.about.position && props.about.position.length >= 2 && props.about.position.length <= 20;
+            return !!props.about.role && props.about.role.length >= 2 && props.about.role.length <= 20;
         };
         const isAddressValid = () => {
             return !!props.about.address && props.about.address.length <= 50;

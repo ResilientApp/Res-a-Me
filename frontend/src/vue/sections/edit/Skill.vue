@@ -18,9 +18,9 @@
                 <v-col cols="2">
                   <v-text-field
                     class="pa-2"
-                    v-model="skill.name"
+                    v-model="skill.title"
                     :rules="[
-                        () => !!skill.name || 'This field is required'
+                        () => !!skill.title || 'This field is required'
                     ]"
                     :counter="20"
                     label="Skill"
@@ -38,28 +38,28 @@
                   ></v-text-field>
                 </v-col>
                 <v-col class="button-container">
-                    <v-btn @click="deleteSkill(index)" class="mr-2 mb-4"
-                    >delete
-                      <v-icon color="red"
+                    <v-btn color="red-lighten-2" @click="deleteSkill(index)" class="mb-4"
+                    >
+                      <v-icon 
                         size="x-large"
                         icon="mdi-trash-can"
                       ></v-icon>
                     </v-btn>
-                  </v-col>
+                </v-col>
               </v-row>
             </div>
           </template>
           <div class="d-flex justify-center">
-            <v-btn @click="addNew()"
+            <v-btn color="grey" @click="addNew()"
                     >Add more
                       <v-icon
                         size="x-large"
                         icon="mdi-plus-thick"
                       ></v-icon>
             </v-btn>
-            <v-btn class="ml-5" @click="saveSkill(skills)"
+            <v-btn color="green" class="ml-5" @click="saveSkill(skills)"
                     >Save
-                      <v-icon color="green"
+                      <v-icon 
                         size="x-large"
                         icon="mdi-content-save"
                       ></v-icon>
@@ -96,7 +96,7 @@
 
           skills.forEach((skill, index) => {
             // Check each skill's properties for validation
-            if (!skill.name || !skill.description) {
+            if (!skill.title || !skill.description) {
               allRulesPassed = false;
             }
           });

@@ -9,8 +9,8 @@ app = Flask(__name__)
 
 # Setup the Flask-JWT-Extended extension
 app.config["JWT_SECRET_KEY"] = "super-secret"
-app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(seconds=30)
-app.config['JWT_REFRESH_TOKEN_EXPIRES'] = timedelta(seconds=60)
+app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(minutes=10)
+app.config['JWT_REFRESH_TOKEN_EXPIRES'] = timedelta(minutes=10)
 jwt = JWTManager(app)
 
 CORS(app, supports_credentials=True)
@@ -110,11 +110,12 @@ def edit_resume():
 
     try:
         data = response_data.get('data')
+        print(data)
         with open(f'resumes/{user_id}/{category}.json', 'w') as f:
             # print("here: ", json.loads(data))
             # print("length: ", len(json.loads(data)))
-            for item in json.loads(data):
-                json.dump(item, f, indent=4)
+            # for item in json.loads(data):
+                json.dump(json.loads(data), f, indent=4)
         return jsonify({"message": f"{category} updated successfully"})
     except FileNotFoundError:
         return jsonify({"message": f"{category} not found for {user_id}"}), 404

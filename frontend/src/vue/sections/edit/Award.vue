@@ -33,9 +33,9 @@
                             class="pa-2"
                             v-model="award.date"
                             :rules="[
-                                () => isDateValid(award) || 'This field is required'
+                                () => !!award.date || 'This field is required',
+                                () => isDateValid(award) || 'Date must be in YYYY/MM format'
                             ]"
-                            type="date"
                             :counter="20"
                             label="Date"
                           ></v-text-field>
@@ -64,9 +64,9 @@
                         ></v-text-field>
                       </v-row>
                     </v-col>
-                    <v-col class="button-container mr-2">
-                      <v-btn @click="deleteAward(index)" color="red-lighten-1"
-                      > delete
+                    <v-col class="button-container">
+                      <v-btn @click="deleteAward(index)" color="red-lighten-2"
+                      >
                         <v-icon
                           size="x-large"
                           icon="mdi-trash-can"
@@ -115,7 +115,7 @@
               return !!award.company_school;
           };
           const isDateValid = (award) => {
-              return !!award.date;
+              return !!award.date&& /\b\d{4}\/(0[1-9]|1[0-2])\b/.test(award.date);
           };
           const isDescriptionValid = (award) => {
               return !!award.description;

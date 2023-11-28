@@ -76,5 +76,5 @@ if __name__ == "__main__":
     cover = {"cover":"cover elliot"}
     education = {"education":"ucdavis"}
     #print(getUserInfo(email)[0])
-    setUserInfo(email, cover)
+    getUserInfoAll(email)
     #print(getUserInfo(email))

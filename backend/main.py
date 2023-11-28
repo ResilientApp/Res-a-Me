@@ -1,12 +1,11 @@
 import json
 import shutil
 import os
-from controller import getUserLogin, setUserLogin, getUserInfo, setUserInfo
+from controller import getUserLogin, setUserLogin, getUserInfo, setUserInfo, getUserList, getUserResume, setUserResume
 from flask import Flask, request, jsonify
 from flask_jwt_extended import create_access_token, create_refresh_token, get_jwt_identity, jwt_required, JWTManager
 from flask_cors import CORS
 from datetime import timedelta
-from localdb import getUserListDatabase
 
 
 app = Flask(__name__)
@@ -86,18 +85,15 @@ def logout():
 @jwt_required()
 def load_resume():
     user_id = get_jwt_identity()
-    print(user_id)
-    data = request.get_json()
-    # print(data)
-    category = data.get('category')
+    response_data = request.get_json()
+    category = response_data.get('category')
     
-    if not category:
-        # print(data)
-        return jsonify({"message": "Category is required"}), 400
 
+    if not category:
+        return jsonify({"message": "Category is required"}), 400
     try:
-        with open(f'resumes/{user_id}/{category}.json', 'r') as f:
-            data = json.load(f)
+        user_data = getUserResume(user_id,category)
+        data = user_data
         return jsonify(data)
     except FileNotFoundError:
         return jsonify({"message": f"{category} not found for {user_id}"}), 404
@@ -107,31 +103,27 @@ def load_resume():
 def edit_resume():
     user_id = get_jwt_identity()
     response_data = request.get_json()
-    
     category = response_data.get('category')
+    
     if not category:
         return jsonify({"message": "Category is required"}), 400
 
     try:
         data = response_data.get('data')
-        with open(f'resumes/{user_id}/{category}.json', 'w') as f:
-            # print("here: ", json.loads(data))
-            # print("length: ", len(json.loads(data)))
-            for item in json.loads(data):
-                json.dump(item, f, indent=4)
+        setUserResume(user_id, category, data)
         return jsonify({"message": f"{category} updated successfully"})
     except FileNotFoundError:
         return jsonify({"message": f"{category} not found for {user_id}"}), 404
         
 @app.route('/userList', methods=['GET'])
 def userList():
-    users = getUserListDatabase()
+    users = getUserList()
     return jsonify(user_list=users, status = 200)
 
 @app.route('/updateResume', methods=['POST'])
 def update_resume():
-    data = request.get_json()
-    email = data.get('email')
+    response_data = request.get_json()
+    email = response_data.get('email')
 
     if not email:
         return jsonify({"message": "Email is required"}), 400

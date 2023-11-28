@@ -9,20 +9,28 @@ def setUserLogin(email, password):
     setUserLoginDatabase(email, password)
     setUserInfoDatabase(email = email, public_key = public_key)
     setUserKeyPairDatabase(public_key, private_key)
+
+def getUserInfoAll(email):
+    user = getUserInfoDatabase(email)
+    if "transaction_id" not in user:
+        return None
+    else:
+        return getProfile(user['transaction_id'])
     
-def getUserInfo(email, cover = None, experience = None, education = None, skill = None, achievements = None):
+def getUserInfoCategory(email, category):
+
     user = getUserInfoDatabase(email)
     if "transaction_id" not in user:
         return None
     else:
         metadata = getProfile(user["transaction_id"])
-        if cover: return metadata["cover"]
-        if experience: return metadata["experience"]
-        if education: return metadata["education"]
-        if skill: return metadata["skill"]
-        if achievements: return metadata["achievements"]
+        if category == "cover": return metadata["cover"]
+        elif category == "experience": return metadata["experience"]
+        elif category == "education": return metadata["education"]
+        elif category == "skill": return metadata["skill"]
+        elif category == "achievements": return metadata["achievements"]
 
-def setUserInfo(email, cover = None, experience = None, education = None, skill = None, achievements = None):
+def setUserInfoCategory(email, category, data):
     userInfo = getUserInfoDatabase(email)
     public_key = userInfo["public_key"]
     private_key = getUserKeyPairDatabase(public_key)
@@ -35,11 +43,11 @@ def setUserInfo(email, cover = None, experience = None, education = None, skill 
         previous_meta = getProfile(transaction_id)
     if previous_meta == None:
         previous_meta = {}
-    if cover: previous_meta["cover"] = cover["cover"]
-    if experience: previous_meta["experience"] = experience["experience"]
-    if education: previous_meta["education"] = education["education"]
-    if skill: previous_meta["skill"] = skill["skill"]
-    if achievements: previous_meta["achievements"] = achievements["achievements"]
+    if category == "cover": previous_meta["cover"] = data
+    if category == "experience": previous_meta["experience"] = data
+    if category == "education": previous_meta["education"] = data
+    if category == "skill": previous_meta["skill"] = data
+    if category == "achievements": previous_meta["achievements"] = data
     metadata = previous_meta
     transaction_id = modifyProfile(public_key, private_key, metadata, transaction_id) 
     setUserInfoDatabase(email = email, transaction_id = transaction_id)

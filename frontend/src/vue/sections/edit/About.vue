@@ -88,7 +88,7 @@
             </v-row>
             <div class="d-flex justify-center">
                 <form @submit.prevent="uploadImage">
-                    <input type="file" @change="handleFileChange" accept="image/*">
+                    <input type="file" @change="handleFileChange" accept="image/png">
                     <v-btn class="ml-5" @click="upload(about)"
                         >Upload
                         <v-icon color="green" 
@@ -182,7 +182,10 @@ export default {
 
             fetch('http://127.0.0.1:3033/upload', {
                 method: 'POST',
-                body: formData,  // No headers for multipart/form-data, as browser sets it
+                headers: {
+                    Authorization: `Bearer ` + sessionStorage.getItem("access_token"),
+                },
+                body: formData,
             })
             .then(response => response.json())
             .then(data => {

@@ -1,3 +1,4 @@
+import os
 from controller import getUserLogin, setUserLogin, getUserInfo, setUserInfo
 from flask import Flask, request, jsonify
 from flask_jwt_extended import create_access_token, create_refresh_token, get_jwt_identity, jwt_required, JWTManager
@@ -11,6 +12,10 @@ app.config["JWT_SECRET_KEY"] = "super-secret"
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(seconds=30)
 app.config['JWT_REFRESH_TOKEN_EXPIRES'] = timedelta(seconds=60)
 jwt = JWTManager(app)
+
+
+# Setup the image upload folder
+app.config['UPLOAD_FOLDER'] = "../frontend/public/images/pictures"
 
 CORS(app, supports_credentials=True)
 
@@ -77,6 +82,34 @@ def logout():
     print("Logout")
     # session.clear()
     return jsonify(message = "Logout successful", status = 200)
+
+
+def allowed_file(filename):
+    return '.' in filename and \
+        filename.rsplit('.', 1)[1].lower() in {'png', 'jpg', 'jpeg'}
+
+@app.route('/upload', methods=['POST'])
+def upload():
+    print("Upload")
+    
+    if 'image' not in request.files:
+        return jsonify(message = "No file part", status=400)
+
+    file = request.files['image']
+    print(file)
+
+    if file.filename == '':
+        return jsonify(message = "No selected file", status=400)
+
+    if file and allowed_file(file.filename):
+        filename = "avatar.png"
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        print(file_path)
+        file.save(file_path)
+        return jsonify(message="Upload successful", status=200, path=file_path)
+
+    return jsonify(message="File type not allowed", status=400)
+
 
 
 # @app.route('/get_user_data/<email>', methods=['GET'])

@@ -10,19 +10,19 @@ def setUserLogin(email, password):
     setUserInfoDatabase(email = email, public_key = public_key)
     setUserKeyPairDatabase(public_key, private_key)
     
-def getUserInfo(email, about = None, experience = None, education = None, skill = None, achievements = None):
+def getUserInfo(email, cover = None, experience = None, education = None, skill = None, achievements = None):
     user = getUserInfoDatabase(email)
     if "transaction_id" not in user:
         return None
     else:
         metadata = getProfile(user["transaction_id"])
-        if about: return metadata["about"]
+        if cover: return metadata["cover"]
         if experience: return metadata["experience"]
         if education: return metadata["education"]
         if skill: return metadata["skill"]
         if achievements: return metadata["achievements"]
 
-def setUserInfo(email, about = None, experience = None, education = None, skill = None, achievements = None):
+def setUserInfo(email, cover = None, experience = None, education = None, skill = None, achievements = None):
     userInfo = getUserInfoDatabase(email)
     public_key = userInfo["public_key"]
     private_key = getUserKeyPairDatabase(public_key)
@@ -35,7 +35,7 @@ def setUserInfo(email, about = None, experience = None, education = None, skill 
         previous_meta = getProfile(transaction_id)
     if previous_meta == None:
         previous_meta = {}
-    if about: previous_meta["about"] = about["about"]
+    if cover: previous_meta["cover"] = cover["cover"]
     if experience: previous_meta["experience"] = experience["experience"]
     if education: previous_meta["education"] = education["education"]
     if skill: previous_meta["skill"] = skill["skill"]
@@ -52,8 +52,8 @@ if __name__ == "__main__":
     password = "elliot"
     setUserLogin(email, password)
     #print(getUserLogin(email))
-    about = {"about":"about elliot"}
+    cover = {"cover":"cover elliot"}
     education = {"education":"ucdavis"}
     #print(getUserInfo(email)[0])
-    setUserInfo(email, about)
+    setUserInfo(email, cover)
     #print(getUserInfo(email))

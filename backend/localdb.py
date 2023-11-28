@@ -1,7 +1,20 @@
 loginDatabase = {}
 userInfoDatabase = {}
 userKeyPairDatabase = {}
-userListDatabase = []
+#userListDatabase = []
+userListDatabase = [
+    {
+        "email": "jack@gmail.com",
+        "name": "Jack",
+        "position": "Software Engineer"
+    },
+    {
+        "email": "elliot@gmail.com",
+        "name": "Elliot",
+        "position": "Software Engineer"
+    }
+]
+
 def __init__():
     loginDatabase = {}
     userInfoDatabase = {}
@@ -53,10 +66,10 @@ def setUserListDatabase(email, name, position):
 
 if __name__ == "__main__":
     loginDatabase = {
-        "jack@gmail.com":{
-            "password": "jackjack",
-        }
-    }
+          "jack@gmail.com":{
+              "password": "jackjack",
+          }
+      }
 
     userInfoDatabase = {
         "jack@gmail.com":{
@@ -64,7 +77,7 @@ if __name__ == "__main__":
             "transaction_id": "12342356"
             },
     }
-    
+
     userKeyPairDatabase = {
         "CX62ckRaUucsVi3cbxCkSAcxR7zsBBNSPPrEHz26X4vz": "DZBpCfHDsQhvy9vLkcRKYskfSaXwrGQTfzzKVJTvzQN9"
     }
@@ -81,3 +94,4 @@ if __name__ == "__main__":
             "position": "Software Engineer"
         }
     ]
+

@@ -1,5 +1,6 @@
 from resdb import generateKeyForUser, createProfile, modifyProfile, getProfile
 from localdb import getUserLoginDatabase, setUserLoginDatabase, getUserInfoDatabase, setUserInfoDatabase, getUserListDatabase, getUserKeyPairDatabase, setUserKeyPairDatabase
+import json
 
 def getUserLogin(email):
     return getUserLoginDatabase(email)
@@ -54,6 +55,18 @@ def setUserInfoCategory(email, category, data):
 
 def getUserList():
     return getUserListDatabase()
+
+# For testing use
+def getUserResume(email, category): # This function is for the edit page, which will ask for the resume data for a specific category
+    with open(f'resumes/{email}/{category}.json', 'r') as f:
+        data = json.load(f)
+    return data
+
+# For testing use
+def setUserResume(email, category, data): # This function is for the edit page, which will send the resume data for a specific category
+    with open(f'resumes/{email}/{category}.json', 'w') as f:
+        for item in json.loads(data):
+            json.dump(item, f, indent=4)
 
 if __name__ == "__main__":
     email = "elliot@gmail.com"

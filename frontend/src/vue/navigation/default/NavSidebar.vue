@@ -20,11 +20,11 @@
     
       <ul class="nav-links">
         <li class="nav-item">
-          <button class="nav-link" @click="searchButton">
+          <button class="nav-link" @click="router.push('/')">
             <i class="fa-solid fa-magnifying-glass"></i> Search
           </button>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" v-if="checkSession()">
           <button class="nav-link" @click="router.push('/edit')">
             <i class="fa-solid fa-pen-to-square"></i> Edit Resume
           </button>
@@ -35,15 +35,15 @@
     <!-- Footer -->
     <div class="nav-sidebar-footer" v-if="profileData">
       <v-col>
-          <v-btn variant="flat" @click="logout" color="#9716f1">Logout</v-btn>
-          <div v-if="errorMessage">{{ errorMessage }}</div>
+          <v-btn v-if="checkSession()" variant="flat" @click="logout" color="#9716f1">Logout</v-btn>
+          <v-btn v-if="!checkSession()" variant="flat" @click="router.push('/login');" color="#9716f1">Login</v-btn>
       </v-col>
     </div>
   </nav>
 </template>
 
+
 <script setup>
-import LanguagePicker from "../../widgets/LanguagePicker.vue";
 import NavProfileCard from "../partials/NavProfileCard.vue";
 import { computed } from "vue";
 import { useData } from "../../../composables/data.js";
@@ -56,6 +56,7 @@ const data = useData();
 const navigation = useNavigation();
 const router = useRouter();
 const errorMessage = ref("");
+
 
 /**
  * @type {ComputedRef<Object>}
@@ -84,6 +85,10 @@ const _getNavItemClassList = (section) => {
 const _onLinkClicked = (section) => {
   emit("linkClicked", section["id"]);
 };
+
+const checkSession = () => {
+  return sessionStorage.getItem("access_token") ? true : false;
+}
 
 const searchButton = () => {
   router.push("/");

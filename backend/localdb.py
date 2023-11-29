@@ -15,11 +15,6 @@ userListDatabase = [
     }
 ]
 
-def __init__():
-    loginDatabase = {}
-    userInfoDatabase = {}
-    userKeyPairDatabase = {}
-    userListDatabase = []
 def getUserLoginDatabase(email):
     if email not in loginDatabase:
         return False

@@ -33,10 +33,8 @@ def getUserInfoCategory(email, category):
 
 def setUserInfoCategory(email, category, data):
     userInfo = getUserInfoDatabase(email)
-    print(userInfo)
     public_key = userInfo["public_key"]
     private_key = getUserKeyPairDatabase(public_key)
-    print(f'setUserInfo public key: {public_key}, private key:{private_key}')
     previous_meta = None
     if "transaction_id" not in userInfo:
         transaction_id = createProfile(email, public_key, private_key)
@@ -74,11 +72,15 @@ if __name__ == "__main__":
     password = "elliot"
     setUserLogin(email, password)
     print(getUserLogin(email))
-    cover = {"cover":"cover elliot"}
-    education = {"education":"ucdavis"}
+    cover = "elliot"
+    education = "ucdavis"
     print(getUserInfoAll(email))
     setUserInfoCategory(email, "cover", cover)
+    print(getUserInfoAll(email))
     setUserInfoCategory(email, "education", education)
     print(getUserInfoCategory(email, "cover"))
     print(getUserInfoCategory(email, "education"))
+    print(getUserInfoAll(email))
+    cover = "Timo"
+    setUserInfoCategory(email, "cover", cover)
     print(getUserInfoAll(email))

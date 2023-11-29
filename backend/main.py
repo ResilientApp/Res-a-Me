@@ -133,14 +133,18 @@ def update_resume():
         return jsonify(message = "Email is required", status = 400)
 
     source_dir = f'resumes/{email}'
-    target_dir = '../frontend/public/data/sections'
+    target_dir_sections = '../frontend/public/data/sections'
+    target_dir_info = '../frontend/public/data/info'
 
     if not os.path.exists(source_dir):
         return jsonify(message = "No resume found for this email", status = 404)
 
     for filename in os.listdir(source_dir):
         if filename.endswith('.json'):
-            shutil.copy(os.path.join(source_dir, filename), target_dir)
+            if filename == 'profile.json':
+                shutil.copy(os.path.join(source_dir, filename), target_dir_info)
+            else:
+                shutil.copy(os.path.join(source_dir, filename), target_dir_sections)
 
     return jsonify(message = "Files replaced successfully", status = 200)
 

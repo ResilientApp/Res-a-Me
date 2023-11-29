@@ -73,6 +73,7 @@
           prepend-inner-icon="mdi-magnify"
           density="comfortable"
           auto-select-first
+          return-object
           rounded
           theme="light"
           variant="outlined"
@@ -101,7 +102,7 @@
             color="#ededf0"
             style="text-transform: none; letter-spacing: 0px"
             class="mr-5"
-            @click="routeToResume()"
+            @click="search()"
           >
             Res-A-Me Search
           </v-btn>
@@ -109,6 +110,7 @@
             variant="flat"
             color="#ededf0"
             style="text-transform: none; letter-spacing: 0px"
+            @click="makeConntections()"
           >
             Make Connections
           </v-btn>
@@ -141,13 +143,13 @@
 
 <script>
 export default {
-  mounted() {
+  async mounted() {
     document.getElementById("signinButton").style.display = "none";
     document.getElementById("profileShortcut").style.display = "none";
     document.getElementById("logoutButton").style.display = "none";
     document.getElementById("userNameDisplay").style.display = "none";
 
-    fetch("http://127.0.0.1:3033/loadUser", {
+    await fetch("http://127.0.0.1:3033/loadUser", {
       // Check if user is logged in
       method: "GET",
       headers: {
@@ -159,16 +161,12 @@ export default {
       .then((json) => {
         if (json.status === 200) {
           // User is logged in
-          console.log("User has logged in");
-          console.log("Logged in user's email: ", json.logged_in_as);
           this.userEmail = json.logged_in_as;
-          this.shortCutIcon = `../../public/images/pictures/${this.userEmail}.png`;
+          this.shortCutIcon = `/images/pictures/${this.userEmail}.png`;
           document.getElementById("profileShortcut").style.display = "block";
           document.getElementById("logoutButton").style.display = "block";
-          document.getElementById("userNameDisplay").style.display = "block";
         } else {
           this.errorMessage = "User are not logged in";
-          console.log("User are not logged in");
           document.getElementById("signinButton").style.display = "block";
         }
       })
@@ -188,15 +186,17 @@ export default {
       .then((response) => response.json())
       .then((json) => {
         for (let index in json.user_list) {
+          if (json.user_list[index].email === this.userEmail) {
+            this.userName = json.user_list[index].name;
+            document.getElementById("userNameDisplay").style.display = "block";
+          }
           const person = {
             name: json.user_list[index].name,
             group: json.user_list[index].position,
             avatar: `../../public/images/pictures/${json.user_list[index].email}.png`,
+            email: json.user_list[index].email,
           };
           this.people.push(person);
-          if (json.user_list[index].email === this.userEmail) {
-            this.userName = json.user_list[index].name;
-          }
         }
       });
   },
@@ -216,7 +216,6 @@ export default {
           return response.json();
         })
         .then((json) => {
-          console.log(json);
           // Handle successful logout
           // Redirect user to landing page
           if (json.message === "Logout successful") {
@@ -225,7 +224,7 @@ export default {
             document.getElementById("signinButton").style.display = "block";
             document.getElementById("profileShortcut").style.display = "none";
             document.getElementById("userNameDisplay").style.display = "none";
-            alert("Logout successful");
+            alert("Logout Successful");
           } else {
             errorMessage.value =
               json.message || "Logout failed. Please try again.";
@@ -237,26 +236,30 @@ export default {
             error.message || "An error occurred. Please try again.";
         });
     },
-    routeToResume() {
+    search() {
+      // Route to resume page
+      if (this.query.email) {
+        this.$router.push({
+          path: "/home",
+          query: { query: this.query.email },
+        });
+      }
+    },
+    makeConntections() {
+      // Randomly select a person in the user list and route to resume page
+      const randomPerson =
+        this.people[Math.floor(Math.random() * this.people.length)];
       this.$router.push({
         path: "/home",
-        query: { query: this.query },
+        query: { query: randomPerson.email },
       });
     },
   },
   data() {
-    const srcs = {
-      1: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
-      2: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
-      3: "https://cdn.vuetifyjs.com/images/lists/3.jpg",
-      4: "https://cdn.vuetifyjs.com/images/lists/4.jpg",
-      5: "https://cdn.vuetifyjs.com/images/lists/5.jpg",
-    };
-
     return {
       userName: "",
       userEmail: "",
-      shortCutIcon: `../../public/images/pictures/${this.userEmail}.png`,
+      shortCutIcon: "",
       autoUpdate: true,
       isUpdating: false,
       name: "Midnight Crew",

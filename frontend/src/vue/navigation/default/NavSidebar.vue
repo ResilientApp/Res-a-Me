@@ -17,7 +17,7 @@
           </button>
         </li>
       </ul>
-    
+
       <ul class="nav-links">
         <li class="nav-item">
           <button class="nav-link" @click="router.push('/')">
@@ -35,35 +35,77 @@
     <!-- Footer -->
     <div class="nav-sidebar-footer" v-if="profileData">
       <v-col>
-          <v-btn v-if="checkSession()" variant="flat" @click="logout" color="#9716f1">Logout</v-btn>
-          <v-btn v-if="!checkSession()" variant="flat" @click="router.push('/login');" color="#9716f1">Login</v-btn>
+        <v-btn
+          v-if="checkSession()"
+          variant="flat"
+          @click="logout"
+          color="#9716f1"
+          >Logout</v-btn
+        >
+        <v-btn
+          v-if="!checkSession()"
+          variant="flat"
+          @click="router.push('/login')"
+          color="#9716f1"
+          >Login</v-btn
+        >
       </v-col>
     </div>
   </nav>
 </template>
 
-
 <script setup>
 import NavProfileCard from "../partials/NavProfileCard.vue";
-import { computed } from "vue";
 import { useData } from "../../../composables/data.js";
 import { useNavigation } from "../../../composables/navigation.js";
 import { useRouter } from "vue-router";
-import { ref, defineEmits } from "vue";
+import { watchEffect, ref, defineEmits } from "vue";
 
 const emit = defineEmits(["linkClicked"]);
 const data = useData();
 const navigation = useNavigation();
 const router = useRouter();
 const errorMessage = ref("");
+const profileData = ref(null);
 
 
-/**
- * @type {ComputedRef<Object>}
- */
-const profileData = computed(() => {
-  return data.getProfile();
+// Fetch the profile data when component is mounted
+watchEffect(async () => {
+  await fetchProfileData();
 });
+
+
+async function fetchProfileData() {
+  let userEmail = "";
+  let profile = data.getProfile();
+
+  if (router.currentRoute.value.query["query"]) {
+    // If the user has specified a query
+    userEmail = router.currentRoute.value.query["query"];
+  } 
+  else {
+    // If the user has logged in
+    try {
+      const response = await fetch("http://127.0.0.1:3033/loadUser", {
+        method: "GET",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ` + sessionStorage.getItem("access_token"),
+        },
+      });
+      const json = await response.json();
+      if (json.status === 200) {
+        userEmail = json.logged_in_as;
+      }
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  }
+
+  profile.profilePictureUrl = `/images/pictures/${userEmail}.png`;
+  profileData.value = profile; // Update the ref after fetching data
+}
+
 
 /**
  * @param {Object} section
@@ -88,10 +130,6 @@ const _onLinkClicked = (section) => {
 
 const checkSession = () => {
   return sessionStorage.getItem("access_token") ? true : false;
-}
-
-const searchButton = () => {
-  router.push("/");
 };
 
 const logout = () => {
@@ -108,11 +146,9 @@ const logout = () => {
       return response.json();
     })
     .then((json) => {
-      console.log(json);
       // Handle successful logout
       // Redirect user to landing page
       if (json.message === "Logout successful") {
-        console.log(json.message);
         sessionStorage.clear();
         router.push("/");
       } else {

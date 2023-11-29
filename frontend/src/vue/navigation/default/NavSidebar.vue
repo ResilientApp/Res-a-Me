@@ -68,22 +68,18 @@ const router = useRouter();
 const errorMessage = ref("");
 const profileData = ref(null);
 
-
 // Fetch the profile data when component is mounted
 watchEffect(async () => {
   await fetchProfileData();
 });
 
-
 async function fetchProfileData() {
   let userEmail = "";
-  let profile = data.getProfile();
 
   if (router.currentRoute.value.query["query"]) {
     // If the user has specified a query
     userEmail = router.currentRoute.value.query["query"];
-  } 
-  else {
+  } else {
     // If the user has logged in
     try {
       const response = await fetch("http://127.0.0.1:3033/loadUser", {
@@ -102,10 +98,29 @@ async function fetchProfileData() {
     }
   }
 
+
+  // Update resume to show current user's
+  try {
+    const response = await fetch("http://127.0.0.1:3033/updateResume", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+      body: JSON.stringify({
+        email: userEmail,
+      }),
+    });
+    const json = await response.json();
+    if (json.status !== 200) {
+      console.error("Error fetching user resume: ", json.message);
+    }
+  } catch {
+    console.error("Error fetching user resume: ", error);
+  }
+  let profile = data.getProfile();
   profile.profilePictureUrl = `/images/pictures/${userEmail}.png`;
   profileData.value = profile; // Update the ref after fetching data
 }
-
 
 /**
  * @param {Object} section

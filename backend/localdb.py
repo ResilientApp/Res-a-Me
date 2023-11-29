@@ -1,4 +1,8 @@
-loginDatabase = {}
+loginDatabase = {
+    "jack@gmail.com":{
+        "password": "jackjack",
+    }
+}
 userInfoDatabase = {}
 userKeyPairDatabase = {}
 #userListDatabase = []

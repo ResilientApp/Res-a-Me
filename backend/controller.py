@@ -65,8 +65,7 @@ def getUserResume(email, category): # This function is for the edit page, which 
 # For testing use
 def setUserResume(email, category, data): # This function is for the edit page, which will send the resume data for a specific category
     with open(f'resumes/{email}/{category}.json', 'w') as f:
-        for item in json.loads(data):
-            json.dump(item, f, indent=4)
+        json.dump(json.loads(data), f, indent=4)
 
 if __name__ == "__main__":
     email = "elliot@gmail.com"

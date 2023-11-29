@@ -94,13 +94,13 @@ def load_resume():
     
 
     if not category:
-        return jsonify({"message": "Category is required"}), 400
+        return jsonify(message = "Category is required", status = 400)
     try:
         user_data = getUserResume(user_id,category)
         data = user_data
         return jsonify(data)
     except FileNotFoundError:
-        return jsonify({"message": f"{category} not found for {user_id}"}), 404
+        return jsonify(message = f"{category} not found for {user_id}", status = 404)
 
 @app.route('/editResume', methods=['POST'])
 @jwt_required()
@@ -110,14 +110,14 @@ def edit_resume():
     category = response_data.get('category')
     
     if not category:
-        return jsonify({"message": "Category is required"}), 400
-
+        return jsonify(message = "Category is required", status = 400)
+        
     try:
         data = response_data.get('data')
         setUserResume(user_id, category, data)
-        return jsonify({"message": f"{category} updated successfully"})
+        return jsonify(message = f"{category} updated successfully", status = 200)
     except FileNotFoundError:
-        return jsonify({"message": f"{category} not found for {user_id}"}), 404
+        return jsonify(message = f"{category} not found for {user_id}", status = 404)
         
 @app.route('/userList', methods=['GET'])
 def userList():
@@ -130,19 +130,23 @@ def update_resume():
     email = response_data.get('email')
 
     if not email:
-        return jsonify({"message": "Email is required"}), 400
+        return jsonify(message = "Email is required", status = 400)
 
     source_dir = f'resumes/{email}'
-    target_dir = '../frontend/public/data/sections'
+    target_dir_sections = '../frontend/public/data/sections'
+    target_dir_info = '../frontend/public/data/info'
 
     if not os.path.exists(source_dir):
-        return jsonify({"message": "No resume found for this email"}), 404
+        return jsonify(message = "No resume found for this email", status = 404)
 
     for filename in os.listdir(source_dir):
         if filename.endswith('.json'):
-            shutil.copy(os.path.join(source_dir, filename), target_dir)
+            if filename == 'profile.json':
+                shutil.copy(os.path.join(source_dir, filename), target_dir_info)
+            else:
+                shutil.copy(os.path.join(source_dir, filename), target_dir_sections)
 
-    return jsonify({"message": "Files replaced successfully"})
+    return jsonify(message = "Files replaced successfully", status = 200)
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -168,7 +172,6 @@ def upload():
         print(file_path)
         file.save(file_path)
         return jsonify(message="Upload successful", status=200, path=file_path)
-
     return jsonify(message="File type not allowed", status=400)
 
 

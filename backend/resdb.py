@@ -7,7 +7,9 @@ db_root_url = "http://127.0.0.1:18000"
 db = Resdb(db_root_url)
 
 def generateKeyForUser(user = None):
-    public_key, private_key = generate_keypair()
+    keys = generate_keypair()
+    public_key = keys.public_key
+    private_key = keys.private_key
     return public_key, private_key
 
 def createProfile(email, public_key, private_key):

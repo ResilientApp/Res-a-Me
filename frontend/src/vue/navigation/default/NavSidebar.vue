@@ -59,7 +59,7 @@ import NavProfileCard from "../partials/NavProfileCard.vue";
 import { useData } from "../../../composables/data.js";
 import { useNavigation } from "../../../composables/navigation.js";
 import { useRouter } from "vue-router";
-import { watchEffect, ref, defineEmits, onMounted } from "vue";
+import { watchEffect, ref, defineEmits, onBeforeUpdate } from "vue";
 
 const emit = defineEmits(["linkClicked"]);
 const data = useData();
@@ -68,7 +68,7 @@ const router = useRouter();
 const errorMessage = ref("");
 const profileData = ref(null);
 
-onMounted(() => {
+onBeforeUpdate(() => {
   if (router.currentRoute.value.query["query"]) {
     // If the user has specified a query
     fetchProfileData();

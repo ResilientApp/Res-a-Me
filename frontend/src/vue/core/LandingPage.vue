@@ -125,16 +125,11 @@
                 width="112"
                 @click="this.$router.push('/home')"
               >
-                <v-avatar color="black"
-                  variant="tonal"
-                  class="mb-2">
-                  <v-img
-                    :src=shortCutIcon
-                    alt="John"
-                  ></v-img>
+                <v-avatar color="black" variant="tonal" class="mb-2" size="60">
+                  <v-img :src="shortCutIcon" alt="John"></v-img>
                 </v-avatar>
 
-                <div class="text-caption text-truncate">My Resume</div>
+                <div class="text-caption text-truncate">My Res-A-Me</div>
               </v-card>
             </v-col>
           </v-row>
@@ -153,6 +148,7 @@ export default {
     document.getElementById("userNameDisplay").style.display = "none";
 
     fetch("http://127.0.0.1:3033/loadUser", {
+      // Check if user is logged in
       method: "GET",
       headers: {
         "Content-type": "application/json; charset=UTF-8",
@@ -165,7 +161,8 @@ export default {
           // User is logged in
           console.log("User has logged in");
           console.log("Logged in user's email: ", json.logged_in_as);
-          this.userName = json.logged_in_as;
+          this.userEmail = json.logged_in_as;
+          this.shortCutIcon = `../../public/images/pictures/${this.userEmail}.png`;
           document.getElementById("profileShortcut").style.display = "block";
           document.getElementById("logoutButton").style.display = "block";
           document.getElementById("userNameDisplay").style.display = "block";
@@ -179,6 +176,28 @@ export default {
         console.error("There was an error!", error);
         this.errorMessage =
           error.message || "An error occurred. Please try again.";
+      });
+
+    fetch("http://127.0.0.1:3033/userList", {
+      // Get the user list for the search bar
+      method: "GET",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        for (let index in json.user_list) {
+          const person = {
+            name: json.user_list[index].name,
+            group: json.user_list[index].position,
+            avatar: `../../public/images/pictures/${json.user_list[index].email}.png`,
+          };
+          this.people.push(person);
+          if (json.user_list[index].email === this.userEmail) {
+            this.userName = json.user_list[index].name;
+          }
+        }
       });
   },
   methods: {
@@ -201,7 +220,6 @@ export default {
           // Handle successful logout
           // Redirect user to landing page
           if (json.message === "Logout successful") {
-            console.log(json.message);
             sessionStorage.clear();
             document.getElementById("logoutButton").style.display = "none";
             document.getElementById("signinButton").style.display = "block";
@@ -236,26 +254,14 @@ export default {
     };
 
     return {
-      shortCutIcon: "../../public/images/pictures/avatar.png",
-      userName: "User",
+      userName: "",
+      userEmail: "",
+      shortCutIcon: `../../public/images/pictures/${this.userEmail}.png`,
       autoUpdate: true,
       isUpdating: false,
       name: "Midnight Crew",
       query: [],
-      people: [
-        // TODO: https://github.com/vuetifyjs/vuetify/issues/15721
-        // { header: 'Group 1' },
-        { name: "Sandra Adams", group: "Group 1", avatar: srcs[1] },
-        { name: "Ali Connors", group: "Group 1", avatar: srcs[2] },
-        { name: "Trevor Hansen", group: "Group 1", avatar: srcs[3] },
-        { name: "Tucker Smith", group: "Group 1", avatar: srcs[2] },
-        // { divider: true },
-        // { header: 'Group 2' },
-        { name: "Britta Holt", group: "Group 2", avatar: srcs[4] },
-        { name: "Jane Smith ", group: "Group 2", avatar: srcs[5] },
-        { name: "John Smith", group: "Group 2", avatar: srcs[1] },
-        { name: "Sandra Williams", group: "Group 2", avatar: srcs[3] },
-      ],
+      people: [],
       title: "The summer breeze",
       timeout: null,
     };

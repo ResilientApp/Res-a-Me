@@ -19,7 +19,7 @@
                             <h4 class="timeline-item-title fw-bold" v-html="item['locales']['title']"/>
                             <h6 class="timeline-item-subtitle text-light-6 text-3">
                                 <i class="fa-solid fa-building me-2 ms-2"/>
-                                <span>{{item['place'] ? item['place']['locales']['name'] : ''}}</span>
+                                <span>{{item['place'] ? item['place'] : ''}}</span>
                             </h6>
                         </div>
 

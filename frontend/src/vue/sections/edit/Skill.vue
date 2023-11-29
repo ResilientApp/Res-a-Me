@@ -38,28 +38,28 @@
                   ></v-text-field>
                 </v-col>
                 <v-col class="button-container">
-                    <v-btn @click="deleteSkill(index)" class="mr-2 mb-4"
-                    >delete
-                      <v-icon color="red"
+                    <v-btn color="red-lighten-2" @click="deleteSkill(index)" class="mb-4"
+                    >
+                      <v-icon 
                         size="x-large"
                         icon="mdi-trash-can"
                       ></v-icon>
                     </v-btn>
-                  </v-col>
+                </v-col>
               </v-row>
             </div>
           </template>
           <div class="d-flex justify-center">
-            <v-btn @click="addNew()"
+            <v-btn color="grey-lighten-1" @click="addNew()"
                     >Add more
                       <v-icon
                         size="x-large"
                         icon="mdi-plus-thick"
                       ></v-icon>
             </v-btn>
-            <v-btn class="ml-5" @click="saveSkill(skills)"
+            <v-btn color="green" class="ml-5" @click="saveSkill(skills)"
                     >Save
-                      <v-icon color="green"
+                      <v-icon 
                         size="x-large"
                         icon="mdi-content-save"
                       ></v-icon>
@@ -103,6 +103,7 @@
 
           if (allRulesPassed) {
             // console.log('data is correct')
+            alert('Your Skill information has been saved!')
             emit('save-skill', skills);
           } else {
             confirm('Some fields may be incorrect. Please check!')

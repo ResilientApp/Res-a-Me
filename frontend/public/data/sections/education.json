@@ -6,25 +6,25 @@
         },
 
         "es": {
-            "title": "<span class='text-primary'></span>",
+            "title": "",
             "description": ""
         },
 
         "fr": {
-            "title": "<span class='text-primary'></span>",
+            "title": "",
             "description": ""
         },
 
         "zh": {
-            "title": "<span class='text-primary'></span>",
-            "description": "。"
+            "title": "",
+            "description": ""
         }
     },
 
     "items": [
         {
             "id": "online_course_udacity",
-            "place": "@link{places.udacity}",
+            "place": "Udacity",
             "period": ["2014/01", "2014/07"],
 
             "locales": {
@@ -52,7 +52,7 @@
 
         {
             "id": "bachelor_harvard",
-            "place": "@link{places.harvard}",
+            "place": "Havard University",
             "period": ["2014/08", "2018/05"],
 
             "locales": {
@@ -80,7 +80,7 @@
 
         {
             "id": "masters_paris",
-            "place": "@link{places.paris}",
+            "place": "University of Paris",
             "period": ["2018/09", "2020/05"],
 
             "locales": {

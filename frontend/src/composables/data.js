@@ -229,9 +229,9 @@ export function useData() {
      */
     const _parseStringField = (fieldValue) => {
         /** String follows the pattern @link{...} - must create a reference to an object from another json file **/
-        if(/@link{([^}]*)}/g.test(fieldValue)) {
-            return _resolveCrossJsonReference(fieldValue)
-        }
+        // if(/@link{([^}]*)}/g.test(fieldValue)) {
+        //     return _resolveCrossJsonReference(fieldValue)
+        // }
 
         return fieldValue
     }

@@ -1,15 +1,20 @@
 <template>
   <div class="m-5">
-    <h1 class="mt-4 mb-2 " style="color: white; font-weight: 900;">
-      Edit your information here!
-      <v-icon
-        size="xx-large"
-        icon="mdi-pencil"
-      ></v-icon>
-      <span>
-          (Remember to save changes before you leave)
-      </span>
-    </h1>
+    <v-row>
+      <v-col align="center">
+        <h1 class="mt-3 mb-3 " style="color: black; font-weight: 900;">
+        Edit your information here!
+        <v-btn @click="returnButton()" class="ml-5 mb-2">
+            <v-icon
+              size="xx-large"
+              icon="mdi-file-account"
+            ></v-icon>
+            back to resume
+        </v-btn>
+        </h1>
+      </v-col>
+    </v-row>
+    
     <v-expansion-panels v-model="panel">
         <About :about="about" @save-about="handleSaveAbout"/>
         <Education :educations="educations" @delete-edu="handleDeleteEdu" @add-edu="handleAddEdu" @save-edu="handleSaveEdu"/>
@@ -25,12 +30,14 @@
 import axios from 'axios';
 import fs from 'fs'
 import { ref, onMounted } from 'vue';
+import { useRouter } from "vue-router";
 import Skill from '../sections/edit/Skill.vue';
 import About from '../sections/edit/About.vue';
 import Education from '../sections/edit/Education.vue';
 import Profession from '../sections/edit/Profession.vue';
 import Certification from '../sections/edit/Certificate.vue';
 import Award from '../sections/edit/Award.vue'
+const router = useRouter();
 
 export default {
   components: {
@@ -204,7 +211,7 @@ export default {
                     "Access-Control-Allow-Origin": "*",
                     "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
                 },
-                body :JSON.stringify({"category": "Acheivements"}),
+                body :JSON.stringify({"category": "Achievements"}),
             });
         const achi_data = await achi_response.json();
         achi_data_old.value = achi_data; //for update JSON file
@@ -247,6 +254,11 @@ export default {
     };
   },
   methods:{
+    returnButton(){
+      if(confirm('Are you sure you want to leave this page? Make sure you have saved your changes!')){
+        this.$router.push('/home');
+      }
+    },
     handleDeleteSkill(index){
       if (confirm('Are you sure you want to delete this item?')) {
           this.skills.splice(index, 1); 
@@ -442,7 +454,7 @@ export default {
                     "Access-Control-Allow-Origin": "*",
                     "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
                 },
-                body :JSON.stringify({"category": "Acheivements","data": JSON.stringify(this.achi_data_old)}),
+                body :JSON.stringify({"category": "Achievements","data": JSON.stringify(this.achi_data_old)}),
             });
     },
     handleDeleteAward(index){
@@ -502,5 +514,7 @@ export default {
 
 <style>
 
-
+/* #app{
+  background-color: ivory !important
+} */
 </style>

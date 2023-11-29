@@ -89,7 +89,7 @@
               </div>
             </template>
             <div class="d-flex justify-center">
-              <v-btn color="grey" @click="addNewEdu()"
+              <v-btn color="grey-lighten-1" @click="addNewEdu()"
                       >Add more
                         <v-icon
                           size="x-large"
@@ -158,6 +158,7 @@
               });
             if (allRulesPassed) {
                 // console.log('data format is correct')
+                alert('Your Education information has been saved!')
                 emit('save-edu', educations);
             } else {
                 confirm('Some fields may be incorrect. Please check!')

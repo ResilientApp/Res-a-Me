@@ -50,7 +50,7 @@
             </div>
           </template>
           <div class="d-flex justify-center">
-            <v-btn color="grey" @click="addNew()"
+            <v-btn color="grey-lighten-1" @click="addNew()"
                     >Add more
                       <v-icon
                         size="x-large"
@@ -103,6 +103,7 @@
 
           if (allRulesPassed) {
             // console.log('data is correct')
+            alert('Your Skill information has been saved!')
             emit('save-skill', skills);
           } else {
             confirm('Some fields may be incorrect. Please check!')

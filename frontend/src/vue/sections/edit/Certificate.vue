@@ -77,7 +77,7 @@
               </div>
             </template>
             <div class="d-flex justify-center">
-              <v-btn color="grey" @click="addNewCer()"
+              <v-btn color="grey-lighten-1" @click="addNewCer()"
                       >Add more
                         <v-icon
                           size="x-large"
@@ -142,6 +142,7 @@
               });
             if (allRulesPassed) {
                 // console.log('data format is correct')
+                alert('Your Certificate information has been saved!')
                 emit('save-cer', certifications);
             } else {
                 confirm('Some fields may be incorrect. Please check!')

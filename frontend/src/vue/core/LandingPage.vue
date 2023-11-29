@@ -193,7 +193,7 @@ export default {
           const person = {
             name: json.user_list[index].name,
             group: json.user_list[index].position,
-            avatar: `../../public/images/pictures/${json.user_list[index].email}.png`,
+            avatar: `/images/pictures/${json.user_list[index].email}.png`,
             email: json.user_list[index].email,
           };
           this.people.push(person);

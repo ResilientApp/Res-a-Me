@@ -1,0 +1,109 @@
+{
+    "locales": {
+        "en": {
+            "title": "<span class='text-primary'>Educational</span> Background",
+            "description": "A glimpse into my academic trajectory and accomplishments. "
+        },
+
+        "es": {
+            "title": "<span class='text-primary'></span>",
+            "description": ""
+        },
+
+        "fr": {
+            "title": "<span class='text-primary'></span>",
+            "description": ""
+        },
+
+        "zh": {
+            "title": "<span class='text-primary'></span>",
+            "description": "。"
+        }
+    },
+
+    "items": [
+        {
+            "id": "online_course_udacity",
+            "place": "@link{places.udacity}",
+            "period": ["2014/01", "2014/07"],
+
+            "locales": {
+                "en": {
+                    "title": "UX Fundamentals Online Certification",
+                    "description": "Enrolled in an online program covering essential UX concepts, including user research, usability testing, and information architecture. Strengthened skills in creating intuitive and user-friendly digital experiences."
+                },
+
+                "es": {
+                    "title": "",
+                    "description": ""
+                },
+
+                "fr": {
+                    "title": "",
+                    "description": ""
+                },
+
+                "zh": {
+                    "title": "",
+                    "description": ""
+                }
+            }
+        },
+
+        {
+            "id": "bachelor_harvard",
+            "place": "@link{places.harvard}",
+            "period": ["2014/08", "2018/05"],
+
+            "locales": {
+                "en": {
+                    "title": "Bachelor's in Graphic Design with UX Emphasis",
+                    "description": "Graduated with a solid foundation in graphic design while specializing in user experience design. Acquired expertise in visual storytelling, UI design, and collaborative design thinking."
+                },
+
+                "es": {
+                    "title": "",
+                    "description": ""
+                },
+
+                "fr": {
+                    "title": "",
+                    "description": ""
+                },
+
+                "zh": {
+                    "title": "",
+                    "description": ""
+                }
+            }
+        },
+
+        {
+            "id": "masters_paris",
+            "place": "@link{places.paris}",
+            "period": ["2018/09", "2020/05"],
+
+            "locales": {
+                "en": {
+                    "title": "Master's in Human-Computer Interaction",
+                    "description": "Completed an intensive program focusing on user-centered design principles, usability testing, and interaction design. Developed skills in wireframing, prototyping, and user research methodologies."
+                },
+
+                "es": {
+                    "title": "",
+                    "description": ""
+                },
+
+                "fr": {
+                    "title": "",
+                    "description": ""
+                },
+
+                "zh": {
+                    "title": "",
+                    "description": ""
+                }
+            }
+        }
+    ]
+}

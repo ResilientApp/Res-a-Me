@@ -145,18 +145,18 @@ export default {
         };
         about.value = about_transformedArray
         //education data
-        const edu_response = await axios.get('../../../data/sections/education.json');
-        const edu_data = edu_response.data;
-        // const edu_response = await fetch("http://127.0.0.1:3033/loadResume", {
-        //         method: "POST",
-        //         headers: {
-        //             "Content-type": "application/json; charset=UTF-8",
-        //             "Access-Control-Allow-Origin": "*",
-        //             "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
-        //         },
-        //         body :JSON.stringify({"category": "Education"}),
-        //     });
-        // const edu_data = await edu_response.json();
+        // const edu_response = await axios.get('../../../data/sections/education.json');
+        // const edu_data = edu_response.data;
+        const edu_response = await fetch("http://127.0.0.1:3033/loadResume", {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Access-Control-Allow-Origin": "*",
+                    "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+                },
+                body :JSON.stringify({"category": "Education"}),
+            });
+        const edu_data = await edu_response.json();
         edu_data_old.value = edu_data; //for update JSON file
         const edu_transformedArray = edu_data.items.map((item) => {
           return{

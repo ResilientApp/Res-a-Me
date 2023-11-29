@@ -6,18 +6,18 @@
         },
 
         "es": {
-            "title": "<span class='text-primary'></span>",
+            "title": "",
             "description": ""
         },
 
         "fr": {
-            "title": "<span class='text-primary'></span>",
+            "title": "",
             "description": ""
         },
 
         "zh": {
-            "title": "<span class='text-primary'></span>",
-            "description": "。"
+            "title": "",
+            "description": ""
         }
     },
 

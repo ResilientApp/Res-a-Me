@@ -138,7 +138,9 @@ export default {
                     if (json.message === "Register successful") {
                         console.log("Registration successful");
                         // Handle successful registration (e.g., redirect to login page)
-                        this.$router.push('/login');
+                        sessionStorage.setItem("access_token", json['access_token']);
+                        sessionStorage.setItem("refresh_token", json['refresh_token']);
+                        this.$router.push('/edit');
                     } else {
                         // Handle registration error (e.g., show error message)
                         this.errorMessage = json.message || "Registration failed. Please try again.";

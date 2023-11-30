@@ -128,11 +128,31 @@ export default {
         });
         skills.value = skill_transformedArray;
         //about data
-        const cover_response = await axios.get('../../../data/sections/cover.json');
-        const cover_data = cover_response.data;
+        // const cover_response = await axios.get('../../../data/sections/cover.json');
+        // const cover_data = cover_response.data;
+        const cover_response = await fetch("http://127.0.0.1:3033/loadResume", {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Access-Control-Allow-Origin": "*",
+                    "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+                },
+                body :JSON.stringify({"category": "cover"}),
+            });
+        const cover_data = await cover_response.json();
         cover_data_old.value = cover_data; //for update JSON file
-        const profile_response = await axios.get('../../../data/info/profile.json');
-        const profile_data = profile_response.data;
+        const profile_response = await fetch("http://127.0.0.1:3033/loadResume", {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Access-Control-Allow-Origin": "*",
+                    "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+                },
+                body :JSON.stringify({"category": "profile"}),
+            });
+        const profile_data = await profile_response.json();
+        // const profile_response = await axios.get('../../../data/info/profile.json');
+        // const profile_data = profile_response.data;
         profile_data_old.value = profile_data;
         const description = cover_data.locales.en.bio;
         const name = profile_data.name;
@@ -161,7 +181,7 @@ export default {
                     "Access-Control-Allow-Origin": "*",
                     "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
                 },
-                body :JSON.stringify({"category": "Education"}),
+                body :JSON.stringify({"category": "education"}),
             });
         const edu_data = await edu_response.json();
         edu_data_old.value = edu_data; //for update JSON file
@@ -186,7 +206,7 @@ export default {
                     "Access-Control-Allow-Origin": "*",
                     "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
                 },
-                body :JSON.stringify({"category": "Experience"}),
+                body :JSON.stringify({"category": "experience"}),
             });
         const pro_data = await pro_response.json();
         pro_data_old.value = pro_data; //for update JSON file
@@ -211,7 +231,7 @@ export default {
                     "Access-Control-Allow-Origin": "*",
                     "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
                 },
-                body :JSON.stringify({"category": "Achievements"}),
+                body :JSON.stringify({"category": "achievements"}),
             });
         const achi_data = await achi_response.json();
         achi_data_old.value = achi_data; //for update JSON file
@@ -302,7 +322,7 @@ export default {
                     "Access-Control-Allow-Origin": "*",
                     "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
                 },
-                body :JSON.stringify({"category": "Skills","data": JSON.stringify(this.skill_data_old)}),
+                body :JSON.stringify({"category": "skills","data": JSON.stringify(this.skill_data_old)}),
             });
     },
     handleSaveAbout(about){
@@ -314,6 +334,25 @@ export default {
       this.profile_data_old.contact.address.value = this.about.address;
       this.profile_data_old.contact.email.value = this.about.email;
       this.profile_data_old.contact.phone.valueShort = this.about.phone;
+      const cover_response = fetch("http://127.0.0.1:3033/editResume", {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Access-Control-Allow-Origin": "*",
+                    "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+                },
+                body :JSON.stringify({"category": "cover","data": JSON.stringify(this.cover_data_old)}),
+      });
+    
+      const profile_response = fetch("http://127.0.0.1:3033/editResume", {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Access-Control-Allow-Origin": "*",
+                    "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+                },
+                body :JSON.stringify({"category": "profile","data": JSON.stringify(this.profile_data_old)}),
+      });
       // console.log("cover_data",this.cover_data_old) //Post new about to backend
       // console.log("profile_data",this.profile_data_old) //Post new about to backend
     },
@@ -361,7 +400,7 @@ export default {
                     "Access-Control-Allow-Origin": "*",
                     "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
                 },
-                body :JSON.stringify({"category": "Education","data": JSON.stringify(this.edu_data_old)}),
+                body :JSON.stringify({"category": "education","data": JSON.stringify(this.edu_data_old)}),
             });
     },
     handleDeletePro(index){
@@ -407,7 +446,7 @@ export default {
                     "Access-Control-Allow-Origin": "*",
                     "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
                 },
-                body :JSON.stringify({"category": "Experience","data": JSON.stringify(this.pro_data_old)}),
+                body :JSON.stringify({"category": "experience","data": JSON.stringify(this.pro_data_old)}),
             });
     },
     handleDeleteCer(index){
@@ -454,7 +493,7 @@ export default {
                     "Access-Control-Allow-Origin": "*",
                     "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
                 },
-                body :JSON.stringify({"category": "Achievements","data": JSON.stringify(this.achi_data_old)}),
+                body :JSON.stringify({"category": "achievements","data": JSON.stringify(this.achi_data_old)}),
             });
     },
     handleDeleteAward(index){
@@ -501,7 +540,7 @@ export default {
                     "Access-Control-Allow-Origin": "*",
                     "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
                 },
-                body :JSON.stringify({"category": "Acheivements","data": JSON.stringify(this.achi_data_old)}),
+                body :JSON.stringify({"category": "acheivements","data": JSON.stringify(this.achi_data_old)}),
             });
     },
 

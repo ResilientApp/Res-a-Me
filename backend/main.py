@@ -33,7 +33,9 @@ def register():
         user = getUserLogin(email)
         if not user:
             setUserLogin(email, password)
-            return jsonify(message = "Register successful", status = 200)
+            access_token = create_access_token(identity=email)
+            refresh_token = create_refresh_token(identity=email)
+            return jsonify(access_token=access_token, refresh_token=refresh_token, message = "Register successful", status = 200)
         else:
             return jsonify(message = "email account existed", status = 401)
     else:

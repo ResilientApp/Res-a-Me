@@ -274,10 +274,12 @@ export default {
     };
   },
   methods:{
-    returnButton(){
+    async returnButton(){
       if(confirm('Are you sure you want to leave this page? Make sure you have saved your changes!')){
-        this.$router.push('/home');
-      }
+        this.$router.push({ path: '/home' })
+        .then(() =>  window.location.reload(true))
+        .then(() =>  window.location.reload(true))
+      };
     },
     handleDeleteSkill(index){
       if (confirm('Are you sure you want to delete this item?')) {

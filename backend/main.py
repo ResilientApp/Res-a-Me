@@ -1,7 +1,7 @@
 import json
 import shutil
 import os
-from controller import getUserLogin, setUserLogin, getUserList, getUserResume, setUserResume#, getUserInfoCategory, setUserInfoCategory, getUserInfoAll
+from controller import getUserLogin, setUserLogin, getUserList, getUserResume, setUserResume, getUserInfoCategory, setUserInfoCategory, getUserInfoAll
 from flask import Flask, request, jsonify
 from flask_jwt_extended import create_access_token, create_refresh_token, get_jwt_identity, jwt_required, JWTManager
 from flask_cors import CORS
@@ -98,7 +98,7 @@ def load_resume():
     if not category:
         return jsonify(message = "Category is required", status = 400)
     try:
-        user_data = getUserResume(user_id,category)
+        user_data = getUserInfoCategory(user_id,category)
         data = user_data
         return jsonify(data)
     except FileNotFoundError:
@@ -116,7 +116,7 @@ def edit_resume():
         
     try:
         data = response_data.get('data')
-        setUserResume(user_id, category, data)
+        setUserInfoCategory(user_id, category, data)
         return jsonify(message = f"{category} updated successfully", status = 200)
     except FileNotFoundError:
         return jsonify(message = f"{category} not found for {user_id}", status = 404)
@@ -134,20 +134,21 @@ def update_resume():
     if not email:
         return jsonify(message = "Email is required", status = 400)
 
-    source_dir = f'resumes/{email}'
+    source_dir = getUserInfoAll(email)
     target_dir_sections = '../frontend/public/data/sections'
     target_dir_info = '../frontend/public/data/info'
 
-    if not os.path.exists(source_dir):
+    if not source_dir:
         return jsonify(message = "No resume found for this email", status = 404)
-
-    for filename in os.listdir(source_dir):
-        if filename.endswith('.json'):
-            if filename == 'profile.json':
-                shutil.copy(os.path.join(source_dir, filename), target_dir_info)
-            else:
-                shutil.copy(os.path.join(source_dir, filename), target_dir_sections)
-
+    
+    for data in source_dir.keys:
+        if data == 'profile':
+            with open(f"{target_dir_info}/{data}.json", "w") as json_file:
+                json.dump(source_dir[data], json_file, indent=4)
+        else:
+            with open(f"{target_dir_sections}/{data}.json", "w") as json_file:
+                json.dump(source_dir[data], json_file, indent=4)
+                
     return jsonify(message = "Files replaced successfully", status = 200)
 
 def allowed_file(filename):
@@ -176,15 +177,6 @@ def upload():
         return jsonify(message="Upload successful", status=200, path=file_path)
     return jsonify(message="File type not allowed", status=400)
 
-
-
-# @app.route('/get_user_data/<email>', methods=['GET'])
-# def get_user_data(username):
-#     user = getUserInfo(username)
-#     if user:
-#         return jsonify(user)
-#     else:
-#         return jsonify({"message": "User not found"}), 404
-
 if __name__ == '__main__':
     app.run(debug=True, port = 3033)
+    

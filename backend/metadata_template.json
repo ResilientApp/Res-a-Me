@@ -1,0 +1,829 @@
+{
+    "achievements": {
+        "items": {
+            "awards": [
+                {
+                    "id": 0,
+                    "place": "",
+                    "date": "",
+                    "href": "",
+                    "locales": {
+                        "en": {
+                            "title": "",
+                            "description": ""
+                        },
+                        "es": {
+                            "title": "",
+                            "description": ""
+                        },
+                        "fr": {
+                            "title": "",
+                            "description": ""
+                        },
+                        "zh": {
+                            "title": "",
+                            "description": ""
+                        }
+                    }
+                }
+            ],
+            "certifications": [
+                {
+                    "id": 0,
+                    "place": "",
+                    "date": "",
+                    "href": "",
+                    "locales": {
+                        "en": {
+                            "title": "",
+                            "description": ""
+                        },
+                        "es": {
+                            "title": "",
+                            "description": ""
+                        },
+                        "fr": {
+                            "title": "",
+                            "description": ""
+                        },
+                        "zh": {
+                            "title": "",
+                            "description": ""
+                        }
+                    }
+                }
+            ]
+        },
+        "locales": {
+            "en": {
+                "description": "Here are some of my career achievements.",
+                "title": "Career <span class='text-primary'>Achievements</span>"
+            },
+            "es": {
+                "description": "",
+                "title": ""
+            },
+            "fr": {
+                "description": "",
+                "title": ""
+            },
+            "zh": {
+                "description": "",
+                "title": ""
+            }
+        },
+        "subcategories": [
+            {
+                "faIcon": "fa-solid fa-trophy",
+                "id": "awards",
+                "locales": {
+                    "en": {
+                        "buttonLabel": "More Info",
+                        "title": "Awards"
+                    },
+                    "es": {
+                        "buttonLabel": "",
+                        "title": ""
+                    },
+                    "fr": {
+                        "buttonLabel": "",
+                        "title": ""
+                    },
+                    "zh": {
+                        "buttonLabel": "",
+                        "title": ""
+                    }
+                }
+            },
+            {
+                "faIcon": "fa-solid fa-award",
+                "id": "certifications",
+                "locales": {
+                    "en": {
+                        "buttonLabel": "View Certification",
+                        "title": "Certifications"
+                    },
+                    "es": {
+                        "buttonLabel": "",
+                        "title": ""
+                    },
+                    "fr": {
+                        "buttonLabel": "",
+                        "title": ""
+                    },
+                    "zh": {
+                        "buttonLabel": "",
+                        "title": ""
+                    }
+                }
+            }
+        ]
+    },
+    "cover": {
+        "items": {
+            "contactListItems": [
+                "@link{profile.contact.address}",
+                "@link{profile.contact.email}",
+                "@link{profile.contact.phone}"
+            ],
+            "socialCircles": [
+                "@link{profile.contact.instagram}",
+                "@link{profile.contact.facebook}",
+                "@link{profile.contact.linkedin}",
+                "@link{profile.contact.github}"
+            ]
+        },
+        "locales": {
+            "en": {
+                "bio": "",
+                "welcome": "Welcome to my <span class='text-primary'>Resume!</span>",
+                "welcomeShort": "Welcome!"
+            },
+            "es": {
+                "bio": "",
+                "welcome": "",
+                "welcomeShort": ""
+            },
+            "fr": {
+                "bio": "",
+                "welcome": "",
+                "welcomeShort": ""
+            },
+            "zh": {
+                "bio": "",
+                "welcome": "",
+                "welcomeShort": ""
+            }
+        }
+    },
+    "education": {
+        "items": [
+            {
+                "id": 0,
+                "place": "",
+                "period": [
+                    "",
+                    ""
+                ],
+                "locales": {
+                    "en": {
+                        "title": "",
+                        "description": ""
+                    },
+                    "es": {
+                        "title": "",
+                        "description": ""
+                    },
+                    "fr": {
+                        "title": "",
+                        "description": ""
+                    },
+                    "zh": {
+                        "title": "",
+                        "description": ""
+                    }
+                }
+            }
+        ],
+        "locales": {
+            "en": {
+                "description": "A glimpse into my academic trajectory and accomplishments.",
+                "title": "<span class='text-primary'>Educational</span> Background"
+            },
+            "es": {
+                "description": "",
+                "title": ""
+            },
+            "fr": {
+                "description": "",
+                "title": ""
+            },
+            "zh": {
+                "description": "",
+                "title": ""
+            }
+        }
+    },
+    "experience": {
+        "items": [
+            {
+                "id": 0,
+                "place": "",
+                "period": [
+                    "",
+                    ""
+                ],
+                "locales": {
+                    "en": {
+                        "title": "",
+                        "description": ""
+                    },
+                    "es": {
+                        "title": "",
+                        "description": ""
+                    },
+                    "fr": {
+                        "title": "",
+                        "description": ""
+                    },
+                    "zh": {
+                        "title": "",
+                        "description": ""
+                    }
+                }
+            }
+        ],
+        "locales": {
+            "en": {
+                "description": "A look into my work experience and career journey.",
+                "title": "<span class='text-primary'>Professional</span> Experience"
+            },
+            "es": {
+                "description": "",
+                "title": ""
+            },
+            "fr": {
+                "description": "",
+                "title": ""
+            },
+            "zh": {
+                "description": "",
+                "title": ""
+            }
+        }
+    },
+    "profile": {
+        "contact": {
+            "address": {
+                "faIcon": "fa-solid fa-city",
+                "href": null,
+                "id": "address",
+                "value": "",
+                "valueShort": "Cupertino, CA 01234"
+            },
+            "email": {
+                "faIcon": "fa-solid fa-envelope",
+                "href": "mailto:jonas.einstein@genius.com",
+                "id": "email",
+                "value": "",
+                "valueShort": "jonas.einstein@genius.com"
+            },
+            "facebook": {
+                "faIcon": "fa-brands fa-facebook",
+                "href": "https://facebook.com",
+                "id": "facebook",
+                "value": "Jonas Einstein",
+                "valueShort": "J. Einstein"
+            },
+            "github": {
+                "faIcon": "fa-brands fa-github",
+                "href": "https://github.com",
+                "id": "github",
+                "value": "@jonas.einstein.official",
+                "valueShort": "@jonas.einstein.official"
+            },
+            "instagram": {
+                "faIcon": "fa-brands fa-instagram",
+                "href": "https://instagram.com",
+                "id": "instagram",
+                "value": "@jonas.einstein.official",
+                "valueShort": "@jonas.einstein.official"
+            },
+            "linkedin": {
+                "faIcon": "fa-brands fa-linkedin",
+                "href": "https://linkedin.com",
+                "id": "linkedin",
+                "value": "@jonas.einstein.official",
+                "valueShort": "@jonas.einstein.official"
+            },
+            "phone": {
+                "faIcon": "fa-solid fa-phone",
+                "href": "tel:1234567890",
+                "id": "phone",
+                "value": "+1 (123) 456-7890",
+                "valueShort": ""
+            }
+        },
+        "locales": {
+            "en": {
+                "credits": "Designed by <strong><a class='light' href='https://github.com/ryanbalieiro'>Ryan Balieiro</a></strong>",
+                "role": ""
+            },
+            "es": {
+                "credits": "",
+                "role": ""
+            },
+            "fr": {
+                "credits": "",
+                "role": ""
+            },
+            "zh": {
+                "credits": "",
+                "role": ""
+            }
+        },
+        "name": "",
+        "profilePictureUrl": "images/pictures/avatar.png"
+    },
+    "skills": {
+        "items": {
+            "abilities": [
+                {
+                    "imageIconUrl": null,
+                    "faIcon": null,
+                    "value": null,
+                    "locales": {
+                        "en": {
+                            "title": "",
+                            "description": ""
+                        },
+                        "es": {
+                            "title": "",
+                            "description": ""
+                        },
+                        "fr": {
+                            "title": "",
+                            "description": ""
+                        },
+                        "zh": {
+                            "title": "",
+                            "description": ""
+                        }
+                    }
+                }
+            ],
+            "extra": [
+                {
+                    "faIcon": null,
+                    "imageIconUrl": null,
+                    "locales": {
+                        "en": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "es": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "fr": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "zh": {
+                            "description": "",
+                            "title": ""
+                        }
+                    },
+                    "value": null
+                },
+                {
+                    "faIcon": null,
+                    "imageIconUrl": null,
+                    "locales": {
+                        "en": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "es": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "fr": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "zh": {
+                            "description": "",
+                            "title": ""
+                        }
+                    },
+                    "value": null
+                },
+                {
+                    "faIcon": null,
+                    "imageIconUrl": null,
+                    "locales": {
+                        "en": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "es": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "fr": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "zh": {
+                            "description": "",
+                            "title": ""
+                        }
+                    },
+                    "value": null
+                },
+                {
+                    "faIcon": null,
+                    "imageIconUrl": null,
+                    "locales": {
+                        "en": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "es": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "fr": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "zh": {
+                            "description": "",
+                            "title": ""
+                        }
+                    },
+                    "value": null
+                },
+                {
+                    "faIcon": null,
+                    "imageIconUrl": null,
+                    "locales": {
+                        "en": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "es": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "fr": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "zh": {
+                            "description": "",
+                            "title": ""
+                        }
+                    },
+                    "value": null
+                },
+                {
+                    "faIcon": null,
+                    "imageIconUrl": null,
+                    "locales": {
+                        "en": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "es": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "fr": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "zh": {
+                            "description": "",
+                            "title": ""
+                        }
+                    },
+                    "value": null
+                }
+            ],
+            "languages": [
+                {
+                    "faIcon": null,
+                    "imageIconUrl": "images/flags/en.png",
+                    "locales": {
+                        "en": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "es": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "fr": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "zh": {
+                            "description": "",
+                            "title": ""
+                        }
+                    },
+                    "value": 0
+                },
+                {
+                    "faIcon": null,
+                    "imageIconUrl": "images/flags/es.png",
+                    "locales": {
+                        "en": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "es": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "fr": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "zh": {
+                            "description": "",
+                            "title": ""
+                        }
+                    },
+                    "value": 0
+                },
+                {
+                    "faIcon": null,
+                    "imageIconUrl": "images/flags/vn.png",
+                    "locales": {
+                        "en": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "es": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "fr": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "zh": {
+                            "description": "",
+                            "title": ""
+                        }
+                    },
+                    "value": 0
+                },
+                {
+                    "faIcon": null,
+                    "imageIconUrl": "images/flags/pt.png",
+                    "locales": {
+                        "en": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "es": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "fr": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "zh": {
+                            "description": "",
+                            "title": ""
+                        }
+                    },
+                    "value": 0
+                }
+            ],
+            "programming": [
+                {
+                    "faIcon": "fab fa-html5",
+                    "imageIconUrl": null,
+                    "locales": {
+                        "en": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "es": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "fr": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "zh": {
+                            "description": "",
+                            "title": ""
+                        }
+                    },
+                    "value": 0
+                },
+                {
+                    "faIcon": "fab fa-css3-alt",
+                    "imageIconUrl": null,
+                    "locales": {
+                        "en": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "es": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "fr": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "zh": {
+                            "description": "",
+                            "title": ""
+                        }
+                    },
+                    "value": 0
+                },
+                {
+                    "faIcon": "fab fa-sass",
+                    "imageIconUrl": null,
+                    "locales": {
+                        "en": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "es": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "fr": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "zh": {
+                            "description": "",
+                            "title": ""
+                        }
+                    },
+                    "value": 0
+                },
+                {
+                    "faIcon": "fab fa-js-square",
+                    "imageIconUrl": null,
+                    "locales": {
+                        "en": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "es": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "fr": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "zh": {
+                            "description": "",
+                            "title": ""
+                        }
+                    },
+                    "value": 0
+                },
+                {
+                    "faIcon": "fab fa-vuejs",
+                    "imageIconUrl": null,
+                    "locales": {
+                        "en": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "es": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "fr": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "zh": {
+                            "description": "",
+                            "title": ""
+                        }
+                    },
+                    "value": 0
+                },
+                {
+                    "faIcon": "fab fa-react",
+                    "imageIconUrl": null,
+                    "locales": {
+                        "en": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "es": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "fr": {
+                            "description": "",
+                            "title": ""
+                        },
+                        "zh": {
+                            "description": "",
+                            "title": ""
+                        }
+                    },
+                    "value": 0
+                }
+            ]
+        },
+        "locales": {
+            "en": {
+                "description": "Exploring the diverse range of skills I've acquired and developed:",
+                "title": "<span class='text-primary'>Skill</span> Set"
+            },
+            "es": {
+                "description": "",
+                "title": ""
+            },
+            "fr": {
+                "description": "",
+                "title": ""
+            },
+            "zh": {
+                "description": "",
+                "title": ""
+            }
+        },
+        "subcategories": [
+            {
+                "faIcon": "fa-solid fa-square",
+                "id": "abilities",
+                "locales": {
+                    "en": {
+                        "title": null
+                    }
+                },
+                "progress": null,
+                "type": "list"
+            },
+            {
+                "faIcon": "fa fa-code",
+                "id": "programming",
+                "locales": {
+                    "en": {
+                        "title": "Programming"
+                    },
+                    "es": {
+                        "title": ""
+                    },
+                    "fr": {
+                        "title": ""
+                    },
+                    "zh": {
+                        "title": ""
+                    }
+                },
+                "progress": "number",
+                "type": "grid"
+            },
+            {
+                "faIcon": "fa fa-language",
+                "id": "languages",
+                "locales": {
+                    "en": {
+                        "title": "Languages"
+                    },
+                    "es": {
+                        "title": ""
+                    },
+                    "fr": {
+                        "title": ""
+                    },
+                    "zh": {
+                        "title": ""
+                    }
+                },
+                "progress": {
+                    "0": "beginner",
+                    "20": "rookie",
+                    "40": "intermediate",
+                    "60": "advanced",
+                    "80": "fluent",
+                    "100": "native"
+                },
+                "type": "list"
+            },
+            {
+                "faIcon": "fa fa-marker",
+                "id": "extra",
+                "locales": {
+                    "en": {
+                        "title": "Bonus Skills"
+                    },
+                    "es": {
+                        "title": ""
+                    },
+                    "fr": {
+                        "title": ""
+                    },
+                    "zh": {
+                        "title": ""
+                    }
+                },
+                "progress": null,
+                "type": "grid"
+            }
+        ]
+    }
+}

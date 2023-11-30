@@ -7,29 +7,12 @@ ResilientDB GraphQL Server
 
 Install **Ubuntu 20.04** on your local machine.
 
-Once installed, go to File Explorer -> Linux -> Ubuntu 20.04.
+Install miniconda using the command.
 
-Clone this repository.
-
-Install python3 (version - 3.9+) and ensure pip is installed using the command.
-
-    sudo apt-get install python3-pip
-
-Also make sure to install the venv module which creates a virtual Python environment that helps encapsulate the project's dependencies and prevents possible conflicts with the global Python environment. The command is:
-
-    sudo apt-get install -y python3.10-venv
-
-Create a virtual environment:
-
-    python3 -m venv venv
-
-Start a virtual environment:
-
-    source venv/bin/activate
-
-Go back from the virtual environment when you no longer need it:
-
-    deactivate
+    mkdir -p ~/miniconda3
+    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
+    bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
+    rm -rf ~/miniconda3/miniconda.sh
 
 # Using the HTTP server
 
@@ -37,7 +20,7 @@ To use the HTTP server, you need to start a KV service first, which you can refe
 
 Then you should start the crow http service, which may take a few minutes at the first time.
 
-    bazel build service/http_server:crow_service_main
+    ./install.sh
 
 # Start the Backend server and the HTTP server
 

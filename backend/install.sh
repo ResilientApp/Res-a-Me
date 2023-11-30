@@ -40,11 +40,12 @@ bazel build @com_github_bazelbuild_buildtools//buildifier:buildifier
 
 sudo apt-get install python3.10-dev -y
 sudo apt-get install python3-dev -y
-sudo apt-get install python3-pip -y
-sudo apt-get install -y python3.10-venv
 
-python -m venv venv
-source venv/bin/activate
+conda create --name RDB python=3.10
+conda activate RDB
 
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
+pip install -r requirements.txt
+cd ResilientDB_GraphQL
+pip install -r requirements.txt
+
+bazel build service/http_server:crow_service_main

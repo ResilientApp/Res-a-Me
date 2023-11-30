@@ -1,15 +1,20 @@
 <template>
   <div class="m-5">
-    <h1 class="mt-4 mb-2 " style="color: white; font-weight: 900;">
-      Edit your information here!
-      <v-icon
-        size="xx-large"
-        icon="mdi-pencil"
-      ></v-icon>
-      <span>
-          (Remember to save changes before you leave)
-      </span>
-    </h1>
+    <v-row>
+      <v-col align="center">
+        <h1 class="mt-3 mb-3 " style="color: black; font-weight: 900;">
+        Edit your information here!
+        <v-btn @click="returnButton()" class="ml-5 mb-2">
+            <v-icon
+              size="xx-large"
+              icon="mdi-file-account"
+            ></v-icon>
+            back to resume
+        </v-btn>
+        </h1>
+      </v-col>
+    </v-row>
+    
     <v-expansion-panels v-model="panel">
         <About :about="about" @save-about="handleSaveAbout"/>
         <Education :educations="educations" @delete-edu="handleDeleteEdu" @add-edu="handleAddEdu" @save-edu="handleSaveEdu"/>
@@ -23,13 +28,16 @@
 
 <script>
 import axios from 'axios';
+import fs from 'fs'
 import { ref, onMounted } from 'vue';
+import { useRouter } from "vue-router";
 import Skill from '../sections/edit/Skill.vue';
 import About from '../sections/edit/About.vue';
 import Education from '../sections/edit/Education.vue';
 import Profession from '../sections/edit/Profession.vue';
 import Certification from '../sections/edit/Certificate.vue';
 import Award from '../sections/edit/Award.vue'
+const router = useRouter();
 
 export default {
   components: {
@@ -44,36 +52,36 @@ export default {
     panel:[0],
     defaultSkill: {
       id: 0,
-      name: 'New skill',
+      title: 'New skill',
       description: 'add your description'
     },
     defaultEdu:{
       id:0,
-      diploma: 'New diploma',
+      title: 'New diploma',
       schoolName: 'New shool name',
-      startDate: new Date().toISOString().split('T')[0],
-      endDate: new Date().toISOString().split('T')[0],
+      startDate: '2023/01',
+      endDate: '2023/12',
       description: 'add your description'
     },
     defaultPro:{
       id:0,
-      position: 'New position',
+      title: 'New position',
       company: 'New company name',
-      startDate: new Date().toISOString().split('T')[0],
-      endDate: new Date().toISOString().split('T')[0],
+      startDate: '2023/01',
+      endDate: '2023/12',
       description: 'add your description'
     },
     defaultCer:{
       id:0,
       title: 'New certification',
-      date: new Date().toISOString().split('T')[0],
+      date: '2023/01',
       company_school: 'New company name or school name',
       description: 'add your description'
     },
     defaultAward:{
       id:0,
       title: 'New award',
-      date: new Date().toISOString().split('T')[0],
+      date: '2023/01',
       company_school: 'New company name or school name',
       description: 'add your description'
     },
@@ -85,6 +93,12 @@ export default {
     const professions = ref([]);
     const certifications = ref([]);
     const awards = ref([]);
+    const cover_data_old = ref([]);
+    const profile_data_old = ref([]);
+    const skill_data_old = ref([]);
+    const edu_data_old = ref([]);
+    const pro_data_old = ref([]);
+    const achi_data_old = ref([]);
 
     onMounted(async () => {
       try {
@@ -101,7 +115,7 @@ export default {
                 body :JSON.stringify({"category": "skills"}),
             });
         const skill_data = await skill_response.json();
-        // console.log(skill_data)
+        skill_data_old.value = skill_data; //for update JSON file
         const skill_transformedArray = skill_data.items.abilities.map((item, index) => {
           const { faIcon, locales } = item;
           const { title, description } = locales.en;
@@ -114,10 +128,32 @@ export default {
         });
         skills.value = skill_transformedArray;
         //about data
-        const cover_response = await axios.get('../../../data/sections/cover.json');
-        const cover_data = cover_response.data;
-        const profile_response = await axios.get('../../../data/info/profile.json');
-        const profile_data = profile_response.data;
+        // const cover_response = await axios.get('../../../data/sections/cover.json');
+        // const cover_data = cover_response.data;
+        const cover_response = await fetch("http://127.0.0.1:3033/loadResume", {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Access-Control-Allow-Origin": "*",
+                    "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+                },
+                body :JSON.stringify({"category": "cover"}),
+            });
+        const cover_data = await cover_response.json();
+        cover_data_old.value = cover_data; //for update JSON file
+        const profile_response = await fetch("http://127.0.0.1:3033/loadResume", {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Access-Control-Allow-Origin": "*",
+                    "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+                },
+                body :JSON.stringify({"category": "profile"}),
+            });
+        const profile_data = await profile_response.json();
+        // const profile_response = await axios.get('../../../data/info/profile.json');
+        // const profile_data = profile_response.data;
+        profile_data_old.value = profile_data;
         const description = cover_data.locales.en.bio;
         const name = profile_data.name;
         const profilePictureUrl = profile_data.profilePictureUrl;
@@ -136,83 +172,82 @@ export default {
         };
         about.value = about_transformedArray
         //education data
-        const edu_response = await axios.get('../../../data/sections/education.json');
-        const edu_data = edu_response.data;
+        // const edu_response = await axios.get('../../../data/sections/education.json');
+        // const edu_data = edu_response.data;
+        const edu_response = await fetch("http://127.0.0.1:3033/loadResume", {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Access-Control-Allow-Origin": "*",
+                    "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+                },
+                body :JSON.stringify({"category": "education"}),
+            });
+        const edu_data = await edu_response.json();
+        edu_data_old.value = edu_data; //for update JSON file
         const edu_transformedArray = edu_data.items.map((item) => {
-          const datePartsS = item.period[0].split('/');
-          const yearS = datePartsS[0];
-          const monthS = datePartsS[1];
-          const dateS = new Date(yearS, monthS - 1);
-          const formattedDateS = dateS.toISOString().split('T')[0];
-          const datePartsE = item.period[1].split('/');
-          const yearE = datePartsE[0];
-          const monthE = datePartsE[1];
-          const dateE = new Date(yearE, monthE - 1);
-          const formattedDateE = dateE.toISOString().split('T')[0];
           return{
               title: item.locales.en.title,
-              schoolName: item.place.split('{places.')[1].split('}')[0],
-              startDate: formattedDateS,
-              endDate: formattedDateE,
+              schoolName: item.place, 
+              startDate: item.period[0],
+              endDate: item.period[1],
               description: item.locales.en.description,
           }
 
         });
         educations.value = edu_transformedArray
         //profession data
-        const pro_response = await axios.get('../../../data/sections/experience.json');
-        const pro_data = pro_response.data;
+        // const pro_response = await axios.get('../../../data/sections/experience.json');
+        // const pro_data = pro_response.data;
+        const pro_response = await fetch("http://127.0.0.1:3033/loadResume", {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Access-Control-Allow-Origin": "*",
+                    "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+                },
+                body :JSON.stringify({"category": "experience"}),
+            });
+        const pro_data = await pro_response.json();
+        pro_data_old.value = pro_data; //for update JSON file
         const pro_transformedArray = pro_data.items.map((item) => {
-            const datePartsS = item.period[0].split('/');
-            const yearS = datePartsS[0];
-            const monthS = datePartsS[1];
-            const dateS = new Date(yearS, monthS - 1);
-            const formattedDateS = dateS.toISOString().split('T')[0];
-            const datePartsE = item.period[1].split('/');
-            const yearE = datePartsE[0];
-            const monthE = datePartsE[1];
-            const dateE = new Date(yearE, monthE - 1);
-            const formattedDateE = dateE.toISOString().split('T')[0];
             return{
                 title: item.locales.en.title,
-                company: item.place.split('{places.')[1].split('}')[0],
-                startDate: formattedDateS,
-                endDate: formattedDateE,
+                company: item.place, 
+                startDate: item.period[0],
+                endDate: item.period[1],
                 description: item.locales.en.description,
             }
 
         });
         professions.value = pro_transformedArray
         //achievement and award data
-        const achi_response = await axios.get('../../../data/sections/achievements.json');
-        const achi_data = achi_response.data;
+        // const achi_response = await axios.get('../../../data/sections/achievements.json');
+        // const achi_data = achi_response.data;
+        const achi_response = await fetch("http://127.0.0.1:3033/loadResume", {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Access-Control-Allow-Origin": "*",
+                    "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+                },
+                body :JSON.stringify({"category": "achievements"}),
+            });
+        const achi_data = await achi_response.json();
+        achi_data_old.value = achi_data; //for update JSON file
         const certificationsArray = achi_data.items.certifications.map((certification) => {
-            const dateParts = certification.date.split('/');
-            const year = dateParts[0];
-            const month = dateParts[1];
-            const date = new Date(year, month - 1);
-            const formattedDate = date.toISOString().split('T')[0];
             return{
                 title: certification.locales.en.title,
-                date: formattedDate,
-                company_school: certification.place.split('{places.')[1].split('}')[0],
+                date: certification.date,
+                company_school: certification.place, 
                 description: certification.locales.en.description,
             }
-
         });
-
         const awardsArray = achi_data.items.awards.map((award) => {
-          const dateParts = award.date.split('/');
-          const year = dateParts[0];
-          const month = dateParts[1];
-          // Creating a Date object with the given year and month (subtracting 1 as JS months are zero-indexed)
-          const date = new Date(year, month - 1);
-          const formattedDate = date.toISOString().split('T')[0];
-
           return {
             title: award.locales.en.title,
-            date: formattedDate,
-            company_school: award.place.split('{places.')[1].split('}')[0],
+            date: award.date,
+            company_school: award.place, 
             description: award.locales.en.description,
           };
         });
@@ -229,17 +264,27 @@ export default {
       educations,
       professions,
       certifications,
-      awards
+      awards,
+      cover_data_old,
+      profile_data_old,
+      skill_data_old,
+      edu_data_old,
+      pro_data_old,
+      achi_data_old,
     };
   },
   methods:{
+    returnButton(){
+      if(confirm('Are you sure you want to leave this page? Make sure you have saved your changes!')){
+        this.$router.push('/home');
+      }
+    },
     handleDeleteSkill(index){
       if (confirm('Are you sure you want to delete this item?')) {
           this.skills.splice(index, 1); 
           this.skills.forEach((skill, idx) => {
             skill.id = idx;
           });
-          console.log("after delete skill:",this.skills) //Post new skills to backend
         }
     },
     handleAddSkill(){
@@ -249,12 +294,27 @@ export default {
       this.skills.forEach((skill, idx) => {
         skill.id = idx;
       });
-      console.log("after add skill:",this.skills); // Post new skills to backend
     },
     handleSaveSkill(skills){
       this.skills = skills;
-      // const merge_skills = Object.assign({}, this.skills);
-      console.log("after save skill",this.skills) //Post new skills to backend
+      this.skill_data_old.items.abilities = [];
+      for (let i = 0; i < this.skills.length; i++) {
+        const extractedItem = this.skills[i];
+        this.skill_data_old.items.abilities.push({
+          imageIconUrl: null,
+          faIcon: null,
+          value: null,
+          locales: {
+            en: {
+              title: extractedItem.title || '',
+              description: extractedItem.description || ''
+            },
+            es: { title: '', description: '' },
+            fr: { title: '', description: '' },
+            zh: { title: '', description: '' }
+          }
+        });
+      }
       const skill_response = fetch("http://127.0.0.1:3033/editResume", {
                 method: "POST",
                 headers: {
@@ -262,13 +322,39 @@ export default {
                     "Access-Control-Allow-Origin": "*",
                     "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
                 },
-                body :JSON.stringify({"category": "Skills","data": JSON.stringify(this.skills)}),
+                body :JSON.stringify({"category": "skills","data": JSON.stringify(this.skill_data_old)}),
             });
-      // console.log("after save skill",this.skills) //Post new skills to backend
     },
     handleSaveAbout(about){
       this.about = Object.assign({}, this.about, about);
-      console.log("after save about",this.about) //Post new about to backend
+      this.cover_data_old.locales.en.bio = this.about.description;
+      this.profile_data_old.name = this.about.name;
+      this.profile_data_old.profilePictureUrl = this.about.profilePictureUrl;
+      this.profile_data_old.locales.en.role = this.about.role;
+      this.profile_data_old.contact.address.value = this.about.address;
+      this.profile_data_old.contact.email.value = this.about.email;
+      this.profile_data_old.contact.phone.valueShort = this.about.phone;
+      const cover_response = fetch("http://127.0.0.1:3033/editResume", {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Access-Control-Allow-Origin": "*",
+                    "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+                },
+                body :JSON.stringify({"category": "cover","data": JSON.stringify(this.cover_data_old)}),
+      });
+    
+      const profile_response = fetch("http://127.0.0.1:3033/editResume", {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Access-Control-Allow-Origin": "*",
+                    "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+                },
+                body :JSON.stringify({"category": "profile","data": JSON.stringify(this.profile_data_old)}),
+      });
+      // console.log("cover_data",this.cover_data_old) //Post new about to backend
+      // console.log("profile_data",this.profile_data_old) //Post new about to backend
     },
     handleDeleteEdu(index){
       if (confirm('Are you sure you want to delete this item?')) {
@@ -276,7 +362,6 @@ export default {
           this.educations.forEach((edu, idx) => {
             edu.id = idx;
           });
-          console.log("after delete education:",this.educations) //Post new educations to backend
         }
     },
     handleAddEdu(){
@@ -286,11 +371,37 @@ export default {
       this.educations.forEach((edu, idx) => {
         edu.id = idx;
       });
-      console.log("after add education:",this.educations); // Post new educations to backend
     },
     handleSaveEdu(educations){
       this.educations = educations;
-      console.log("after save education:",this.educations) //Post new educations to backend
+      // Clear existing items in edu_data
+      this.edu_data_old.items = [];
+      for (let i = 0; i < this.educations.length; i++) {
+        const extractedItem = this.educations[i];
+        this.edu_data_old.items.push({
+              id: extractedItem.id,
+              place: extractedItem.schoolName || '',
+              period: [extractedItem.startDate || '', extractedItem.endDate || ''],
+              locales: {
+                  en: {
+                      title: extractedItem.title || '',
+                      description: extractedItem.description || '',
+                  },
+                  es: { title: '', description: '' },
+                  fr: { title: '', description: '' },
+                  zh: { title: '', description: '' },
+              },
+        });
+      }
+      const edu_response = fetch("http://127.0.0.1:3033/editResume", {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Access-Control-Allow-Origin": "*",
+                    "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+                },
+                body :JSON.stringify({"category": "education","data": JSON.stringify(this.edu_data_old)}),
+            });
     },
     handleDeletePro(index){
       if (confirm('Are you sure you want to delete this item?')) {
@@ -298,7 +409,6 @@ export default {
           this.professions.forEach((edu, idx) => {
             edu.id = idx;
           });
-          console.log("after delete profession:",this.professions) //Post new professions to backend
         }
     },
     handleAddPro(){
@@ -308,11 +418,36 @@ export default {
       this.professions.forEach((edu, idx) => {
         edu.id = idx;
       });
-      console.log("after add profession:",this.professions); // Post new professions to backend
     },
     handleSavePro(professions){
       this.professions = professions;
-      console.log("after save profession:",this.professions) //Post new professions to backend
+      this.pro_data_old.items = [];
+      for (let i = 0; i < this.professions.length; i++) {
+        const extractedItem = this.professions[i];
+        this.pro_data_old.items.push({
+              id: extractedItem.id,
+              place: extractedItem.company || '',
+              period: [extractedItem.startDate || '', extractedItem.endDate || ''],
+              locales: {
+                  en: {
+                      title: extractedItem.title || '',
+                      description: extractedItem.description || '',
+                  },
+                  es: { title: '', description: '' },
+                  fr: { title: '', description: '' },
+                  zh: { title: '', description: '' },
+              },
+        });
+      }
+      const pro_response = fetch("http://127.0.0.1:3033/editResume", {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Access-Control-Allow-Origin": "*",
+                    "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+                },
+                body :JSON.stringify({"category": "experience","data": JSON.stringify(this.pro_data_old)}),
+            });
     },
     handleDeleteCer(index){
       if (confirm('Are you sure you want to delete this item?')) {
@@ -320,7 +455,6 @@ export default {
           this.certifications.forEach((cer, idx) => {
             cer.id = idx;
           });
-          console.log("after delete certification:",this.certifications) //Post new professions to backend
         }
     },
     handleAddCer(){
@@ -330,11 +464,37 @@ export default {
       this.certifications.forEach((cer, idx) => {
         cer.id = idx;
       });
-      console.log("after add certification:",this.certifications); // Post new certifications to backend
     },
     handleSaveCer(certifications){
       this.certifications = certifications;
-      console.log("after save certificate",this.certifications) //Post new certifications to backend
+      this.achi_data_old.items.certifications = [];
+      for (let i = 0; i < this.certifications.length; i++) {
+        const extractedItem = this.certifications[i];
+        this.achi_data_old.items.certifications.push({
+              id: extractedItem.id,
+              place: extractedItem.company_school || '',
+              date: extractedItem.date || '',
+              href: '',
+              locales: {
+                  en: {
+                      title: extractedItem.title || '',
+                      description: extractedItem.description || '',
+                  },
+                  es: { title: '', description: '' },
+                  fr: { title: '', description: '' },
+                  zh: { title: '', description: '' },
+              },
+        });
+      }
+      const achi_response = fetch("http://127.0.0.1:3033/editResume", {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Access-Control-Allow-Origin": "*",
+                    "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+                },
+                body :JSON.stringify({"category": "achievements","data": JSON.stringify(this.achi_data_old)}),
+            });
     },
     handleDeleteAward(index){
       if (confirm('Are you sure you want to delete this item?')) {
@@ -342,7 +502,6 @@ export default {
           this.awards.forEach((award, idx) => {
             award.id = idx;
           });
-          console.log("after delete award:",this.awards) //Post new awards to backend
         }
     },
     handleAddAward(){
@@ -352,11 +511,37 @@ export default {
       this.awards.forEach((award, idx) => {
         award.id = idx;
       });
-      console.log("after add award:",this.awards); // Post new awards to backend
     },
     handleSaveAward(awards){
       this.awards = awards;
-      console.log("after save award:",this.awards) //Post new awards to backend
+      this.achi_data_old.items.awards = [];
+      for (let i = 0; i < this.awards.length; i++) {
+        const extractedItem = this.awards[i];
+        this.achi_data_old.items.awards.push({
+              id: extractedItem.id,
+              place: extractedItem.company_school || '',
+              date: extractedItem.date || '',
+              href: '',
+              locales: {
+                  en: {
+                      title: extractedItem.title || '',
+                      description: extractedItem.description || '',
+                  },
+                  es: { title: '', description: '' },
+                  fr: { title: '', description: '' },
+                  zh: { title: '', description: '' },
+              },
+        });
+      }
+      const achi_response = fetch("http://127.0.0.1:3033/editResume", {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Access-Control-Allow-Origin": "*",
+                    "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+                },
+                body :JSON.stringify({"category": "acheivements","data": JSON.stringify(this.achi_data_old)}),
+            });
     },
 
   },
@@ -368,5 +553,7 @@ export default {
 
 <style>
 
-
+/* #app{
+  background-color: ivory !important
+} */
 </style>

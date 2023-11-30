@@ -1,4 +1,8 @@
-loginDatabase = {}
+loginDatabase = {
+    "jack@gmail.com":{
+        "password": "jackjack",
+    }
+}
 userInfoDatabase = {}
 userKeyPairDatabase = {}
 #userListDatabase = []
@@ -15,11 +19,6 @@ userListDatabase = [
     }
 ]
 
-def __init__():
-    loginDatabase = {}
-    userInfoDatabase = {}
-    userKeyPairDatabase = {}
-    userListDatabase = []
 def getUserLoginDatabase(email):
     if email not in loginDatabase:
         return False
@@ -38,7 +37,7 @@ def getUserInfoDatabase(email):
         return userInfoDatabase[email]
 
 def setUserInfoDatabase(email, public_key = None, transaction_id = None):
-    userInfoDatabase[email] = {}
+    if email not in userInfoDatabase: userInfoDatabase[email] = {}
     if public_key: userInfoDatabase[email]["public_key"] = public_key
     if transaction_id: userInfoDatabase[email]["transaction_id"] = transaction_id
 

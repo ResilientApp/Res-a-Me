@@ -13,7 +13,7 @@
               </v-row>
           </template>
         </v-expansion-panel-title>
-        <v-expansion-panel-text>
+        <v-expansion-panel-text >
             <v-row no-gutters>
                 <v-col>
                     <v-text-field class="pa-2"
@@ -89,17 +89,17 @@
             <div class="d-flex justify-center">
                 <form @submit.prevent="uploadImage">
                     <input type="file" @change="handleFileChange" accept="image/png">
-                    <v-btn class="ml-5" @click="upload(about)"
-                        >Upload
-                        <v-icon color="green" 
+                    <v-btn color = "light-blue-darken-1" class="ml-5" @click="upload(about)"
+                        >Upload IMG
+                        <v-icon 
                             size="x-large"
-                            icon="mdi-content-upload"
+                            icon="mdi-upload"
                         ></v-icon>
                     </v-btn>
                 </form>
-                <v-btn class="ml-5" @click="saveAbout(about)"
+                <v-btn color="green" class="ml-5" @click="saveAbout(about)"
                     >Save
-                      <v-icon color="green" 
+                      <v-icon 
                         size="x-large"
                         icon="mdi-content-save"
                       ></v-icon>
@@ -154,7 +154,8 @@ export default {
             }
 
             if (allRulesPassed) {
-                console.log('data format is correct')
+                // console.log('data format is correct')
+                alert('Your About information has been saved!')
                 emit('save-about', about);
             } else {
                 confirm('Some fields may be incorrect. Please check!')
@@ -174,11 +175,6 @@ export default {
 
             const formData = new FormData();
             formData.append('image', selectedFile.value);
-
-            // Append other 'about' details to formData if needed
-            // for (const key in about) {
-            //   formData.append(key, about[key]);
-            // }
 
             fetch('http://127.0.0.1:3033/upload', {
                 method: 'POST',

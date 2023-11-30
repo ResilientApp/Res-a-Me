@@ -44,9 +44,9 @@
                             class="pa-2"
                             v-model="edu.startDate"
                             :rules="[
-                                () => isStartDateValid(edu) || 'This field is required'
+                                () => !!edu.startDate || 'This field is required',
+                                () => isStartDateValid(edu) || 'Date must be in YYYY/MM format'
                             ]"
-                            type="date"
                             :counter="10"
                             label="Start Date"
                           ></v-text-field>
@@ -56,9 +56,9 @@
                             class="pa-2"
                             v-model="edu.endDate"
                             :rules="[
-                                () => isEndDateValid(edu) || 'This field is required'
+                                () => !!edu.endDate || 'This field is required',
+                                () => isEndDateValid(edu) || 'Date must be in YYYY/MM format'
                             ]"
-                            type="date"
                             :counter="10"
                             label="End Date"
                           ></v-text-field>
@@ -77,8 +77,8 @@
                       </v-row>
                     </v-col>
                     <v-col class="button-container mr-2">
-                      <v-btn @click="deleteEdu(index)" color="red-lighten-1"
-                      > delete
+                      <v-btn @click="deleteEdu(index)" color="red-lighten-2"
+                      >
                         <v-icon
                           size="x-large"
                           icon="mdi-trash-can"
@@ -89,7 +89,7 @@
               </div>
             </template>
             <div class="d-flex justify-center">
-              <v-btn color="grey" @click="addNewEdu()"
+              <v-btn color="grey-lighten-1" @click="addNewEdu()"
                       >Add more
                         <v-icon
                           size="x-large"
@@ -127,10 +127,10 @@
               return !!edu.title;
           };
           const isStartDateValid = (edu) => {
-              return !!edu.startDate;
+              return !!edu.startDate && /\b\d{4}\/(0[1-9]|1[0-2])\b/.test(edu.startDate);
           };
           const isEndDateValid = (edu) => {
-              return !!edu.endDate;
+              return !!edu.endDate && /\b\d{4}\/(0[1-9]|1[0-2])\b/.test(edu.endDate);
           };
           const isDescriptionValid = (edu) => {
               return !!edu.description;
@@ -158,6 +158,7 @@
               });
             if (allRulesPassed) {
                 // console.log('data format is correct')
+                alert('Your Education information has been saved!')
                 emit('save-edu', educations);
             } else {
                 confirm('Some fields may be incorrect. Please check!')
@@ -187,5 +188,10 @@
     flex-direction: row; /* Vertical layout */
     align-items: center; /* Center items horizontally */
     justify-content: center; /* Center items vertically */
+  }
+
+  #deletebtn {
+    min-width: 40px;
+    width: 40px;
   }
   </style>

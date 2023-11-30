@@ -10,7 +10,7 @@ export function createAppRouter() {
     const sections = data.getSections();
     const homeSection = sections[0] || { id: 'home' };
 
-    const protectedRoutes = ['edit', homeSection['id']];
+    const protectedRoutes = ['edit'];
 
     /** Create Home **/
     const routeList = [

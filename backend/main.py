@@ -130,7 +130,7 @@ def userList():
 @app.route('/updateResume', methods=['POST'])
 def update_resume():
     response_data = request.get_json()
-    email = esponse_data.get('email')
+    email = response_data.get('email')
 
     if not email:
         return jsonify(message = "Email is required", status = 400)

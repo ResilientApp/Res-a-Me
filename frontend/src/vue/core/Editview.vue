@@ -115,6 +115,7 @@ export default {
                 body :JSON.stringify({"category": "skills"}),
             });
         const skill_data = await skill_response.json();
+        console.log(skill_data)
         skill_data_old.value = skill_data; //for update JSON file
         const skill_transformedArray = skill_data.items.abilities.map((item, index) => {
           const { faIcon, locales } = item;
@@ -140,6 +141,11 @@ export default {
                 body :JSON.stringify({"category": "cover"}),
             });
         const cover_data = await cover_response.json();
+        console.log(cover_data)
+        // const cover_jsonstring = await cover_response.json();
+        // const cover_data = JSON.parse(cover_jsonstring)
+        // console.log("await cover_response.json()",cover_data)
+        // console.log("after JSON.parse()",cover_data)
         cover_data_old.value = cover_data; //for update JSON file
         const profile_response = await fetch("http://127.0.0.1:3033/loadResume", {
                 method: "POST",
@@ -151,6 +157,7 @@ export default {
                 body :JSON.stringify({"category": "profile"}),
             });
         const profile_data = await profile_response.json();
+        // console.log(profile_data)
         // const profile_response = await axios.get('../../../data/info/profile.json');
         // const profile_data = profile_response.data;
         profile_data_old.value = profile_data;
@@ -184,6 +191,9 @@ export default {
                 body :JSON.stringify({"category": "education"}),
             });
         const edu_data = await edu_response.json();
+        // console.log(edu_data)
+        //  const cover_jsonstring = await edu_response.json();
+        // const edu_data = JSON.parse(cover_jsonstring)
         edu_data_old.value = edu_data; //for update JSON file
         const edu_transformedArray = edu_data.items.map((item) => {
           return{
@@ -317,7 +327,7 @@ export default {
           }
         });
       }
-      const skill_response = fetch("http://127.0.0.1:3033/editResume", {
+      fetch("http://127.0.0.1:3033/editResume", {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
@@ -336,7 +346,7 @@ export default {
       this.profile_data_old.contact.address.value = this.about.address;
       this.profile_data_old.contact.email.value = this.about.email;
       this.profile_data_old.contact.phone.valueShort = this.about.phone;
-      const cover_response = fetch("http://127.0.0.1:3033/editResume", {
+      fetch("http://127.0.0.1:3033/editResume", {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
@@ -345,8 +355,7 @@ export default {
                 },
                 body :JSON.stringify({"category": "cover","data": JSON.stringify(this.cover_data_old)}),
       });
-    
-      const profile_response = fetch("http://127.0.0.1:3033/editResume", {
+      fetch("http://127.0.0.1:3033/editResume", {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
@@ -355,8 +364,8 @@ export default {
                 },
                 body :JSON.stringify({"category": "profile","data": JSON.stringify(this.profile_data_old)}),
       });
-      // console.log("cover_data",this.cover_data_old) //Post new about to backend
-      // console.log("profile_data",this.profile_data_old) //Post new about to backend
+      console.log("cover_data",this.cover_data_old) //Post new about to backend
+      console.log("profile_data",this.profile_data_old) //Post new about to backend
     },
     handleDeleteEdu(index){
       if (confirm('Are you sure you want to delete this item?')) {
@@ -395,7 +404,7 @@ export default {
               },
         });
       }
-      const edu_response = fetch("http://127.0.0.1:3033/editResume", {
+      fetch("http://127.0.0.1:3033/editResume", {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
@@ -404,6 +413,7 @@ export default {
                 },
                 body :JSON.stringify({"category": "education","data": JSON.stringify(this.edu_data_old)}),
             });
+      // window.location.reload();
     },
     handleDeletePro(index){
       if (confirm('Are you sure you want to delete this item?')) {
@@ -441,7 +451,7 @@ export default {
               },
         });
       }
-      const pro_response = fetch("http://127.0.0.1:3033/editResume", {
+      fetch("http://127.0.0.1:3033/editResume", {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
@@ -488,7 +498,7 @@ export default {
               },
         });
       }
-      const achi_response = fetch("http://127.0.0.1:3033/editResume", {
+      fetch("http://127.0.0.1:3033/editResume", {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
@@ -535,7 +545,7 @@ export default {
               },
         });
       }
-      const achi_response = fetch("http://127.0.0.1:3033/editResume", {
+      fetch("http://127.0.0.1:3033/editResume", {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",

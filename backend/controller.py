@@ -29,7 +29,7 @@ def getUserInfoCategory(email, category):
         if category == "cover": return metadata["cover"]
         elif category == "experience": return metadata["experience"]
         elif category == "education": return metadata["education"]
-        elif category == "skill": return metadata["skill"]
+        elif category == "skills": return metadata["skills"]
         elif category == "achievements": return metadata["achievements"]
         elif category == "profile": return metadata["profile"]
 
@@ -48,7 +48,7 @@ def setUserInfoCategory(email, category, data):
     if category == "cover": previous_meta["cover"] = data
     elif category == "experience": previous_meta["experience"] = data
     elif category == "education": previous_meta["education"] = data
-    elif category == "skill": previous_meta["skill"] = data
+    elif category == "skills": previous_meta["skills"] = data
     elif category == "achievements": previous_meta["achievements"] = data
     elif category == "profile": 
         previous_meta["profile"] = data

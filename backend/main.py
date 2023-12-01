@@ -115,7 +115,8 @@ def edit_resume():
         return jsonify(message = "Category is required", status = 400)
         
     try:
-        data = response_data.get('data')
+        data = json.loads(response_data.get('data'))
+        # data = response_data.get('data')
         setUserInfoCategory(user_id, category, data)
         return jsonify(message = f"{category} updated successfully", status = 200)
     except FileNotFoundError:
@@ -129,7 +130,7 @@ def userList():
 @app.route('/updateResume', methods=['POST'])
 def update_resume():
     response_data = request.get_json()
-    email = response_data.get('email')
+    email = esponse_data.get('email')
 
     if not email:
         return jsonify(message = "Email is required", status = 400)

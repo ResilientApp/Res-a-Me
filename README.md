@@ -1,5 +1,7 @@
-# Preview
+# Res-A-Me
 ![Res-A-Me Icon](https://github.com/tobyyu007/Res-a-Me/assets/39978173/716ff97d-f8a2-4951-ab67-a9fb3e926c9d)
+
+# Preview
 
 ## Search
 ![Search](https://github.com/tobyyu007/Res-a-Me/assets/71425321/9643cc7d-3f00-42b3-b898-953cb2ba0a31)

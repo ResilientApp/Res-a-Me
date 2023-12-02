@@ -1,3 +1,13 @@
+![Res-A-Me Icon](https://github.com/tobyyu007/Res-a-Me/assets/39978173/716ff97d-f8a2-4951-ab67-a9fb3e926c9d)
+
+# Preview
+
+## Search
+![Search](https://github.com/tobyyu007/Res-a-Me/assets/71425321/9643cc7d-3f00-42b3-b898-953cb2ba0a31)
+
+## Education
+![Education](https://github.com/tobyyu007/Res-a-Me/assets/71425321/915b63f2-94ea-4ec8-a1bc-348f12693217)
+
 # Backend
 ## ResilientDB and ResilientDB GraphQL
 ResilientDB local Server and HTTP server
@@ -61,31 +71,18 @@ Key features:
 - Enable users to search for other people profile.
 - Using Vite for faster build times and seamless integration.
 
-## Preview
-
-### 1. Screenshots [Replace with our own Screenshot]
-
-![alt desktop](screenshots/desktop-previews.png)
-
-## Getting Started
-
-1. Clone the repo:
-```
-git clone [repo-url]
-```
-
-2. Navigate to the frontend directory of the project and install all dependencies with npm:
+1. Navigate to the frontend directory of the project and install all dependencies with npm:
 ```
 cd frontend
 npm install
 ```
 
-3. Run the project in developer mode:
+2. Run the project in developer mode:
 ```
 npm run dev
 ```
 
-4. If you already run the backend server, open browser and you will see Res-a-Me running on localhost:5173
+3. If you already run the backend server, open browser and you will see Res-a-Me running on localhost:5173
 
 ### Reference
 [Vue Resume Template](https://ryanbalieiro.github.io/vue-resume-template/) by Ryan Balieiro

@@ -4,13 +4,13 @@
             "awards": [
                 {
                     "id": 0,
-                    "place": "",
-                    "date": "",
+                    "place": "New company name or school name",
+                    "date": "2023/01",
                     "href": "",
                     "locales": {
                         "en": {
-                            "title": "",
-                            "description": ""
+                            "title": "New award",
+                            "description": "add your description"
                         }
                     }
                 }
@@ -18,13 +18,13 @@
             "certifications": [
                 {
                     "id": 0,
-                    "place": "",
-                    "date": "",
+                    "place": "New company name or school name",
+                    "date": "2023/01",
                     "href": "",
                     "locales": {
                         "en": {
-                            "title": "",
-                            "description": ""
+                            "title": "New certification",
+                            "description": "add your description"
                         }
                     }
                 }
@@ -62,20 +62,15 @@
     "cover": {
         "items": {
             "contactListItems": [
-                "@link{profile.contact.address}",
-                "@link{profile.contact.email}",
-                "@link{profile.contact.phone}"
+                
             ],
             "socialCircles": [
-                "@link{profile.contact.instagram}",
-                "@link{profile.contact.facebook}",
-                "@link{profile.contact.linkedin}",
-                "@link{profile.contact.github}"
+                
             ]
         },
         "locales": {
             "en": {
-                "bio": "",
+                "bio": "add your description",
                 "welcome": "Welcome to my <span class='text-primary'>Resume!</span>",
                 "welcomeShort": "Welcome!"
             }
@@ -85,15 +80,15 @@
         "items": [
             {
                 "id": 0,
-                "place": "",
+                "place": "New school name",
                 "period": [
-                    "",
-                    ""
+                    "2023/01",
+                    "2023/12"
                 ],
                 "locales": {
                     "en": {
-                        "title": "",
-                        "description": ""
+                        "title": "New diploma",
+                        "description": "add your description"
                     }
                 }
             }
@@ -109,15 +104,15 @@
         "items": [
             {
                 "id": 0,
-                "place": "",
+                "place": "New company name",
                 "period": [
-                    "",
-                    ""
+                    "2023/01",
+                    "2023/12"
                 ],
                 "locales": {
                     "en": {
-                        "title": "",
-                        "description": ""
+                        "title": "New position",
+                        "description": "add your description"
                     }
                 }
             }
@@ -133,9 +128,9 @@
         "contact": {
             "address": {
                 "faIcon": "fa-solid fa-city",
-                "href": null,
+                "href": "",
                 "id": "address",
-                "value": "",
+                "value": "your address",
                 "valueShort": "Cupertino, CA 01234"
             },
             "email": {
@@ -184,98 +179,98 @@
         "locales": {
             "en": {
                 "credits": "Designed by <strong><a class='light' href='https://github.com/ryanbalieiro'>Ryan Balieiro</a></strong>",
-                "role": ""
+                "role": "your job title"
             }
         },
-        "name": "",
+        "name": "your name",
         "profilePictureUrl": "images/pictures/avatar.png"
     },
     "skills": {
         "items": {
             "abilities": [
                 {
-                    "imageIconUrl": null,
-                    "faIcon": null,
-                    "value": null,
+                    "imageIconUrl": "",
+                    "faIcon": "",
+                    "value": "",
                     "locales": {
                         "en": {
-                            "title": "",
-                            "description": ""
+                            "title": "New skill",
+                            "description": "add your description"
                         }
                     }
                 }
             ],
             "extra": [
                 {
-                    "faIcon": null,
-                    "imageIconUrl": null,
+                    "faIcon": "",
+                    "imageIconUrl": "",
                     "locales": {
                         "en": {
                             "description": "",
                             "title": ""
                         }
                     },
-                    "value": null
+                    "value": ""
                 },
                 {
-                    "faIcon": null,
-                    "imageIconUrl": null,
+                    "faIcon": "",
+                    "imageIconUrl": "",
                     "locales": {
                         "en": {
                             "description": "",
                             "title": ""
                         }
                     },
-                    "value": null
+                    "value": ""
                 },
                 {
-                    "faIcon": null,
-                    "imageIconUrl": null,
+                    "faIcon": "",
+                    "imageIconUrl": "",
                     "locales": {
                         "en": {
                             "description": "",
                             "title": ""
                         }
                     },
-                    "value": null
+                    "value": ""
                 },
                 {
-                    "faIcon": null,
-                    "imageIconUrl": null,
+                    "faIcon": "",
+                    "imageIconUrl": "",
                     "locales": {
                         "en": {
                             "description": "",
                             "title": ""
                         }
                     },
-                    "value": null
+                    "value": ""
                 },
                 {
-                    "faIcon": null,
-                    "imageIconUrl": null,
+                    "faIcon": "",
+                    "imageIconUrl": "",
                     "locales": {
                         "en": {
                             "description": "",
                             "title": ""
                         }
                     },
-                    "value": null
+                    "value": ""
                 },
                 {
-                    "faIcon": null,
-                    "imageIconUrl": null,
+                    "faIcon": "",
+                    "imageIconUrl": "",
                     "locales": {
                         "en": {
                             "description": "",
                             "title": ""
                         }
                     },
-                    "value": null
+                    "value": ""
                 }
             ],
             "languages": [
                 {
-                    "faIcon": null,
+                    "faIcon": "",
                     "imageIconUrl": "images/flags/en.png",
                     "locales": {
                         "en": {
@@ -286,7 +281,7 @@
                     "value": 0
                 },
                 {
-                    "faIcon": null,
+                    "faIcon": "",
                     "imageIconUrl": "images/flags/es.png",
                     "locales": {
                         "en": {
@@ -297,7 +292,7 @@
                     "value": 0
                 },
                 {
-                    "faIcon": null,
+                    "faIcon": "",
                     "imageIconUrl": "images/flags/vn.png",
                     "locales": {
                         "en": {
@@ -308,7 +303,7 @@
                     "value": 0
                 },
                 {
-                    "faIcon": null,
+                    "faIcon": "",
                     "imageIconUrl": "images/flags/pt.png",
                     "locales": {
                         "en": {
@@ -322,7 +317,7 @@
             "programming": [
                 {
                     "faIcon": "fab fa-html5",
-                    "imageIconUrl": null,
+                    "imageIconUrl": "",
                     "locales": {
                         "en": {
                             "description": "",
@@ -333,7 +328,7 @@
                 },
                 {
                     "faIcon": "fab fa-css3-alt",
-                    "imageIconUrl": null,
+                    "imageIconUrl": "",
                     "locales": {
                         "en": {
                             "description": "",
@@ -344,7 +339,7 @@
                 },
                 {
                     "faIcon": "fab fa-sass",
-                    "imageIconUrl": null,
+                    "imageIconUrl": "",
                     "locales": {
                         "en": {
                             "description": "",
@@ -355,7 +350,7 @@
                 },
                 {
                     "faIcon": "fab fa-js-square",
-                    "imageIconUrl": null,
+                    "imageIconUrl": "",
                     "locales": {
                         "en": {
                             "description": "",
@@ -366,7 +361,7 @@
                 },
                 {
                     "faIcon": "fab fa-vuejs",
-                    "imageIconUrl": null,
+                    "imageIconUrl": "",
                     "locales": {
                         "en": {
                             "description": "",
@@ -377,7 +372,7 @@
                 },
                 {
                     "faIcon": "fab fa-react",
-                    "imageIconUrl": null,
+                    "imageIconUrl": "",
                     "locales": {
                         "en": {
                             "description": "",
@@ -400,10 +395,10 @@
                 "id": "abilities",
                 "locales": {
                     "en": {
-                        "title": null
+                        "title": ""
                     }
                 },
-                "progress": null,
+                "progress": "",
                 "type": "list"
             },
             {
@@ -443,7 +438,7 @@
                         "title": "Bonus Skills"
                     }
                 },
-                "progress": null,
+                "progress": "",
                 "type": "grid"
             }
         ]

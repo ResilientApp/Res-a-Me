@@ -1,23 +1,7 @@
-loginDatabase = {
-    "jack@gmail.com":{
-        "password": "jackjack",
-    }
-}
+loginDatabase = {}
 userInfoDatabase = {}
 userKeyPairDatabase = {}
-#userListDatabase = []
-userListDatabase = [
-    {
-        "email": "jack@gmail.com",
-        "name": "Jack",
-        "position": "Software Engineer"
-    },
-    {
-        "email": "elliot@gmail.com",
-        "name": "Elliot",
-        "position": "Software Engineer"
-    }
-]
+userListDatabase = []
 
 def getUserLoginDatabase(email):
     if email not in loginDatabase:

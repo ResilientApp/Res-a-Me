@@ -141,7 +141,7 @@ def update_resume():
     if not source_dir:
         return jsonify(message = "No resume found for this email", status = 404)
     
-    for data in source_dir.keys:
+    for data in source_dir.keys():
         if data == 'profile':
             with open(f"{target_dir_info}/{data}.json", "w") as json_file:
                 json.dump(source_dir[data], json_file, indent=4)

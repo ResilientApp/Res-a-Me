@@ -1,3 +1,9 @@
+# Preview
+
+Screenshots [Replace with our own Screenshot]
+
+![alt desktop](screenshots/desktop-previews.png)
+
 # Backend
 ## ResilientDB and ResilientDB GraphQL
 ResilientDB local Server and HTTP server
@@ -61,31 +67,19 @@ Key features:
 - Enable users to search for other people profile.
 - Using Vite for faster build times and seamless integration.
 
-## Preview
 
-### 1. Screenshots [Replace with our own Screenshot]
-
-![alt desktop](screenshots/desktop-previews.png)
-
-## Getting Started
-
-1. Clone the repo:
-```
-git clone [repo-url]
-```
-
-2. Navigate to the frontend directory of the project and install all dependencies with npm:
+1. Navigate to the frontend directory of the project and install all dependencies with npm:
 ```
 cd frontend
 npm install
 ```
 
-3. Run the project in developer mode:
+2. Run the project in developer mode:
 ```
 npm run dev
 ```
 
-4. If you already run the backend server, open browser and you will see Res-a-Me running on localhost:5173
+3. If you already run the backend server, open browser and you will see Res-a-Me running on localhost:5173
 
 ### Reference
 [Vue Resume Template](https://ryanbalieiro.github.io/vue-resume-template/) by Ryan Balieiro

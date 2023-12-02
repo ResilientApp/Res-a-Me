@@ -67,6 +67,9 @@ Key features:
 - Enable users to search for other people profile.
 - Using Vite for faster build times and seamless integration.
 
+![Search](https://github.com/tobyyu007/Res-a-Me/assets/71425321/5d2c2df4-fd4b-4412-a121-a429ffec7951)
+![Education](https://github.com/tobyyu007/Res-a-Me/assets/71425321/d41aa670-79bb-4fac-a468-913c63d714f5)
+
 
 1. Navigate to the frontend directory of the project and install all dependencies with npm:
 ```

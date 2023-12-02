@@ -159,16 +159,12 @@ export default {
         const profilePictureUrl = profile_data.profilePictureUrl;
         const role = profile_data.locales.en.role;
         const address = profile_data.contact.address.value;
-        const email = profile_data.contact.email.value;
-        const phone = profile_data.contact.phone.valueShort;
         const about_transformedArray = {
           name,
           profilePictureUrl,
           role,
           description,
-          address,
-          email,
-          phone
+          address
         };
         about.value = about_transformedArray
         //education data
@@ -310,14 +306,11 @@ export default {
             en: {
               title: extractedItem.title || '',
               description: extractedItem.description || ''
-            },
-            es: { title: '', description: '' },
-            fr: { title: '', description: '' },
-            zh: { title: '', description: '' }
+            }
           }
         });
       }
-      const skill_response = fetch("http://127.0.0.1:3033/editResume", {
+      fetch("http://127.0.0.1:3033/editResume", {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
@@ -327,7 +320,7 @@ export default {
                 body :JSON.stringify({"category": "skills","data": JSON.stringify(this.skill_data_old)}),
             });
     },
-    handleSaveAbout(about){
+    async handleSaveAbout(about){
       this.about = Object.assign({}, this.about, about);
       this.cover_data_old.locales.en.bio = this.about.description;
       this.profile_data_old.name = this.about.name;
@@ -336,7 +329,7 @@ export default {
       this.profile_data_old.contact.address.value = this.about.address;
       this.profile_data_old.contact.email.value = this.about.email;
       this.profile_data_old.contact.phone.valueShort = this.about.phone;
-      const cover_response = fetch("http://127.0.0.1:3033/editResume", {
+      await fetch("http://127.0.0.1:3033/editResume", {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
@@ -345,8 +338,7 @@ export default {
                 },
                 body :JSON.stringify({"category": "cover","data": JSON.stringify(this.cover_data_old)}),
       });
-    
-      const profile_response = fetch("http://127.0.0.1:3033/editResume", {
+      await fetch("http://127.0.0.1:3033/editResume", {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
@@ -355,8 +347,6 @@ export default {
                 },
                 body :JSON.stringify({"category": "profile","data": JSON.stringify(this.profile_data_old)}),
       });
-      // console.log("cover_data",this.cover_data_old) //Post new about to backend
-      // console.log("profile_data",this.profile_data_old) //Post new about to backend
     },
     handleDeleteEdu(index){
       if (confirm('Are you sure you want to delete this item?')) {
@@ -388,14 +378,11 @@ export default {
                   en: {
                       title: extractedItem.title || '',
                       description: extractedItem.description || '',
-                  },
-                  es: { title: '', description: '' },
-                  fr: { title: '', description: '' },
-                  zh: { title: '', description: '' },
+                  }
               },
         });
       }
-      const edu_response = fetch("http://127.0.0.1:3033/editResume", {
+      fetch("http://127.0.0.1:3033/editResume", {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
@@ -404,6 +391,7 @@ export default {
                 },
                 body :JSON.stringify({"category": "education","data": JSON.stringify(this.edu_data_old)}),
             });
+      // window.location.reload();
     },
     handleDeletePro(index){
       if (confirm('Are you sure you want to delete this item?')) {
@@ -434,14 +422,11 @@ export default {
                   en: {
                       title: extractedItem.title || '',
                       description: extractedItem.description || '',
-                  },
-                  es: { title: '', description: '' },
-                  fr: { title: '', description: '' },
-                  zh: { title: '', description: '' },
+                  }
               },
         });
       }
-      const pro_response = fetch("http://127.0.0.1:3033/editResume", {
+      fetch("http://127.0.0.1:3033/editResume", {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
@@ -467,7 +452,7 @@ export default {
         cer.id = idx;
       });
     },
-    handleSaveCer(certifications){
+    async handleSaveCer(certifications){
       this.certifications = certifications;
       this.achi_data_old.items.certifications = [];
       for (let i = 0; i < this.certifications.length; i++) {
@@ -481,14 +466,11 @@ export default {
                   en: {
                       title: extractedItem.title || '',
                       description: extractedItem.description || '',
-                  },
-                  es: { title: '', description: '' },
-                  fr: { title: '', description: '' },
-                  zh: { title: '', description: '' },
+                  }
               },
         });
       }
-      const achi_response = fetch("http://127.0.0.1:3033/editResume", {
+      await fetch("http://127.0.0.1:3033/editResume", {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
@@ -514,7 +496,7 @@ export default {
         award.id = idx;
       });
     },
-    handleSaveAward(awards){
+    async handleSaveAward(awards){
       this.awards = awards;
       this.achi_data_old.items.awards = [];
       for (let i = 0; i < this.awards.length; i++) {
@@ -528,21 +510,18 @@ export default {
                   en: {
                       title: extractedItem.title || '',
                       description: extractedItem.description || '',
-                  },
-                  es: { title: '', description: '' },
-                  fr: { title: '', description: '' },
-                  zh: { title: '', description: '' },
+                  }
               },
         });
       }
-      const achi_response = fetch("http://127.0.0.1:3033/editResume", {
+      await fetch("http://127.0.0.1:3033/editResume", {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
                     "Access-Control-Allow-Origin": "*",
                     "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
                 },
-                body :JSON.stringify({"category": "acheivements","data": JSON.stringify(this.achi_data_old)}),
+                body :JSON.stringify({"category": "achievements","data": JSON.stringify(this.achi_data_old)}),
             });
     },
 

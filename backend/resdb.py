@@ -12,7 +12,7 @@ def generateKeyForUser(user = None):
     private_key = keys.private_key
     return public_key, private_key
 
-def createProfile(email, public_key, private_key):
+def createProfile(email, public_key, private_key, metadata = None):
     Profile = {
         "data": {
             "token_for": email,
@@ -22,6 +22,7 @@ def createProfile(email, public_key, private_key):
     prepared_token_tx = db.transactions.prepare(
         operation="CREATE",
         signers=public_key,
+        metadata=metadata,
         recipients=[([public_key], 1)],
         asset=Profile,
     )

@@ -34,20 +34,6 @@
                 </v-col>
             </v-row>
             <v-row no-gutters>
-                <v-col>
-                    <v-text-field class="pa-2" v-model="about.phone" :rules="[
-                        () => !!about.phone || 'This field is required',
-                        () => isPhoneValid() || 'Phone must be in (XXX) XXX-XXXX format'
-                    ]" :counter="15" label="Phone Number"></v-text-field>
-                </v-col>
-                <v-col>
-                    <v-text-field class="pa-2" v-model="about.email" :rules="[
-                        () => !!about.email || 'This field is required',
-                        () => isEmailValid() || 'Email must be in the correct format'
-                    ]" :counter="30" label="E-mail"></v-text-field>
-                </v-col>
-            </v-row>
-            <v-row no-gutters>
                 <v-text-field class="pa-2" v-model="about.description" :rules="[
                     () => !!about.description || 'This field is required',
                     () => isDescriptionValid() || 'Introduction must be less than 250 characters'
@@ -151,15 +137,6 @@ export default {
         const isAddressValid = () => {
             return !!props.about.address && props.about.address.length <= 50;
         };
-        const isPhoneValid = () => {
-            return !!props.about.phone && /^\(\d{3}\)\s\d{3}-\d{4}$/.test(props.about.phone);
-        };
-        const isEmailValid = () => {
-            return (
-                !!props.about.email &&
-                /^[a-z0-9][-a-z0-9._]+@([-a-z0-9]+.)+[a-z]{2,5}$/.test(props.about.email)
-            );
-        };
         const isDescriptionValid = () => {
             return !!props.about.description && props.about.description.length <= 250;
         };
@@ -169,8 +146,6 @@ export default {
             if (!isNameValid() ||
                 !isPositionValid() ||
                 !isAddressValid() ||
-                !isPhoneValid() ||
-                !isEmailValid() ||
                 !isDescriptionValid()) {
                 allRulesPassed = false;
             }
@@ -217,8 +192,6 @@ export default {
             isNameValid,
             isPositionValid,
             isAddressValid,
-            isPhoneValid,
-            isEmailValid,
             isDescriptionValid,
             handleFileChange,
             upload,

@@ -116,7 +116,6 @@ def edit_resume():
         
     try:
         data = json.loads(response_data.get('data'))
-        # data = response_data.get('data')
         setUserInfoCategory(user_id, category, data)
         return jsonify(message = f"{category} updated successfully", status = 200)
     except FileNotFoundError:

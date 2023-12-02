@@ -24,6 +24,4 @@ dist-ssr
 package-lock.json
 backend/__pycache__
 backend/ResilientDB_GraphQL
-
-#environment
-myenv/
+backend/resilientdb

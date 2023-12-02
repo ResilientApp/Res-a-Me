@@ -1,4 +1,3 @@
-# Res-A-Me
 ![Res-A-Me Icon](https://github.com/tobyyu007/Res-a-Me/assets/39978173/716ff97d-f8a2-4951-ab67-a9fb3e926c9d)
 
 # Preview

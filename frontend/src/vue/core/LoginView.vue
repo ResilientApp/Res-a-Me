@@ -61,7 +61,7 @@ export default {
             rules: {
                 emailRules: [
                     value => !!value || 'E-mail is required',
-                    value => /^[a-z.-]+@[a-z.-]+\.[a-z]+$/i.test(value) || 'Must be a valid e-mail'
+                    value => /^[a-z0-9.-.-]+@[a-z.-]+\.[a-z]+$/i.test(value) || 'Must be a valid e-mail'
                 ]
             }
         };

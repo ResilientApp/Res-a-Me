@@ -127,8 +127,8 @@
                 width="112"
                 @click="this.$router.push('/home')"
               >
-                <v-avatar color="black" variant="tonal" class="mb-2" size="60">
-                  <v-img :src="shortCutIcon" alt="John"></v-img>
+                <v-avatar variant="tonal" class="mb-2" size="60">
+                  <v-img :src="shortCutIcon"></v-img>
                 </v-avatar>
 
                 <div class="text-caption text-truncate">My Res-A-Me</div>
@@ -162,7 +162,14 @@ export default {
         if (json.status === 200) {
           // User is logged in
           this.userEmail = json.logged_in_as;
-          this.shortCutIcon = `/images/pictures/${this.userEmail}.png`;
+          fetch(`/images/pictures/${this.userEmail}.png`)
+            .then(response => {
+              if(response.ok) {
+                  this.shortCutIcon = `/images/pictures/${this.userEmail}.png`;
+              } else {
+                  this.shortCutIcon = `/images/pictures/avatar.png`;
+              }
+            });
           document.getElementById("profileShortcut").style.display = "block";
           document.getElementById("logoutButton").style.display = "block";
         } else {
@@ -190,13 +197,24 @@ export default {
             this.userName = json.user_list[index].name;
             document.getElementById("userNameDisplay").style.display = "block";
           }
-          const person = {
-            name: json.user_list[index].name,
-            group: json.user_list[index].position,
-            avatar: `/images/pictures/${json.user_list[index].email}.png`,
-            email: json.user_list[index].email,
-          };
-          this.people.push(person);
+          var avatar = "";
+          fetch(`/images/pictures/${json.user_list[index].email}.png`)
+            .then(response => {
+              if(response.ok) {
+                  avatar = `/images/pictures/${json.user_list[index].email}.png`;
+              } else {
+                  avatar = `/images/pictures/avatar.png`;
+              }
+            })
+            .then(() => {
+              const person = {
+                name: json.user_list[index].name,
+                group: json.user_list[index].position,
+                avatar: avatar,
+                email: json.user_list[index].email,
+              };
+              this.people.push(person);
+            });
         }
       });
   },

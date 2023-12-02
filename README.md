@@ -1,8 +1,11 @@
 # Preview
+![Res-A-Me Icon](https://github.com/tobyyu007/Res-a-Me/assets/39978173/716ff97d-f8a2-4951-ab67-a9fb3e926c9d)
 
-Screenshots [Replace with our own Screenshot]
+## Search
+![Search](https://github.com/tobyyu007/Res-a-Me/assets/71425321/9643cc7d-3f00-42b3-b898-953cb2ba0a31)
 
-![alt desktop](screenshots/desktop-previews.png)
+## Education
+![Education](https://github.com/tobyyu007/Res-a-Me/assets/71425321/915b63f2-94ea-4ec8-a1bc-348f12693217)
 
 # Backend
 ## ResilientDB and ResilientDB GraphQL
@@ -66,9 +69,6 @@ Key features:
 - Allow users to crop their upload headshot image. 
 - Enable users to search for other people profile.
 - Using Vite for faster build times and seamless integration.
-
-![Search](https://github.com/tobyyu007/Res-a-Me/assets/71425321/9643cc7d-3f00-42b3-b898-953cb2ba0a31)
-![Education](https://github.com/tobyyu007/Res-a-Me/assets/71425321/915b63f2-94ea-4ec8-a1bc-348f12693217)
 
 1. Navigate to the frontend directory of the project and install all dependencies with npm:
 ```

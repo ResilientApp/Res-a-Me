@@ -11,18 +11,6 @@
                         "en": {
                             "title": "",
                             "description": ""
-                        },
-                        "es": {
-                            "title": "",
-                            "description": ""
-                        },
-                        "fr": {
-                            "title": "",
-                            "description": ""
-                        },
-                        "zh": {
-                            "title": "",
-                            "description": ""
                         }
                     }
                 }
@@ -37,18 +25,6 @@
                         "en": {
                             "title": "",
                             "description": ""
-                        },
-                        "es": {
-                            "title": "",
-                            "description": ""
-                        },
-                        "fr": {
-                            "title": "",
-                            "description": ""
-                        },
-                        "zh": {
-                            "title": "",
-                            "description": ""
                         }
                     }
                 }
@@ -58,18 +34,6 @@
             "en": {
                 "description": "Here are some of my career achievements.",
                 "title": "Career <span class='text-primary'>Achievements</span>"
-            },
-            "es": {
-                "description": "",
-                "title": ""
-            },
-            "fr": {
-                "description": "",
-                "title": ""
-            },
-            "zh": {
-                "description": "",
-                "title": ""
             }
         },
         "subcategories": [
@@ -80,18 +44,6 @@
                     "en": {
                         "buttonLabel": "More Info",
                         "title": "Awards"
-                    },
-                    "es": {
-                        "buttonLabel": "",
-                        "title": ""
-                    },
-                    "fr": {
-                        "buttonLabel": "",
-                        "title": ""
-                    },
-                    "zh": {
-                        "buttonLabel": "",
-                        "title": ""
                     }
                 }
             },
@@ -102,18 +54,6 @@
                     "en": {
                         "buttonLabel": "View Certification",
                         "title": "Certifications"
-                    },
-                    "es": {
-                        "buttonLabel": "",
-                        "title": ""
-                    },
-                    "fr": {
-                        "buttonLabel": "",
-                        "title": ""
-                    },
-                    "zh": {
-                        "buttonLabel": "",
-                        "title": ""
                     }
                 }
             }
@@ -138,21 +78,6 @@
                 "bio": "",
                 "welcome": "Welcome to my <span class='text-primary'>Resume!</span>",
                 "welcomeShort": "Welcome!"
-            },
-            "es": {
-                "bio": "",
-                "welcome": "",
-                "welcomeShort": ""
-            },
-            "fr": {
-                "bio": "",
-                "welcome": "",
-                "welcomeShort": ""
-            },
-            "zh": {
-                "bio": "",
-                "welcome": "",
-                "welcomeShort": ""
             }
         }
     },
@@ -169,18 +94,6 @@
                     "en": {
                         "title": "",
                         "description": ""
-                    },
-                    "es": {
-                        "title": "",
-                        "description": ""
-                    },
-                    "fr": {
-                        "title": "",
-                        "description": ""
-                    },
-                    "zh": {
-                        "title": "",
-                        "description": ""
                     }
                 }
             }
@@ -189,18 +102,6 @@
             "en": {
                 "description": "A glimpse into my academic trajectory and accomplishments.",
                 "title": "<span class='text-primary'>Educational</span> Background"
-            },
-            "es": {
-                "description": "",
-                "title": ""
-            },
-            "fr": {
-                "description": "",
-                "title": ""
-            },
-            "zh": {
-                "description": "",
-                "title": ""
             }
         }
     },
@@ -217,18 +118,6 @@
                     "en": {
                         "title": "",
                         "description": ""
-                    },
-                    "es": {
-                        "title": "",
-                        "description": ""
-                    },
-                    "fr": {
-                        "title": "",
-                        "description": ""
-                    },
-                    "zh": {
-                        "title": "",
-                        "description": ""
                     }
                 }
             }
@@ -237,18 +126,6 @@
             "en": {
                 "description": "A look into my work experience and career journey.",
                 "title": "<span class='text-primary'>Professional</span> Experience"
-            },
-            "es": {
-                "description": "",
-                "title": ""
-            },
-            "fr": {
-                "description": "",
-                "title": ""
-            },
-            "zh": {
-                "description": "",
-                "title": ""
             }
         }
     },
@@ -308,18 +185,6 @@
             "en": {
                 "credits": "Designed by <strong><a class='light' href='https://github.com/ryanbalieiro'>Ryan Balieiro</a></strong>",
                 "role": ""
-            },
-            "es": {
-                "credits": "",
-                "role": ""
-            },
-            "fr": {
-                "credits": "",
-                "role": ""
-            },
-            "zh": {
-                "credits": "",
-                "role": ""
             }
         },
         "name": "",
@@ -336,18 +201,6 @@
                         "en": {
                             "title": "",
                             "description": ""
-                        },
-                        "es": {
-                            "title": "",
-                            "description": ""
-                        },
-                        "fr": {
-                            "title": "",
-                            "description": ""
-                        },
-                        "zh": {
-                            "title": "",
-                            "description": ""
                         }
                     }
                 }
@@ -360,16 +213,15 @@
                         "en": {
                             "description": "",
                             "title": ""
-                        },
-                        "es": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "fr": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "zh": {
+                        }
+                    },
+                    "value": null
+                },
+                {
+                    "faIcon": null,
+                    "imageIconUrl": null,
+                    "locales": {
+                        "en": {
                             "description": "",
                             "title": ""
                         }
@@ -383,16 +235,15 @@
                         "en": {
                             "description": "",
                             "title": ""
-                        },
-                        "es": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "fr": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "zh": {
+                        }
+                    },
+                    "value": null
+                },
+                {
+                    "faIcon": null,
+                    "imageIconUrl": null,
+                    "locales": {
+                        "en": {
                             "description": "",
                             "title": ""
                         }
@@ -406,18 +257,6 @@
                         "en": {
                             "description": "",
                             "title": ""
-                        },
-                        "es": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "fr": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "zh": {
-                            "description": "",
-                            "title": ""
                         }
                     },
                     "value": null
@@ -427,64 +266,6 @@
                     "imageIconUrl": null,
                     "locales": {
                         "en": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "es": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "fr": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "zh": {
-                            "description": "",
-                            "title": ""
-                        }
-                    },
-                    "value": null
-                },
-                {
-                    "faIcon": null,
-                    "imageIconUrl": null,
-                    "locales": {
-                        "en": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "es": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "fr": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "zh": {
-                            "description": "",
-                            "title": ""
-                        }
-                    },
-                    "value": null
-                },
-                {
-                    "faIcon": null,
-                    "imageIconUrl": null,
-                    "locales": {
-                        "en": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "es": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "fr": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "zh": {
                             "description": "",
                             "title": ""
                         }
@@ -500,18 +281,6 @@
                         "en": {
                             "description": "",
                             "title": ""
-                        },
-                        "es": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "fr": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "zh": {
-                            "description": "",
-                            "title": ""
                         }
                     },
                     "value": 0
@@ -521,18 +290,6 @@
                     "imageIconUrl": "images/flags/es.png",
                     "locales": {
                         "en": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "es": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "fr": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "zh": {
                             "description": "",
                             "title": ""
                         }
@@ -546,18 +303,6 @@
                         "en": {
                             "description": "",
                             "title": ""
-                        },
-                        "es": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "fr": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "zh": {
-                            "description": "",
-                            "title": ""
                         }
                     },
                     "value": 0
@@ -567,18 +312,6 @@
                     "imageIconUrl": "images/flags/pt.png",
                     "locales": {
                         "en": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "es": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "fr": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "zh": {
                             "description": "",
                             "title": ""
                         }
@@ -594,18 +327,6 @@
                         "en": {
                             "description": "",
                             "title": ""
-                        },
-                        "es": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "fr": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "zh": {
-                            "description": "",
-                            "title": ""
                         }
                     },
                     "value": 0
@@ -615,18 +336,6 @@
                     "imageIconUrl": null,
                     "locales": {
                         "en": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "es": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "fr": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "zh": {
                             "description": "",
                             "title": ""
                         }
@@ -640,18 +349,6 @@
                         "en": {
                             "description": "",
                             "title": ""
-                        },
-                        "es": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "fr": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "zh": {
-                            "description": "",
-                            "title": ""
                         }
                     },
                     "value": 0
@@ -661,18 +358,6 @@
                     "imageIconUrl": null,
                     "locales": {
                         "en": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "es": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "fr": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "zh": {
                             "description": "",
                             "title": ""
                         }
@@ -686,18 +371,6 @@
                         "en": {
                             "description": "",
                             "title": ""
-                        },
-                        "es": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "fr": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "zh": {
-                            "description": "",
-                            "title": ""
                         }
                     },
                     "value": 0
@@ -707,18 +380,6 @@
                     "imageIconUrl": null,
                     "locales": {
                         "en": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "es": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "fr": {
-                            "description": "",
-                            "title": ""
-                        },
-                        "zh": {
                             "description": "",
                             "title": ""
                         }
@@ -731,18 +392,6 @@
             "en": {
                 "description": "Exploring the diverse range of skills I've acquired and developed:",
                 "title": "<span class='text-primary'>Skill</span> Set"
-            },
-            "es": {
-                "description": "",
-                "title": ""
-            },
-            "fr": {
-                "description": "",
-                "title": ""
-            },
-            "zh": {
-                "description": "",
-                "title": ""
             }
         },
         "subcategories": [
@@ -763,15 +412,6 @@
                 "locales": {
                     "en": {
                         "title": "Programming"
-                    },
-                    "es": {
-                        "title": ""
-                    },
-                    "fr": {
-                        "title": ""
-                    },
-                    "zh": {
-                        "title": ""
                     }
                 },
                 "progress": "number",
@@ -783,15 +423,6 @@
                 "locales": {
                     "en": {
                         "title": "Languages"
-                    },
-                    "es": {
-                        "title": ""
-                    },
-                    "fr": {
-                        "title": ""
-                    },
-                    "zh": {
-                        "title": ""
                     }
                 },
                 "progress": {
@@ -810,15 +441,6 @@
                 "locales": {
                     "en": {
                         "title": "Bonus Skills"
-                    },
-                    "es": {
-                        "title": ""
-                    },
-                    "fr": {
-                        "title": ""
-                    },
-                    "zh": {
-                        "title": ""
                     }
                 },
                 "progress": null,

@@ -85,15 +85,46 @@ if __name__ == "__main__":
     password = "elliot"
     setUserLogin(email, password)
     print(getUserLogin(email))
-    cover = "elliot"
-    education = "ucdavis"
-    print(getUserInfoAll(email))
+    cover = {
+        "cover": {
+            "items": {
+                "contactListItems": [
+                    "@link{profile.contact.address}",
+                    "@link{profile.contact.email}",
+                    "@link{profile.contact.phone}"
+                ],
+                "socialCircles": [
+                    "@link{profile.contact.instagram}",
+                    "@link{profile.contact.facebook}",
+                    "@link{profile.contact.linkedin}",
+                    "@link{profile.contact.github}"
+                ]
+            },
+            "locales": {
+                "en": {
+                    "bio": "kkk",
+                    "welcome": "Welcome to my <span class='text-primary'>Resume!</span>",
+                    "welcomeShort": "Welcome!"
+                },
+                "es": {
+                    "bio": "",
+                    "welcome": "",
+                    "welcomeShort": ""
+                },
+                "fr": {
+                    "bio": "",
+                    "welcome": "",
+                    "welcomeShort": ""
+                },
+                "zh": {
+                    "bio": "",
+                    "welcome": "",
+                    "welcomeShort": ""
+                }
+            }
+        }
+    }
+    # print(getUserInfoAll(email))
     setUserInfoCategory(email, "cover", cover)
-    print(getUserInfoAll(email))
-    setUserInfoCategory(email, "education", education)
     print(getUserInfoCategory(email, "cover"))
-    print(getUserInfoCategory(email, "education"))
-    print(getUserInfoAll(email))
-    cover = "Timo"
-    setUserInfoCategory(email, "cover", cover)
-    print(getUserInfoAll(email))
+

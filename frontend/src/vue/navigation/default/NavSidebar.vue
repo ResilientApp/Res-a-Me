@@ -128,8 +128,17 @@ async function fetchProfileData() {
     console.error("Error fetching user resume: ", error);
   }
   let profile = data.getProfile();
-  profile.profilePictureUrl = `/images/pictures/${userEmail}.png`;
-  profileData.value = profile; // Update the ref after fetching data
+  fetch(`/images/pictures/${userEmail}.png`)
+    .then(response => {
+      if(response.ok) {
+        profile.profilePictureUrl = `/images/pictures/${userEmail}.png`;
+      } else {
+        profile.profilePictureUrl = `/images/pictures/avatar.png`;
+      }
+    })
+    .then(() => {
+      profileData.value = profile; // Update the ref after fetching data
+    });
 }
 
 /**

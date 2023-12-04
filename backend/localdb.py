@@ -39,12 +39,12 @@ def getUserListDatabase():
     return userListDatabase
 
 def setUserListDatabase(email, name, position):
-    if email not in userListDatabase:
-        userListDatabase[email] = {
-            "email": email,
-            "name": name,
-            "position": position
-        }
+    # if email not in userListDatabase:
+    userListDatabase[email] = {
+        "email": email,
+        "name": name,
+        "position": position
+    }
 
 
 if __name__ == "__main__":

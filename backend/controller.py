@@ -60,7 +60,8 @@ def setUserInfoCategory(email, category, data):
     setUserInfoDatabase(email = email, transaction_id = transaction_id)
 
 def getUserList():
-    return getUserListDatabase()
+    database = getUserListDatabase()
+    return list(database.values())
 
 # For testing use
 def getUserResume(email, category): # This function is for the edit page, which will ask for the resume data for a specific category

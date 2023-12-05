@@ -1,9 +1,9 @@
 <template>
     <v-expansion-panel >
-      <v-expansion-panel-title >
+      <v-expansion-panel-title id="title">
         <template v-slot:default="{expanded}">
           <v-row no-gutters class="d-flex jusitfy-start">
-            <h1 style="font-weight: 500;">Educational Background</h1>
+            <p class="titletext">Educational Background</p>
             <v-icon class="ml-2"
                         size="xx-large"
                         icon="mdi-school-outline"

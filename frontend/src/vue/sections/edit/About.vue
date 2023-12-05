@@ -1,16 +1,16 @@
 <template>
-    <v-expansion-panel>
-        <v-expansion-panel-title>
+    <v-expansion-panel >
+        <v-expansion-panel-title id="title">  <!-- style="background:#1867c0;color:white"  -->
             <template v-slot:default="{ expanded }">
                 <v-row no-gutters class="d-flex jusitfy-start ">
-                    <h1 style="font-weight: 500;">
+                    <p class="titletext" >
                         About
-                    </h1>
+                    </p>
                     <v-icon class="ml-2" size="xx-large" icon="mdi-information-outline"></v-icon>
                 </v-row>
             </template>
         </v-expansion-panel-title>
-        <v-expansion-panel-text>
+        <v-expansion-panel-text >
             <v-row no-gutters>
                 <v-col>
                     <v-text-field class="pa-2" v-model="about.name" :rules="[
@@ -26,14 +26,6 @@
                 </v-col>
             </v-row>
             <v-row no-gutters>
-                <v-col>
-                    <v-text-field class="pa-2" v-model="about.address" :rules="[
-                        () => !!about.address || 'This field is required',
-                        () => isAddressValid() || 'Address must be less than 50 characters'
-                    ]" :counter="50" label="Address"></v-text-field>
-                </v-col>
-            </v-row>
-            <v-row no-gutters>
                 <v-text-field class="pa-2" v-model="about.description" :rules="[
                     () => !!about.description || 'This field is required',
                     () => isDescriptionValid() || 'Introduction must be less than 250 characters'
@@ -42,7 +34,7 @@
             <div class="d-flex justify-center">
                 <form @submit.prevent="uploadImage">
                     <input type="file" @change="handleFileChange" accept="image/png">
-                    <v-btn color = "light-blue-darken-1" class="ml-5" @click="upload(about)"
+                    <v-btn color="grey-lighten-1" class="ml-5" @click="upload(about)"
                         >Upload IMG
                         <v-icon 
                             size="x-large"
@@ -134,9 +126,6 @@ export default {
         const isPositionValid = () => {
             return !!props.about.role && props.about.role.length >= 2 && props.about.role.length <= 20;
         };
-        const isAddressValid = () => {
-            return !!props.about.address && props.about.address.length <= 50;
-        };
         const isDescriptionValid = () => {
             return !!props.about.description && props.about.description.length <= 250;
         };
@@ -145,7 +134,6 @@ export default {
             let allRulesPassed = true;
             if (!isNameValid() ||
                 !isPositionValid() ||
-                !isAddressValid() ||
                 !isDescriptionValid()) {
                 allRulesPassed = false;
             }
@@ -191,7 +179,6 @@ export default {
             saveAbout,
             isNameValid,
             isPositionValid,
-            isAddressValid,
             isDescriptionValid,
             handleFileChange,
             upload,
@@ -207,6 +194,28 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.titletext{
+    font-weight: 500;
+    font-size:40px ; 
+    font-style:-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
+    Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    
+}
+/* #title{
+    cursor: pointer; 
+    &:hover {
+        background-color: #1867c0;
+        color:white
+    }
+} */
+#title{
+    cursor: pointer; 
+    &:hover {
+        background-color: #1867c0;
+        color:white
+    }
+}
+</style>
 
 

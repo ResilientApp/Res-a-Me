@@ -2,7 +2,7 @@
   <div class="m-5">
     <v-row>
       <v-col align="center">
-        <h1 class="mt-3 mb-3 " style="color: black; font-weight: 900;">
+        <p class="mt-3 mb-3 " style=" color: black; font-weight: 900;font-size: 4rem;line-height: 1.2;font-family: Saira, sans-serif">
         Edit your information here!
         <v-btn @click="returnButton()" class="ml-5 mb-2">
             <v-icon
@@ -11,7 +11,7 @@
             ></v-icon>
             back to resume
         </v-btn>
-        </h1>
+        </p>
       </v-col>
     </v-row>
     
@@ -158,13 +158,11 @@ export default {
         const name = profile_data.name;
         const profilePictureUrl = profile_data.profilePictureUrl;
         const role = profile_data.locales.en.role;
-        const address = profile_data.contact.address.value;
         const about_transformedArray = {
           name,
           profilePictureUrl,
           role,
-          description,
-          address
+          description
         };
         about.value = about_transformedArray
         //education data
@@ -326,7 +324,6 @@ export default {
       this.profile_data_old.name = this.about.name;
       this.profile_data_old.profilePictureUrl = this.about.profilePictureUrl;
       this.profile_data_old.locales.en.role = this.about.role;
-      this.profile_data_old.contact.address.value = this.about.address;
       this.profile_data_old.contact.email.value = this.about.email;
       this.profile_data_old.contact.phone.valueShort = this.about.phone;
       await fetch("http://127.0.0.1:3033/editResume", {

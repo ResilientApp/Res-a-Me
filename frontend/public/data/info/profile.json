@@ -2,16 +2,15 @@
     "contact": {
         "address": {
             "faIcon": "fa-solid fa-city",
-            "href": null,
+            "href": "",
             "id": "address",
-            "value": "123 Main Street, Cupertino, CA 01234",
+            "value": "1440 Wake Forest Drive, Davis CA",
             "valueShort": "Cupertino, CA 01234"
         },
         "email": {
             "faIcon": "fa-solid fa-envelope",
             "href": "mailto:jonas.einstein@genius.com",
             "id": "email",
-            "value": "jonas.einstein@genius.com",
             "valueShort": "jonas.einstein@genius.com"
         },
         "facebook": {
@@ -46,28 +45,15 @@
             "faIcon": "fa-solid fa-phone",
             "href": "tel:1234567890",
             "id": "phone",
-            "value": "+1 (123) 456-7890",
-            "valueShort": "(123) 456-7890"
+            "value": "+1 (123) 456-7890"
         }
     },
     "locales": {
         "en": {
             "credits": "Designed by <strong><a class='light' href='https://github.com/ryanbalieiro'>Ryan Balieiro</a></strong>",
-            "role": "UX Designer"
-        },
-        "es": {
-            "credits": "",
-            "role": ""
-        },
-        "fr": {
-            "credits": "",
-            "role": ""
-        },
-        "zh": {
-            "credits": "",
-            "role": ""
+            "role": "Software Engineer"
         }
     },
-    "name": "Jonas ",
+    "name": "Jack Chen",
     "profilePictureUrl": "images/pictures/avatar.png"
 }

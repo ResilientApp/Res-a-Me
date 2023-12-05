@@ -1,7 +1,7 @@
 loginDatabase = {}
 userInfoDatabase = {}
 userKeyPairDatabase = {}
-userListDatabase = []
+userListDatabase = {}
 
 def getUserLoginDatabase(email):
     if email not in loginDatabase:
@@ -39,12 +39,12 @@ def getUserListDatabase():
     return userListDatabase
 
 def setUserListDatabase(email, name, position):
-    new_user = {
+    # if email not in userListDatabase:
+    userListDatabase[email] = {
         "email": email,
         "name": name,
         "position": position
     }
-    userListDatabase.append(new_user)
 
 
 if __name__ == "__main__":
@@ -65,16 +65,17 @@ if __name__ == "__main__":
         "CX62ckRaUucsVi3cbxCkSAcxR7zsBBNSPPrEHz26X4vz": "DZBpCfHDsQhvy9vLkcRKYskfSaXwrGQTfzzKVJTvzQN9"
     }
 
-    userListDatabase = [
-        {
+
+    userListDatabase = {
+        "jack@gmail.com": {
             "email": "jack@gmail.com",
             "name": "Jack",
             "position": "Software Engineer"
         },
-        {
+        "elliot@gmail.com": {
             "email": "elliot@gmail.com",
             "name": "Elliot",
             "position": "Software Engineer"
         }
-    ]
+    }
 

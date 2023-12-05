@@ -1,248 +1,71 @@
 {
-    "locales": {
-        "en": {
-            "title": "Career <span class='text-primary'>Achievements</span>",
-            "description": "My journey as a UX designer has been marked by unwavering dedication to learning and skill enhancement, along with enthusiastic participation in design events. As a result, I have collected a list of notable awards and certifications: "
-        },
-
-        "es": {
-            "title": "",
-            "description": ""
-        },
-
-        "fr": {
-            "title": "",
-            "description": ""
-        },
-
-        "zh": {
-            "title": "",
-            "description": ""
-        }
-    },
-
-    "subcategories": [
-        {
-            "id": "awards",
-            "faIcon": "fa-solid fa-trophy",
-            "locales": {
-                "en": {"title": "Awards", "buttonLabel": "More Info"},
-                "es": {"title": "", "buttonLabel": ""},
-                "fr": {"title": "", "buttonLabel": ""},
-                "zh": {"title": "", "buttonLabel": ""}
-            }
-        },
-
-        {
-            "id": "certifications",
-            "faIcon": "fa-solid fa-award",
-            "locales": {
-                "en": {"title": "Certifications", "buttonLabel": "View Certification"},
-                "es": {"title": "", "buttonLabel": ""},
-                "fr": {"title": "", "buttonLabel": ""},
-                "zh": {"title": "", "buttonLabel": ""}
-            }
-        }
-    ],
-
     "items": {
         "awards": [
             {
-                "id": "graduation_project",
-                "place": "Havard University",
-                "date": "2018/08",
-                "href": null,
+                "place": "Apache",
+                "date": "2020/01",
+                "href": "",
                 "locales": {
                     "en": {
-                        "title": "Best Graduation Project",
-                        "description": "Outstanding work on graduation project; recognized for innovation and impact."
-                    },
-
-                    "es": {
-                        "title": "",
-                        "description": ""
-                    },
-
-                    "fr": {
-                        "title": "",
-                        "description": ""
-                    },
-
-                    "zh": {
-                        "title": "",
-                        "description": ""
-                    }
-                }
-            },
-
-            {
-                "id": "alumni_hackaton",
-                "place": "Havard University",
-                "date": "2019/09",
-                "href": "https://harvard.com",
-                "locales": {
-                    "en": {
-                        "title": "2nd Place Alumni UX Hackathon",
-                        "description": "Secured 2nd place in Harvard's Alumni UX hackathon; demonstrated creative problem-solving."
-                    },
-
-                    "es": {
-                        "title": "",
-                        "description": ""
-                    },
-
-                    "fr": {
-                        "title": "",
-                        "description": ""
-                    },
-
-                    "zh": {
-                        "title": "",
-                        "description": ""
-                    }
-                }
-            },
-
-            {
-                "id": "adobe_jam",
-                "place": "Adobe",
-                "date": "2020/11",
-                "href": null,
-                "locales": {
-                    "en": {
-                        "title": "1st Place Adobe Creative Jam",
-                        "description": "Achieved 1st place in Adobe Creative Jam; showcased design excellence and collaboration."
-                    },
-
-                    "es": {
-                        "title": "",
-                        "description": ""
-                    },
-
-                    "fr": {
-                        "title": "",
-                        "description": ""
-                    },
-
-                    "zh": {
-                        "title": "",
-                        "description": ""
-                    }
-                }
-            },
-
-            {
-                "id": "article_mention",
-                "place": "Forbes",
-                "date": "2023/03",
-                "href": "https://forbes.com",
-                "locales": {
-                    "en": {
-                        "title": "Article Mention UX Contribution",
-                        "description": "Featured in Forbes for outstanding UX contributions; impactful designs and insights."
-                    },
-
-                    "es": {
-                        "title": "",
-                        "description": ""
-                    },
-
-                    "fr": {
-                        "title": "",
-                        "description": ""
-                    },
-
-                    "zh": {
-                        "title": "",
-                        "description": ""
+                        "title": "OpenSource Contributions",
+                        "description": "Contributed to several open-source projects, including enhancements to Apache Kafka."
                     }
                 }
             }
         ],
-
         "certifications": [
             {
-                "id": "google_cert",
-                "place": "Google",
-                "date": "2018/08",
-                "href": "https://google.com",
+                "id": 0,
+                "place": "Amazon",
+                "date": "2022/01",
+                "href": "",
                 "locales": {
                     "en": {
-                        "title": "Google UX Design Certification",
-                        "description": "Certified by Google in UX design; demonstrated expertise in user-centered design."
-                    },
-
-                    "es": {
-                        "title": "",
-                        "description": ""
-                    },
-
-                    "fr": {
-                        "title": "",
-                        "description": ""
-                    },
-
-                    "zh": {
-                        "title": "",
-                        "description": ""
+                        "title": "Certified AWS Solutions Architect",
+                        "description": "his certification demonstrates Jack Chen's proficiency in designing, deploying, and managing applications on the Amazon Web Services (AWS) platform. "
                     }
                 }
             },
-
             {
-                "id": "ui_nanodegree",
-                "place": "Udacity",
-                "date": "2019/04",
-                "href": "https://udemy.com",
+                "id": 1,
+                "place": "Scrum",
+                "date": "2023/01",
+                "href": "",
                 "locales": {
                     "en": {
-                        "title": "UI/UX Nanodegree",
-                        "description": "Completed comprehensive UI/UX nanodegree on Udemy; acquired practical skills."
-                    },
-
-                    "es": {
-                        "title": "",
-                        "description": ""
-                    },
-
-                    "fr": {
-                        "title": "",
-                        "description": ""
-                    },
-
-                    "zh": {
-                        "title": "",
-                        "description": ""
-                    }
-                }
-            },
-
-            {
-                "id": "material_cert",
-                "place": "Google",
-                "date": "2020/06",
-                "href": "https://google.com",
-                "locales": {
-                    "en": {
-                        "title": "Material Design Certification",
-                        "description": "Earned Material Design certification; demonstrated proficiency in modern design principles."
-                    },
-
-                    "es": {
-                        "title": "",
-                        "description": ""
-                    },
-
-                    "fr": {
-                        "title": "",
-                        "description": ""
-                    },
-                    "zh": {
-                        "title": "",
-                        "description": ""
+                        "title": "Professional Scrum Master (PSM I)",
+                        "description": "This certification highlights his skills in facilitating Scrum ceremonies, managing team dynamics, and ensuring seamless collaboration and project delivery within Agile frameworks."
                     }
                 }
             }
         ]
-    }
+    },
+    "locales": {
+        "en": {
+            "description": "Here are some of my career achievements.",
+            "title": "Career <span class='text-primary'>Achievements</span>"
+        }
+    },
+    "subcategories": [
+        {
+            "faIcon": "fa-solid fa-trophy",
+            "id": "awards",
+            "locales": {
+                "en": {
+                    "buttonLabel": "More Info",
+                    "title": "Awards"
+                }
+            }
+        },
+        {
+            "faIcon": "fa-solid fa-award",
+            "id": "certifications",
+            "locales": {
+                "en": {
+                    "buttonLabel": "View Certification",
+                    "title": "Certifications"
+                }
+            }
+        }
+    ]
 }

@@ -1,121 +1,38 @@
 {
-    "locales": {
-        "en": {
-            "title": "<span class='text-primary'>Professional</span> Experience",
-            "description": "A look into my work experience and career journey. "
-        },
-
-        "es": {
-            "title": "",
-            "description": ""
-        },
-
-        "fr": {
-            "title": "",
-            "description": ""
-        },
-
-        "zh": {
-            "title": "",
-            "description": ""
-        }
-    },
-
     "items": [
         {
-            "id": "experience_item_1",
-            "place": "uxStudio",
-            "period": ["2015/01", "2017/12"],
+            "id": 0,
+            "place": "Digital Solutions LLC",
+            "period": [
+                "2018/06",
+                "2018/09"
+            ],
             "locales": {
                 "en": {
-                    "title": "UX Designer",
-                    "description": "Contributed to designing intuitive and user-friendly web application interfaces, creating engaging and seamless user experiences. Collaborated closely with cross-functional teams and stakeholders to ensure designs aligned with business goals and user needs."
-                },
-                "es": {
-                    "title": "",
-                    "description": ""
-                },
-                "fr": {
-                    "title": "",
-                    "description": ""
-                },
-                "zh": {
-                    "title": "",
-                    "description": ""
+                    "title": "Software Engineer",
+                    "description": "Contributed to the development of a multi-platform mobile application used by 500,000+ users, focusing on backend development and database optimization. Collaborated in a cross-functional team to design and implement user-centric features, enhancing customer satisfaction ratings by 15%."
                 }
             }
         },
-
         {
-            "id": "experience_item_2",
-            "place": "Adobe",
-            "period": ["2018/01", "2020/08"],
+            "id": 1,
+            "place": "Tech Innovations Inc.",
+            "period": [
+                "2023/01",
+                "2023/12"
+            ],
             "locales": {
                 "en": {
-                    "title": "Senior UI/UX Designer",
-                    "description": "Led design projects, conducted comprehensive user research, and utilized data-driven insights to enhance user experiences. Managed design teams, fostering creativity and innovation while implementing design best practices to deliver successful outcomes for various digital products."
-                },
-                "es": {
-                    "title": "",
-                    "description": ""
-                },
-                "fr": {
-                    "title": "",
-                    "description": ""
-                },
-                "zh": {
-                    "title": "",
-                    "description": ""
-                }
-            }
-        },
-
-        {
-            "id": "experience_item_3",
-            "place": "Apple",
-            "period": ["2020/09", "2022/09"],
-            "locales": {
-                "en": {
-                    "title": "Lead UX Designer",
-                    "description": "Drove UX initiatives by overseeing a team of designers, crafting design strategies, and spearheading cross-functional collaborations with product managers, engineers, and executives. Focused on creating user-centric designs that aligned with business objectives and resulted in enhanced user satisfaction."
-                },
-                "es": {
-                    "title": "",
-                    "description": ""
-                },
-                "fr": {
-                    "title": "",
-                    "description": ""
-                },
-                "zh": {
-                    "title": "",
-                    "description": ""
-                }
-            }
-        },
-
-        {
-            "id": "experience_item_4",
-            "place": "Coursera",
-            "period": ["2022/10", "2023/11"],
-            "locales": {
-                "en": {
-                    "title": "UX Design Full-Time Professor",
-                    "description": "Leveraged my expertise in UX design to educate and inspire students in the art of user-centered design principles. Conducted user studies, analyzed data, and guided students in applying theoretical knowledge to practical projects, empowering the next generation of UX designers."
-                },
-                "es": {
-                    "title": "",
-                    "description": ""
-                },
-                "fr": {
-                    "title": "",
-                    "description": ""
-                },
-                "zh": {
-                    "title": "",
-                    "description": ""
+                    "title": "Senior Software Engineer ",
+                    "description": "Lead a team of 8 software engineers in the development of a high-traffic e-commerce platform, resulting in a 30% increase in user engagement.  Spearheaded the migration of legacy systems to cloud-based architecture, enhancing system scalability and reducing operational costs by 25%."
                 }
             }
         }
-    ]
+    ],
+    "locales": {
+        "en": {
+            "description": "A look into my work experience and career journey.",
+            "title": "<span class='text-primary'>Professional</span> Experience"
+        }
+    }
 }

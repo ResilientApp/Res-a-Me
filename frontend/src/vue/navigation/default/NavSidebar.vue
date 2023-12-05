@@ -39,14 +39,14 @@
           v-if="checkSession()"
           variant="flat"
           @click="logout"
-          color="#9716f1"
+          color="#1a73e8"
           >Logout</v-btn
         >
         <v-btn
           v-if="!checkSession()"
           variant="flat"
           @click="router.push('/login')"
-          color="#9716f1"
+          color="#1a73e8"
           >Login</v-btn
         >
       </v-col>

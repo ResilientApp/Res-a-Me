@@ -292,7 +292,7 @@ export default {
 
 <style>
 body {
-  background-color: #fcfcfc !important;
+  background-color: #f0f3f6 !important;
   font: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
     Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif !important;
   -webkit-font-smoothing: antialiased !important;

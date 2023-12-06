@@ -117,13 +117,34 @@ export default {
                 credentials: 'include'
             })
                 .then((response) => response.json())
-                .then((json) => {
+                .then(async (json) => {
                     if (json.status === 200) {
                         console.log("Login successful")
                         console.log(json)
                         sessionStorage.setItem("access_token", json['access_token']);
                         sessionStorage.setItem("refresh_token", json['refresh_token']);
-                        this.$router.push('/home');
+                        try {
+                            const updateResponse = await fetch("http://127.0.0.1:3033/updateResume", {
+                            method: "POST",
+                            headers: {
+                                "Content-type": "application/json; charset=UTF-8",
+                            },
+                            body: JSON.stringify({
+                                email: this.email,
+                            }),
+                            });
+                            const json = await updateResponse.json();
+                            if (json.status !== 200) {
+                            console.error("Error fetching user resume: ", json.message);
+                            }
+                            this.$router.push({
+                                path: "/home"
+                            })
+                            .then(() => window.location.reload(true))
+                        }
+                        catch (error){
+                            console.error("Error fetching user resume: ", error);
+                        }
                     }
                     else {
                         this.errorMessage = "Login failed. Please try again.";

@@ -2,27 +2,30 @@
   <div class="m-5">
     <v-row>
       <v-col align="center">
-        <p class="mt-3 mb-3 " style=" color: black; font-weight: 900;font-size: 4rem;line-height: 1.2;font-family: Saira, sans-serif">
-        Edit your information here!
-        <v-btn @click="returnButton()" class="ml-5 mb-2">
-            <v-icon
-              size="xx-large"
-              icon="mdi-file-account"
-            ></v-icon>
+        <p class="mt-3 mb-3 "
+          style=" color: black; font-weight: 900;font-size: 4rem;line-height: 1.2;font-family: Saira, sans-serif">
+          Edit your information here!
+          <v-btn @click="returnButton()" class="ml-5 mb-2">
+            <v-icon size="xx-large" icon="mdi-file-account"></v-icon>
             back to resume
-        </v-btn>
+          </v-btn>
         </p>
       </v-col>
     </v-row>
-    
+
     <v-expansion-panels v-model="panel">
-        <About :about="about" @save-about="handleSaveAbout"/>
-        <Education :educations="educations" @delete-edu="handleDeleteEdu" @add-edu="handleAddEdu" @save-edu="handleSaveEdu"/>
-        <Profession :professions="professions" @delete-pro="handleDeletePro" @add-pro="handleAddPro" @save-pro="handleSavePro"/>
-        <Skill :skills="skills" @delete-skill="handleDeleteSkill" @add-skill="handleAddSkill" @save-skill="handleSaveSkill"></Skill>
-        <Certification :certifications="certifications" @delete-cer="handleDeleteCer" @add-cer="handleAddCer" @save-cer="handleSaveCer"/>
-        <Award :awards="awards" @delete-award="handleDeleteAward" @add-award="handleAddAward" @save-award="handleSaveAward"/>
-      </v-expansion-panels>
+      <About :about="about" @save-about="handleSaveAbout" />
+      <Education :educations="educations" @delete-edu="handleDeleteEdu" @add-edu="handleAddEdu"
+        @save-edu="handleSaveEdu" />
+      <Profession :professions="professions" @delete-pro="handleDeletePro" @add-pro="handleAddPro"
+        @save-pro="handleSavePro" />
+      <Skill :skills="skills" @delete-skill="handleDeleteSkill" @add-skill="handleAddSkill" @save-skill="handleSaveSkill">
+      </Skill>
+      <Certification :certifications="certifications" @delete-cer="handleDeleteCer" @add-cer="handleAddCer"
+        @save-cer="handleSaveCer" />
+      <Award :awards="awards" @delete-award="handleDeleteAward" @add-award="handleAddAward"
+        @save-award="handleSaveAward" />
+    </v-expansion-panels>
   </div>
 </template>
 
@@ -48,38 +51,38 @@ export default {
     Certification,
     Award,
   },
-  data:()=>({
-    panel:[0],
+  data: () => ({
+    panel: [0],
     defaultSkill: {
       id: 0,
       title: 'New skill',
       description: 'add your description'
     },
-    defaultEdu:{
-      id:0,
+    defaultEdu: {
+      id: 0,
       title: 'New diploma',
       schoolName: 'New shool name',
       startDate: '2023/01',
       endDate: '2023/12',
       description: 'add your description'
     },
-    defaultPro:{
-      id:0,
+    defaultPro: {
+      id: 0,
       title: 'New position',
       company: 'New company name',
       startDate: '2023/01',
       endDate: '2023/12',
       description: 'add your description'
     },
-    defaultCer:{
-      id:0,
+    defaultCer: {
+      id: 0,
       title: 'New certification',
       date: '2023/01',
       company_school: 'New company name or school name',
       description: 'add your description'
     },
-    defaultAward:{
-      id:0,
+    defaultAward: {
+      id: 0,
       title: 'New award',
       date: '2023/01',
       company_school: 'New company name or school name',
@@ -106,14 +109,14 @@ export default {
         // const skill_response = await axios.get('../../../data/sections/skills.json');
         // const skill_data = skill_response.data;
         const skill_response = await fetch("http://127.0.0.1:3033/loadResume", {
-                method: "POST",
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    "Access-Control-Allow-Origin": "*",
-                    "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
-                },
-                body :JSON.stringify({"category": "skills"}),
-            });
+          method: "POST",
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            "Access-Control-Allow-Origin": "*",
+            "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+          },
+          body: JSON.stringify({ "category": "skills" }),
+        });
         const skill_data = await skill_response.json();
         skill_data_old.value = skill_data; //for update JSON file
         const skill_transformedArray = skill_data.items.abilities.map((item, index) => {
@@ -131,25 +134,25 @@ export default {
         // const cover_response = await axios.get('../../../data/sections/cover.json');
         // const cover_data = cover_response.data;
         const cover_response = await fetch("http://127.0.0.1:3033/loadResume", {
-                method: "POST",
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    "Access-Control-Allow-Origin": "*",
-                    "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
-                },
-                body :JSON.stringify({"category": "cover"}),
-            });
+          method: "POST",
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            "Access-Control-Allow-Origin": "*",
+            "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+          },
+          body: JSON.stringify({ "category": "cover" }),
+        });
         const cover_data = await cover_response.json();
         cover_data_old.value = cover_data; //for update JSON file
         const profile_response = await fetch("http://127.0.0.1:3033/loadResume", {
-                method: "POST",
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    "Access-Control-Allow-Origin": "*",
-                    "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
-                },
-                body :JSON.stringify({"category": "profile"}),
-            });
+          method: "POST",
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            "Access-Control-Allow-Origin": "*",
+            "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+          },
+          body: JSON.stringify({ "category": "profile" }),
+        });
         const profile_data = await profile_response.json();
         // const profile_response = await axios.get('../../../data/info/profile.json');
         // const profile_data = profile_response.data;
@@ -169,23 +172,23 @@ export default {
         // const edu_response = await axios.get('../../../data/sections/education.json');
         // const edu_data = edu_response.data;
         const edu_response = await fetch("http://127.0.0.1:3033/loadResume", {
-                method: "POST",
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    "Access-Control-Allow-Origin": "*",
-                    "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
-                },
-                body :JSON.stringify({"category": "education"}),
-            });
+          method: "POST",
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            "Access-Control-Allow-Origin": "*",
+            "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+          },
+          body: JSON.stringify({ "category": "education" }),
+        });
         const edu_data = await edu_response.json();
         edu_data_old.value = edu_data; //for update JSON file
         const edu_transformedArray = edu_data.items.map((item) => {
-          return{
-              title: item.locales.en.title,
-              schoolName: item.place, 
-              startDate: item.period[0],
-              endDate: item.period[1],
-              description: item.locales.en.description,
+          return {
+            title: item.locales.en.title,
+            schoolName: item.place,
+            startDate: item.period[0],
+            endDate: item.period[1],
+            description: item.locales.en.description,
           }
 
         });
@@ -194,24 +197,24 @@ export default {
         // const pro_response = await axios.get('../../../data/sections/experience.json');
         // const pro_data = pro_response.data;
         const pro_response = await fetch("http://127.0.0.1:3033/loadResume", {
-                method: "POST",
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    "Access-Control-Allow-Origin": "*",
-                    "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
-                },
-                body :JSON.stringify({"category": "experience"}),
-            });
+          method: "POST",
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            "Access-Control-Allow-Origin": "*",
+            "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+          },
+          body: JSON.stringify({ "category": "experience" }),
+        });
         const pro_data = await pro_response.json();
         pro_data_old.value = pro_data; //for update JSON file
         const pro_transformedArray = pro_data.items.map((item) => {
-            return{
-                title: item.locales.en.title,
-                company: item.place, 
-                startDate: item.period[0],
-                endDate: item.period[1],
-                description: item.locales.en.description,
-            }
+          return {
+            title: item.locales.en.title,
+            company: item.place,
+            startDate: item.period[0],
+            endDate: item.period[1],
+            description: item.locales.en.description,
+          }
 
         });
         professions.value = pro_transformedArray
@@ -219,29 +222,29 @@ export default {
         // const achi_response = await axios.get('../../../data/sections/achievements.json');
         // const achi_data = achi_response.data;
         const achi_response = await fetch("http://127.0.0.1:3033/loadResume", {
-                method: "POST",
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    "Access-Control-Allow-Origin": "*",
-                    "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
-                },
-                body :JSON.stringify({"category": "achievements"}),
-            });
+          method: "POST",
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            "Access-Control-Allow-Origin": "*",
+            "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+          },
+          body: JSON.stringify({ "category": "achievements" }),
+        });
         const achi_data = await achi_response.json();
         achi_data_old.value = achi_data; //for update JSON file
         const certificationsArray = achi_data.items.certifications.map((certification) => {
-            return{
-                title: certification.locales.en.title,
-                date: certification.date,
-                company_school: certification.place, 
-                description: certification.locales.en.description,
-            }
+          return {
+            title: certification.locales.en.title,
+            date: certification.date,
+            company_school: certification.place,
+            description: certification.locales.en.description,
+          }
         });
         const awardsArray = achi_data.items.awards.map((award) => {
           return {
             title: award.locales.en.title,
             date: award.date,
-            company_school: award.place, 
+            company_school: award.place,
             description: award.locales.en.description,
           };
         });
@@ -251,7 +254,7 @@ export default {
         console.error('Error fetching data:', error);
       }
     });
-    
+
     return {
       skills,
       about,
@@ -267,31 +270,66 @@ export default {
       achi_data_old,
     };
   },
-  methods:{
-    async returnButton(){
-      if(confirm('Are you sure you want to leave this page? Make sure you have saved your changes!')){
+  methods: {
+    async returnButton() {
+      if (confirm('Are you sure you want to leave this page? Make sure you have saved your changes!')) {
+        let userEmail = "";
+
+        try {
+            const response = await fetch("http://127.0.0.1:3033/loadUser", {
+              method: "GET",
+              headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                Authorization: `Bearer ` + sessionStorage.getItem("access_token"),
+              },
+            });
+            const json = await response.json();
+            if (json.status === 200) {
+              userEmail = json.logged_in_as;
+            }
+          } catch (error) {
+            console.error("Error fetching user data:", error);
+        }
+
+        try {
+          const response = await fetch("http://127.0.0.1:3033/updateResume", {
+            method: "POST",
+            headers: {
+              "Content-type": "application/json; charset=UTF-8",
+            },
+            body: JSON.stringify({
+              email: userEmail,
+            }),
+          });
+          const json = await response.json();
+          if (json.status !== 200) {
+            console.error("Error fetching user resume: ", json.message);
+          }
+        } catch {
+          console.error("Error fetching user resume: ", error);
+        }
         this.$router.push({ path: '/home' })
-        .then(() =>  window.location.reload(true))
-        .then(() =>  window.location.reload(true))
+          .then(() => window.location.reload(true))
+          .then(() => window.location.reload(true))
       };
     },
-    handleDeleteSkill(index){
+    handleDeleteSkill(index) {
       if (confirm('Are you sure you want to delete this item?')) {
-          this.skills.splice(index, 1); 
-          this.skills.forEach((skill, idx) => {
-            skill.id = idx;
-          });
-        }
+        this.skills.splice(index, 1);
+        this.skills.forEach((skill, idx) => {
+          skill.id = idx;
+        });
+      }
     },
-    handleAddSkill(){
+    handleAddSkill() {
       const addObj = { ...this.defaultSkill };
       addObj.id = this.skills.length;
-      this.skills.push(addObj); 
+      this.skills.push(addObj);
       this.skills.forEach((skill, idx) => {
         skill.id = idx;
       });
     },
-    handleSaveSkill(skills){
+    handleSaveSkill(skills) {
       this.skills = skills;
       this.skill_data_old.items.abilities = [];
       for (let i = 0; i < this.skills.length; i++) {
@@ -309,16 +347,16 @@ export default {
         });
       }
       fetch("http://127.0.0.1:3033/editResume", {
-                method: "POST",
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    "Access-Control-Allow-Origin": "*",
-                    "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
-                },
-                body :JSON.stringify({"category": "skills","data": JSON.stringify(this.skill_data_old)}),
-            });
+        method: "POST",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          "Access-Control-Allow-Origin": "*",
+          "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+        },
+        body: JSON.stringify({ "category": "skills", "data": JSON.stringify(this.skill_data_old) }),
+      });
     },
-    async handleSaveAbout(about){
+    async handleSaveAbout(about) {
       this.about = Object.assign({}, this.about, about);
       this.cover_data_old.locales.en.bio = this.about.description;
       this.profile_data_old.name = this.about.name;
@@ -327,210 +365,209 @@ export default {
       this.profile_data_old.contact.email.value = this.about.email;
       this.profile_data_old.contact.phone.valueShort = this.about.phone;
       await fetch("http://127.0.0.1:3033/editResume", {
-                method: "POST",
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    "Access-Control-Allow-Origin": "*",
-                    "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
-                },
-                body :JSON.stringify({"category": "cover","data": JSON.stringify(this.cover_data_old)}),
+        method: "POST",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          "Access-Control-Allow-Origin": "*",
+          "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+        },
+        body: JSON.stringify({ "category": "cover", "data": JSON.stringify(this.cover_data_old) }),
       });
       await fetch("http://127.0.0.1:3033/editResume", {
-                method: "POST",
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    "Access-Control-Allow-Origin": "*",
-                    "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
-                },
-                body :JSON.stringify({"category": "profile","data": JSON.stringify(this.profile_data_old)}),
+        method: "POST",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          "Access-Control-Allow-Origin": "*",
+          "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+        },
+        body: JSON.stringify({ "category": "profile", "data": JSON.stringify(this.profile_data_old) }),
       });
     },
-    handleDeleteEdu(index){
+    handleDeleteEdu(index) {
       if (confirm('Are you sure you want to delete this item?')) {
-          this.educations.splice(index, 1); // Modify the educations array in the parent component
-          this.educations.forEach((edu, idx) => {
-            edu.id = idx;
-          });
-        }
+        this.educations.splice(index, 1); // Modify the educations array in the parent component
+        this.educations.forEach((edu, idx) => {
+          edu.id = idx;
+        });
+      }
     },
-    handleAddEdu(){
+    handleAddEdu() {
       const addObj = { ...this.defaultEdu };
       addObj.id = this.educations.length;
-      this.educations.push(addObj); 
+      this.educations.push(addObj);
       this.educations.forEach((edu, idx) => {
         edu.id = idx;
       });
     },
-    handleSaveEdu(educations){
+    handleSaveEdu(educations) {
       this.educations = educations;
       // Clear existing items in edu_data
       this.edu_data_old.items = [];
       for (let i = 0; i < this.educations.length; i++) {
         const extractedItem = this.educations[i];
         this.edu_data_old.items.push({
-              id: extractedItem.id,
-              place: extractedItem.schoolName || '',
-              period: [extractedItem.startDate || '', extractedItem.endDate || ''],
-              locales: {
-                  en: {
-                      title: extractedItem.title || '',
-                      description: extractedItem.description || '',
-                  }
-              },
+          id: extractedItem.id,
+          place: extractedItem.schoolName || '',
+          period: [extractedItem.startDate || '', extractedItem.endDate || ''],
+          locales: {
+            en: {
+              title: extractedItem.title || '',
+              description: extractedItem.description || '',
+            }
+          },
         });
       }
       fetch("http://127.0.0.1:3033/editResume", {
-                method: "POST",
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    "Access-Control-Allow-Origin": "*",
-                    "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
-                },
-                body :JSON.stringify({"category": "education","data": JSON.stringify(this.edu_data_old)}),
-            });
+        method: "POST",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          "Access-Control-Allow-Origin": "*",
+          "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+        },
+        body: JSON.stringify({ "category": "education", "data": JSON.stringify(this.edu_data_old) }),
+      });
       // window.location.reload();
     },
-    handleDeletePro(index){
+    handleDeletePro(index) {
       if (confirm('Are you sure you want to delete this item?')) {
-          this.professions.splice(index, 1); 
-          this.professions.forEach((edu, idx) => {
-            edu.id = idx;
-          });
-        }
+        this.professions.splice(index, 1);
+        this.professions.forEach((edu, idx) => {
+          edu.id = idx;
+        });
+      }
     },
-    handleAddPro(){
+    handleAddPro() {
       const addObj = { ...this.defaultPro };
       addObj.id = this.professions.length;
-      this.professions.push(addObj); 
+      this.professions.push(addObj);
       this.professions.forEach((edu, idx) => {
         edu.id = idx;
       });
     },
-    handleSavePro(professions){
+    handleSavePro(professions) {
       this.professions = professions;
       this.pro_data_old.items = [];
       for (let i = 0; i < this.professions.length; i++) {
         const extractedItem = this.professions[i];
         this.pro_data_old.items.push({
-              id: extractedItem.id,
-              place: extractedItem.company || '',
-              period: [extractedItem.startDate || '', extractedItem.endDate || ''],
-              locales: {
-                  en: {
-                      title: extractedItem.title || '',
-                      description: extractedItem.description || '',
-                  }
-              },
+          id: extractedItem.id,
+          place: extractedItem.company || '',
+          period: [extractedItem.startDate || '', extractedItem.endDate || ''],
+          locales: {
+            en: {
+              title: extractedItem.title || '',
+              description: extractedItem.description || '',
+            }
+          },
         });
       }
       fetch("http://127.0.0.1:3033/editResume", {
-                method: "POST",
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    "Access-Control-Allow-Origin": "*",
-                    "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
-                },
-                body :JSON.stringify({"category": "experience","data": JSON.stringify(this.pro_data_old)}),
-            });
+        method: "POST",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          "Access-Control-Allow-Origin": "*",
+          "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+        },
+        body: JSON.stringify({ "category": "experience", "data": JSON.stringify(this.pro_data_old) }),
+      });
     },
-    handleDeleteCer(index){
+    handleDeleteCer(index) {
       if (confirm('Are you sure you want to delete this item?')) {
-          this.certifications.splice(index, 1); 
-          this.certifications.forEach((cer, idx) => {
-            cer.id = idx;
-          });
-        }
+        this.certifications.splice(index, 1);
+        this.certifications.forEach((cer, idx) => {
+          cer.id = idx;
+        });
+      }
     },
-    handleAddCer(){
+    handleAddCer() {
       const addObj = { ...this.defaultCer };
       addObj.id = this.certifications.length;
-      this.certifications.push(addObj); 
+      this.certifications.push(addObj);
       this.certifications.forEach((cer, idx) => {
         cer.id = idx;
       });
     },
-    async handleSaveCer(certifications){
+    async handleSaveCer(certifications) {
       this.certifications = certifications;
       this.achi_data_old.items.certifications = [];
       for (let i = 0; i < this.certifications.length; i++) {
         const extractedItem = this.certifications[i];
         this.achi_data_old.items.certifications.push({
-              id: extractedItem.id,
-              place: extractedItem.company_school || '',
-              date: extractedItem.date || '',
-              href: '',
-              locales: {
-                  en: {
-                      title: extractedItem.title || '',
-                      description: extractedItem.description || '',
-                  }
-              },
+          id: extractedItem.id,
+          place: extractedItem.company_school || '',
+          date: extractedItem.date || '',
+          href: '',
+          locales: {
+            en: {
+              title: extractedItem.title || '',
+              description: extractedItem.description || '',
+            }
+          },
         });
       }
       await fetch("http://127.0.0.1:3033/editResume", {
-                method: "POST",
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    "Access-Control-Allow-Origin": "*",
-                    "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
-                },
-                body :JSON.stringify({"category": "achievements","data": JSON.stringify(this.achi_data_old)}),
-            });
+        method: "POST",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          "Access-Control-Allow-Origin": "*",
+          "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+        },
+        body: JSON.stringify({ "category": "achievements", "data": JSON.stringify(this.achi_data_old) }),
+      });
     },
-    handleDeleteAward(index){
+    handleDeleteAward(index) {
       if (confirm('Are you sure you want to delete this item?')) {
-          this.awards.splice(index, 1); 
-          this.awards.forEach((award, idx) => {
-            award.id = idx;
-          });
-        }
+        this.awards.splice(index, 1);
+        this.awards.forEach((award, idx) => {
+          award.id = idx;
+        });
+      }
     },
-    handleAddAward(){
+    handleAddAward() {
       const addObj = { ...this.defaultAward };
       addObj.id = this.awards.length;
-      this.awards.push(addObj); 
+      this.awards.push(addObj);
       this.awards.forEach((award, idx) => {
         award.id = idx;
       });
     },
-    async handleSaveAward(awards){
+    async handleSaveAward(awards) {
       this.awards = awards;
       this.achi_data_old.items.awards = [];
       for (let i = 0; i < this.awards.length; i++) {
         const extractedItem = this.awards[i];
         this.achi_data_old.items.awards.push({
-              id: extractedItem.id,
-              place: extractedItem.company_school || '',
-              date: extractedItem.date || '',
-              href: '',
-              locales: {
-                  en: {
-                      title: extractedItem.title || '',
-                      description: extractedItem.description || '',
-                  }
-              },
+          id: extractedItem.id,
+          place: extractedItem.company_school || '',
+          date: extractedItem.date || '',
+          href: '',
+          locales: {
+            en: {
+              title: extractedItem.title || '',
+              description: extractedItem.description || '',
+            }
+          },
         });
       }
       await fetch("http://127.0.0.1:3033/editResume", {
-                method: "POST",
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    "Access-Control-Allow-Origin": "*",
-                    "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
-                },
-                body :JSON.stringify({"category": "achievements","data": JSON.stringify(this.achi_data_old)}),
-            });
+        method: "POST",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          "Access-Control-Allow-Origin": "*",
+          "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+        },
+        body: JSON.stringify({ "category": "achievements", "data": JSON.stringify(this.achi_data_old) }),
+      });
     },
 
   },
-  
+
 };
 
-  
+
 </script>
 
 <style>
-
 /* #app{
   background-color: ivory !important
 } */

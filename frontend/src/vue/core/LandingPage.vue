@@ -125,7 +125,7 @@
                 rel="noopener noreferer"
                 target="_blank"
                 width="112"
-                @click="this.$router.push('/home')"
+                @click="profileShortcutAction()"
               >
                 <v-avatar variant="tonal" class="mb-2" size="60">
                   <v-img :src="shortCutIcon"></v-img>
@@ -254,23 +254,99 @@ export default {
             error.message || "An error occurred. Please try again.";
         });
     },
-    search() {
-      // Route to resume page
-      if (this.query.email) {
+    async profileShortcutAction(){
+      try {
+        const response = await fetch("http://127.0.0.1:3033/updateResume", {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+          body: JSON.stringify({
+            email: this.userEmail,
+          }),
+        });
+        const json = await response.json();
+        if (json.status !== 200) {
+          console.error("Error fetching user resume: ", json.message);
+        }
         this.$router.push({
           path: "/home",
-          query: { query: this.query.email },
-        });
+        })
+        .then(() => window.location.reload(true))
+      }
+      catch(error) {
+        console.error("profileShortcutAction error ");
       }
     },
-    makeConntections() {
+    async search() {
+      // Route to resume page
+      var searchEmail = ""
+      if(this.query.email) {
+        searchEmail = this.query.email
+      }
+      else {
+        searchEmail = this.userEmail
+      }
+      
+      try {
+        const response = await fetch("http://127.0.0.1:3033/updateResume", {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+          body: JSON.stringify({
+            email: searchEmail,
+          }),
+        });
+        const json = await response.json();
+        if (json.status !== 200) {
+          console.error("Error fetching user resume: ", json.message);
+        }
+        if (this.query.email) {
+          this.$router.push({
+            path: "/home",
+            query: { query: this.query.email },
+          })
+          .then(() => window.location.reload(true))
+        }
+      }
+      catch(error) {
+        console.error("search error");
+      }
+    },
+    async makeConntections() {
       // Randomly select a person in the user list and route to resume page
-      const randomPerson =
-        this.people[Math.floor(Math.random() * this.people.length)];
-      this.$router.push({
-        path: "/home",
-        query: { query: randomPerson.email },
-      });
+      var email = this.userEmail;
+      var randomPerson = "";
+
+      while (email === this.userEmail) {
+        randomPerson = this.people[Math.floor(Math.random() * this.people.length)];
+        email = randomPerson.email;
+      }
+
+      try {
+        const response = await fetch("http://127.0.0.1:3033/updateResume", {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+          body: JSON.stringify({
+            email: randomPerson.email,
+          }),
+        });
+        const json = await response.json();
+        if (json.status !== 200) {
+          console.error("Error fetching user resume: ", json.message);
+        }
+        this.$router.push({
+          path: "/home",
+          query: { query: randomPerson.email },
+        })
+        .then(() => window.location.reload(true))
+      }
+      catch (error){
+        console.error("Error fetching user resume: ", error);
+      }
     },
   },
   data() {

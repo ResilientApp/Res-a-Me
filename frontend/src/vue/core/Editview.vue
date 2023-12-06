@@ -310,7 +310,7 @@ export default {
         }
         this.$router.push({ path: '/home' })
           .then(() => window.location.reload(true))
-          .then(() => window.location.reload(true))
+          // .then(() => window.location.reload(true))
       };
     },
     handleDeleteSkill(index) {

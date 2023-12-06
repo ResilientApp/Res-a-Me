@@ -22,7 +22,7 @@
                         <v-row v-for="row in 11" :key="'row-' + row" justify="center" align="center">
                             <v-col v-for="n in 3" :key="n" justify="center" align="center"></v-col>
                         </v-row>
-                        <v-card class="elevation-12" style="margin-right:200px">
+                        <v-card class="elevation-12">
                             <v-toolbar class="toolbar-banner">
                                 <v-toolbar-title class="toolbar-title">{{ isRegister ? stateObj.register.name + ' for ' :
                                     stateObj.login.name + ' to ' }} Res-a-Me</v-toolbar-title>
@@ -233,7 +233,6 @@ export default {
 .my-image {
   width: 3000%; /* or any specific pixel value */
   height: auto; /* maintain the aspect ratio */
-  margin-left: 200px;
   max-width: 500px; /* or any specific pixel value */
 }
 </style>

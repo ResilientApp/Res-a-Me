@@ -15,21 +15,21 @@
                 <v-col>
                     <v-text-field class="pa-2" v-model="about.name" :rules="[
                         () => !!about.name || 'This field is required',
-                        () => isNameValid() || 'Name must be at least 2 characters and less than 20 characters'
-                    ]" :counter="20" label="Name"></v-text-field>
+                        () => isNameValid() || 'Name must be at least 2 characters and less than 50 characters'
+                    ]" :counter="50" label="Name"></v-text-field>
                 </v-col>
                 <v-col>
                     <v-text-field class="pa-2" v-model="about.role" :rules="[
                         () => !!about.role || 'This field is required',
-                        () => isPositionValid() || 'Position must be at least 2 characters and less than 20 characters'
-                    ]" :counter="20" label="Job Title"></v-text-field>
+                        () => isPositionValid() || 'Position must be at least 2 characters and less than 100 characters'
+                    ]" :counter="100" label="Job Title"></v-text-field>
                 </v-col>
             </v-row>
             <v-row no-gutters>
                 <v-text-field class="pa-2" v-model="about.description" :rules="[
                     () => !!about.description || 'This field is required',
-                    () => isDescriptionValid() || 'Introduction must be less than 250 characters'
-                ]" :counter="250" label="Introduction"></v-text-field>
+                    () => isDescriptionValid() || 'Introduction must be less than 1000 characters'
+                ]" :counter="1000" label="Introduction"></v-text-field>
             </v-row>
             <div class="d-flex justify-center">
                 <form @submit.prevent="uploadImage">
@@ -121,13 +121,13 @@ export default {
         };
 
         const isNameValid = () => {
-            return !!props.about.name && props.about.name.length >= 2 && props.about.name.length <= 20;
+            return !!props.about.name && props.about.name.length >= 2 && props.about.name.length <= 50;
         };
         const isPositionValid = () => {
-            return !!props.about.role && props.about.role.length >= 2 && props.about.role.length <= 20;
+            return !!props.about.role && props.about.role.length >= 2 && props.about.role.length <= 100;
         };
         const isDescriptionValid = () => {
-            return !!props.about.description && props.about.description.length <= 250;
+            return !!props.about.description && props.about.description.length <= 1000;
         };
         const saveAbout = (about) => {
 

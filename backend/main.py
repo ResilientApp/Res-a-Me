@@ -145,7 +145,7 @@ def update_resume():
         if category == 'profile':
             with open(f"{target_dir_info}/{category}.json", "w") as json_file:
                 json.dump(source_dir[category], json_file, indent=4)
-        else if category == 'picture':
+        elif category == 'picture':
             filename = email + ".png"
             file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file = pickle.loads(source_dir[category])

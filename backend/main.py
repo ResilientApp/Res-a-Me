@@ -160,7 +160,7 @@ def update_resume():
 @jwt_required()
 def upload():
     def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in {'png, jpg, jpeg'}
+        return '.' in filename and filename.rsplit('.', 1)[1].lower() in {'png, jpg, jpeg'}
 
     email = get_jwt_identity()
     if 'image' not in request.files:

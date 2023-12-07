@@ -1,5 +1,5 @@
 import json
-import shutil
+import pickle
 import os
 from controller import getUserLogin, setUserLogin, getUserList, getUserResume, setUserResume, getUserInfoCategory, setUserInfoCategory, getUserInfoAll
 from flask import Flask, request, jsonify
@@ -90,7 +90,7 @@ def logout():
 @app.route('/loadResume', methods=['POST'])
 @jwt_required()
 def load_resume():
-    user_id = get_jwt_identity()
+    email = get_jwt_identity()
     response_data = request.get_json()
     category = response_data.get('category')
     
@@ -98,16 +98,16 @@ def load_resume():
     if not category:
         return jsonify(message = "Category is required", status = 400)
     try:
-        user_data = getUserInfoCategory(user_id,category)
+        user_data = getUserInfoCategory(email,category)
         data = user_data
         return jsonify(data)
     except FileNotFoundError:
-        return jsonify(message = f"{category} not found for {user_id}", status = 404)
+        return jsonify(message = f"{category} not found for {email}", status = 404)
 
 @app.route('/editResume', methods=['POST'])
 @jwt_required()
 def edit_resume():
-    user_id = get_jwt_identity()
+    email = get_jwt_identity()
     response_data = request.get_json()
     category = response_data.get('category')
     
@@ -116,10 +116,10 @@ def edit_resume():
         
     try:
         data = json.loads(response_data.get('data'))
-        setUserInfoCategory(user_id, category, data)
+        setUserInfoCategory(email, category, data)
         return jsonify(message = f"{category} updated successfully", status = 200)
     except FileNotFoundError:
-        return jsonify(message = f"{category} not found for {user_id}", status = 404)
+        return jsonify(message = f"{category} not found for {email}", status = 404)
         
 @app.route('/userList', methods=['GET'])
 def userList():
@@ -141,26 +141,28 @@ def update_resume():
     if not source_dir:
         return jsonify(message = "No resume found for this email", status = 404)
     
-    for data in source_dir.keys():
-        if data == 'profile':
-            with open(f"{target_dir_info}/{data}.json", "w") as json_file:
-                json.dump(source_dir[data], json_file, indent=4)
+    for category in source_dir.keys():
+        if category == 'profile':
+            with open(f"{target_dir_info}/{category}.json", "w") as json_file:
+                json.dump(source_dir[category], json_file, indent=4)
+        else if category == 'picture':
+            filename = email + ".png"
+            file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            file = pickle.loads(source_dir[category])
+            file.save(file_path)
         else:
-            with open(f"{target_dir_sections}/{data}.json", "w") as json_file:
-                json.dump(source_dir[data], json_file, indent=4)
+            with open(f"{target_dir_sections}/{category}.json", "w") as json_file:
+                json.dump(source_dir[category], json_file, indent=4)
                 
     return jsonify(message = "Files replaced successfully", status = 200)
-
-def allowed_file(filename):
-    return '.' in filename and \
-        filename.rsplit('.', 1)[1].lower() in {'png'}
 
 @app.route('/upload', methods=['POST'])
 @jwt_required()
 def upload():
-    print("Upload")
-    current_user_email = get_jwt_identity()
-    
+    def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in {'png, jpg, jpeg'}
+
+    email = get_jwt_identity()
     if 'image' not in request.files:
         return jsonify(message = "No file part", status=400)
 
@@ -170,11 +172,9 @@ def upload():
         return jsonify(message = "No selected file", status=400)
 
     if file and allowed_file(file.filename):
-        filename = current_user_email + ".png"
-        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        print(file_path)
-        file.save(file_path)
-        return jsonify(message="Upload successful", status=200, path=file_path)
+        data = pickle.dumps(file)
+        setUserInfoCategory(email, "picture", data)
+        return jsonify(message="Upload successful", status=200)
     return jsonify(message="File type not allowed", status=400)
 
 if __name__ == '__main__':

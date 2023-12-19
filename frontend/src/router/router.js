@@ -60,7 +60,7 @@ export function createAppRouter() {
         let isAuthenticated = false
 
         try {
-            const response = await fetch("http://127.0.0.1:3033/loadUser", {
+            const response = await fetch("https://res-a-me.resilientdb.com/loadUser", {
                 method: "GET",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
@@ -74,7 +74,7 @@ export function createAppRouter() {
             if (json.status === 200) {
                 isAuthenticated = true;
             } else if (json.msg === "Token has expired") {
-                const refreshResponse = await fetch("http://127.0.0.1:3033/refresh", {
+                const refreshResponse = await fetch("https://res-a-me.resilientdb.com/refresh", {
                     method: "POST",
                     headers: {
                         "Content-type": "application/json; charset=UTF-8",

@@ -58,7 +58,7 @@
         <v-img
           class="mx-auto mt-12 mb-16"
           max-width="340"
-          src="/images/icons/Res-A-Me.png"
+          src="./images/icons/Res-A-Me.png"
         ></v-img>
 
         <v-autocomplete
@@ -149,7 +149,7 @@ export default {
     document.getElementById("logoutButton").style.display = "none";
     document.getElementById("userNameDisplay").style.display = "none";
 
-    await fetch("http://127.0.0.1:3033/loadUser", {
+    await fetch("https://res-a-me.resilientdb.com/loadUser", {
       // Check if user is logged in
       method: "GET",
       headers: {
@@ -183,7 +183,7 @@ export default {
           error.message || "An error occurred. Please try again.";
       });
 
-    fetch("http://127.0.0.1:3033/userList", {
+    fetch("https://res-a-me.resilientdb.com/userList", {
       // Get the user list for the search bar
       method: "GET",
       headers: {
@@ -221,7 +221,7 @@ export default {
   methods: {
     logout() {
       const errorMessage = "";
-      fetch("http://127.0.0.1:3033/logout", {
+      fetch("https://res-a-me.resilientdb.com/logout", {
         method: "GET",
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -256,7 +256,7 @@ export default {
     },
     async profileShortcutAction(){
       try {
-        const response = await fetch("http://127.0.0.1:3033/updateResume", {
+        const response = await fetch("https://res-a-me.resilientdb.com/updateResume", {
           method: "POST",
           headers: {
             "Content-type": "application/json; charset=UTF-8",
@@ -289,7 +289,7 @@ export default {
       }
       
       try {
-        const response = await fetch("http://127.0.0.1:3033/updateResume", {
+        const response = await fetch("https://res-a-me.resilientdb.com/updateResume", {
           method: "POST",
           headers: {
             "Content-type": "application/json; charset=UTF-8",
@@ -325,7 +325,7 @@ export default {
       }
 
       try {
-        const response = await fetch("http://127.0.0.1:3033/updateResume", {
+        const response = await fetch("https://res-a-me.resilientdb.com/updateResume", {
           method: "POST",
           headers: {
             "Content-type": "application/json; charset=UTF-8",

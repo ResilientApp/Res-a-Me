@@ -11,7 +11,7 @@ Key features:
 - Enable users to search for other people profile.
 - Using Vite for faster build times and seamless integration.
 
-## Preview
+## Preview 
 
 ### 1. Screenshots [Replace with our own Screenshot]
 

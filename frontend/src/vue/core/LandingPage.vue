@@ -1,11 +1,32 @@
 <template>
   <v-app style="width: 100%; height: 100%">
+    <v-hover v-slot="{ hover }">
+      <v-btn
+        variant="plain"
+        density="compact"
+        href="https://tobyyu007.github.io/resame-about-page/"
+        :style="{
+          'position': 'fixed',
+          'z-index': '999',
+          'color': 'black',
+          'left': '20px',
+          'top': '27px',
+          'text-transform': 'none',
+          'letter-spacing': '0px',
+          'opacity': '1',
+          'text-decoration': hover ? 'underline' : 'none'
+        }"
+      >
+        About
+      </v-btn>
+    </v-hover>
+    
     <p
       style="
         position: fixed;
         z-index: 999;
         color: black;
-        left: 30px;
+        left: 40px;
         top: 27px;
         text-transform: none;
         letter-spacing: 0px;

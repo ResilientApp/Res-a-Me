@@ -107,7 +107,7 @@ export default {
                 return
             }
 
-            fetch("https://res-a-me.resilientdb.com/login", {
+            fetch("https://res-a-me-api.resilientdb.com/login", {
                 method: "POST",
                 body: JSON.stringify(userData),
                 headers: {
@@ -124,7 +124,7 @@ export default {
                         sessionStorage.setItem("access_token", json['access_token']);
                         sessionStorage.setItem("refresh_token", json['refresh_token']);
                         try {
-                            const updateResponse = await fetch("https://res-a-me.resilientdb.com/updateResume", {
+                            const updateResponse = await fetch("https://res-a-me-api.resilientdb.com/updateResume", {
                             method: "POST",
                             headers: {
                                 "Content-type": "application/json; charset=UTF-8",
@@ -162,7 +162,7 @@ export default {
                     password: this.password
                 };
 
-                fetch("https://res-a-me.resilientdb.com/register", {
+                fetch("https://res-a-me-api.resilientdb.com/register", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json; charset=UTF-8"

@@ -2,29 +2,15 @@
     "items": [
         {
             "id": 0,
-            "place": "Digital Solutions LLC",
-            "period": [
-                "2018/06",
-                "2018/09"
-            ],
-            "locales": {
-                "en": {
-                    "title": "Software Engineer",
-                    "description": "Contributed to the development of a multi-platform mobile application used by 500,000+ users, focusing on backend development and database optimization. Collaborated in a cross-functional team to design and implement user-centric features, enhancing customer satisfaction ratings by 15%."
-                }
-            }
-        },
-        {
-            "id": 1,
-            "place": "Tech Innovations Inc.",
+            "place": "New company name",
             "period": [
                 "2023/01",
                 "2023/12"
             ],
             "locales": {
                 "en": {
-                    "title": "Senior Software Engineer ",
-                    "description": "Lead a team of 8 software engineers in the development of a high-traffic e-commerce platform, resulting in a 30% increase in user engagement.  Spearheaded the migration of legacy systems to cloud-based architecture, enhancing system scalability and reducing operational costs by 25%."
+                    "title": "New position",
+                    "description": "add your description"
                 }
             }
         }

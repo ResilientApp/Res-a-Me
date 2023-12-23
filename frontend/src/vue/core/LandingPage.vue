@@ -26,10 +26,11 @@
         position: fixed;
         z-index: 999;
         color: black;
-        left: 40px;
-        top: 27px;
+        right: 140px;
+        top: 28px;
         text-transform: none;
         letter-spacing: 0px;
+        font-size: 13px;
       "
       id="userNameDisplay"
     >

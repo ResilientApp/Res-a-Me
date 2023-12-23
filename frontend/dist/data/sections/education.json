@@ -2,29 +2,15 @@
     "items": [
         {
             "id": 0,
-            "place": "University of California, Davis",
+            "place": "New school name",
             "period": [
-                "2018/09",
-                "2022/06"
+                "2023/01",
+                "2023/12"
             ],
             "locales": {
                 "en": {
-                    "title": "Bachelor of Science in Computer Science",
-                    "description": "During his academic tenure, he honed his technical skills, specializing in software development, data structures, and algorithm design."
-                }
-            }
-        },
-        {
-            "id": 1,
-            "place": "University of California, Davis",
-            "period": [
-                "2022/09",
-                "2024/06"
-            ],
-            "locales": {
-                "en": {
-                    "title": "Master of Science in Computer Science",
-                    "description": "His education provided a solid foundation in both theoretical and practical aspects of computer science, preparing him for his successful career in software engineering."
+                    "title": "New diploma",
+                    "description": "add your description"
                 }
             }
         }

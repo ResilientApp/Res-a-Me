@@ -4,7 +4,7 @@
             "faIcon": "fa-solid fa-city",
             "href": "",
             "id": "address",
-            "value": "1440 Wake Forest Drive, Davis CA",
+            "value": "your address",
             "valueShort": "Cupertino, CA 01234"
         },
         "email": {
@@ -51,9 +51,9 @@
     "locales": {
         "en": {
             "credits": "Designed by <strong><a class='light' href='https://github.com/ryanbalieiro'>Ryan Balieiro</a></strong>",
-            "role": "Software Engineer"
+            "role": "SWE"
         }
     },
-    "name": "Jack Chen",
+    "name": "Toby",
     "profilePictureUrl": "images/pictures/avatar.png"
 }

@@ -108,7 +108,7 @@ export default {
         //skill data
         // const skill_response = await axios.get('../../../data/sections/skills.json');
         // const skill_data = skill_response.data;
-        const skill_response = await fetch("https://res-a-me-api.resilientdb.com/loadResume", {
+        const skill_response = await fetch("https://res-a-me-api.tobywinz.com/loadResume", {
           method: "POST",
           headers: {
             "Content-type": "application/json; charset=UTF-8",
@@ -133,7 +133,7 @@ export default {
         //about data
         // const cover_response = await axios.get('../../../data/sections/cover.json');
         // const cover_data = cover_response.data;
-        const cover_response = await fetch("https://res-a-me-api.resilientdb.com/loadResume", {
+        const cover_response = await fetch("https://res-a-me-api.tobywinz.com/loadResume", {
           method: "POST",
           headers: {
             "Content-type": "application/json; charset=UTF-8",
@@ -144,7 +144,7 @@ export default {
         });
         const cover_data = await cover_response.json();
         cover_data_old.value = cover_data; //for update JSON file
-        const profile_response = await fetch("https://res-a-me-api.resilientdb.com/loadResume", {
+        const profile_response = await fetch("https://res-a-me-api.tobywinz.com/loadResume", {
           method: "POST",
           headers: {
             "Content-type": "application/json; charset=UTF-8",
@@ -171,7 +171,7 @@ export default {
         //education data
         // const edu_response = await axios.get('../../../data/sections/education.json');
         // const edu_data = edu_response.data;
-        const edu_response = await fetch("https://res-a-me-api.resilientdb.com/loadResume", {
+        const edu_response = await fetch("https://res-a-me-api.tobywinz.com/loadResume", {
           method: "POST",
           headers: {
             "Content-type": "application/json; charset=UTF-8",
@@ -196,7 +196,7 @@ export default {
         //profession data
         // const pro_response = await axios.get('../../../data/sections/experience.json');
         // const pro_data = pro_response.data;
-        const pro_response = await fetch("https://res-a-me-api.resilientdb.com/loadResume", {
+        const pro_response = await fetch("https://res-a-me-api.tobywinz.com/loadResume", {
           method: "POST",
           headers: {
             "Content-type": "application/json; charset=UTF-8",
@@ -221,7 +221,7 @@ export default {
         //achievement and award data
         // const achi_response = await axios.get('../../../data/sections/achievements.json');
         // const achi_data = achi_response.data;
-        const achi_response = await fetch("https://res-a-me-api.resilientdb.com/loadResume", {
+        const achi_response = await fetch("https://res-a-me-api.tobywinz.com/loadResume", {
           method: "POST",
           headers: {
             "Content-type": "application/json; charset=UTF-8",
@@ -276,7 +276,7 @@ export default {
         let userEmail = "";
 
         try {
-            const response = await fetch("https://res-a-me-api.resilientdb.com/loadUser", {
+            const response = await fetch("https://res-a-me-api.tobywinz.com/loadUser", {
               method: "GET",
               headers: {
                 "Content-type": "application/json; charset=UTF-8",
@@ -292,7 +292,7 @@ export default {
         }
 
         try {
-          const response = await fetch("https://res-a-me-api.resilientdb.com/updateResume", {
+          const response = await fetch("https://res-a-me-api.tobywinz.com/updateResume", {
             method: "POST",
             headers: {
               "Content-type": "application/json; charset=UTF-8",
@@ -346,7 +346,7 @@ export default {
           }
         });
       }
-      fetch("https://res-a-me-api.resilientdb.com/editResume", {
+      fetch("https://res-a-me-api.tobywinz.com/editResume", {
         method: "POST",
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -365,7 +365,7 @@ export default {
       this.profile_data_old.locales.en.role = this.about.role;
       this.profile_data_old.contact.email.value = this.about.email;
       this.profile_data_old.contact.phone.valueShort = this.about.phone;
-      await fetch("https://res-a-me-api.resilientdb.com/editResume", {
+      await fetch("https://res-a-me-api.tobywinz.com/editResume", {
         method: "POST",
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -374,7 +374,7 @@ export default {
         },
         body: JSON.stringify({ "category": "cover", "data": JSON.stringify(this.cover_data_old) }),
       });
-      await fetch("https://res-a-me-api.resilientdb.com/editResume", {
+      await fetch("https://res-a-me-api.tobywinz.com/editResume", {
         method: "POST",
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -418,7 +418,7 @@ export default {
           },
         });
       }
-      fetch("https://res-a-me-api.resilientdb.com/editResume", {
+      fetch("https://res-a-me-api.tobywinz.com/editResume", {
         method: "POST",
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -462,7 +462,7 @@ export default {
           },
         });
       }
-      fetch("https://res-a-me-api.resilientdb.com/editResume", {
+      fetch("https://res-a-me-api.tobywinz.com/editResume", {
         method: "POST",
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -506,7 +506,7 @@ export default {
           },
         });
       }
-      await fetch("https://res-a-me-api.resilientdb.com/editResume", {
+      await fetch("https://res-a-me-api.tobywinz.com/editResume", {
         method: "POST",
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -550,7 +550,7 @@ export default {
           },
         });
       }
-      await fetch("https://res-a-me-api.resilientdb.com/editResume", {
+      await fetch("https://res-a-me-api.tobywinz.com/editResume", {
         method: "POST",
         headers: {
           "Content-type": "application/json; charset=UTF-8",

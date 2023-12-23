@@ -183,10 +183,10 @@ export default {
         if (json.status === 200) {
           // User is logged in
           this.userEmail = json.logged_in_as;
-          fetch(`/images/pictures/${this.userEmail}.png`)
+          fetch(`https://res-a-me-api.tobywinz.com/static/images/${this.userEmail}.png`)
             .then(response => {
               if(response.ok) {
-                  this.shortCutIcon = `/images/pictures/${this.userEmail}.png`;
+                  this.shortCutIcon = `https://res-a-me-api.tobywinz.com/static/images/${this.userEmail}.png`;
               } else {
                   this.shortCutIcon = `/images/pictures/avatar.png`;
               }
@@ -219,10 +219,10 @@ export default {
             document.getElementById("userNameDisplay").style.display = "block";
           }
           var avatar = "";
-          fetch(`/images/pictures/${json.user_list[index].email}.png`)
+          fetch(`https://res-a-me-api.tobywinz.com/static/images/${json.user_list[index].email}.png`)
             .then(response => {
               if(response.ok) {
-                  avatar = `/images/pictures/${json.user_list[index].email}.png`;
+                  avatar = `https://res-a-me-api.tobywinz.com/static/images/${json.user_list[index].email}.png`;
               } else {
                   avatar = `/images/pictures/avatar.png`;
               }

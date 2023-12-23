@@ -170,7 +170,7 @@ export default {
     document.getElementById("logoutButton").style.display = "none";
     document.getElementById("userNameDisplay").style.display = "none";
 
-    await fetch("https://res-a-me-api.resilientdb.com/loadUser", {
+    await fetch("https://res-a-me-api.tobywinz.com/loadUser", {
       // Check if user is logged in
       method: "GET",
       headers: {
@@ -204,7 +204,7 @@ export default {
           error.message || "An error occurred. Please try again.";
       });
 
-    fetch("https://res-a-me-api.resilientdb.com/userList", {
+    fetch("https://res-a-me-api.tobywinz.com/userList", {
       // Get the user list for the search bar
       method: "GET",
       headers: {
@@ -242,7 +242,7 @@ export default {
   methods: {
     logout() {
       const errorMessage = "";
-      fetch("https://res-a-me-api.resilientdb.com/logout", {
+      fetch("https://res-a-me-api.tobywinz.com/logout", {
         method: "GET",
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -277,7 +277,7 @@ export default {
     },
     async profileShortcutAction(){
       try {
-        const response = await fetch("https://res-a-me-api.resilientdb.com/updateResume", {
+        const response = await fetch("https://res-a-me-api.tobywinz.com/updateResume", {
           method: "POST",
           headers: {
             "Content-type": "application/json; charset=UTF-8",
@@ -310,7 +310,7 @@ export default {
       }
       
       try {
-        const response = await fetch("https://res-a-me-api.resilientdb.com/updateResume", {
+        const response = await fetch("https://res-a-me-api.tobywinz.com/updateResume", {
           method: "POST",
           headers: {
             "Content-type": "application/json; charset=UTF-8",
@@ -346,7 +346,7 @@ export default {
       }
 
       try {
-        const response = await fetch("https://res-a-me-api.resilientdb.com/updateResume", {
+        const response = await fetch("https://res-a-me-api.tobywinz.com/updateResume", {
           method: "POST",
           headers: {
             "Content-type": "application/json; charset=UTF-8",

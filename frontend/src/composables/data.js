@@ -175,7 +175,22 @@ export function useData() {
             sectionCategory['sectionIds'].push(sectionId)
 
             if(utils.isStringAJSONUrl(jsonPath)) {
-                section['content'] = await _loadJson(jsonPath)
+                var jD;
+                if (jsonPath.includes("skills")){
+                    const skill_response = await fetch("https://res-a-me-api.tobywinz.com/loadResume", {
+                        method: "POST",
+                        headers: {
+                            "Content-type": "application/json; charset=UTF-8",
+                            "Access-Control-Allow-Origin": "*",
+                            "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+                        },
+                        body: JSON.stringify({ "category": "skills" }),
+                        });
+                        jD = await skill_response.json();
+                }
+
+                section['content'] = jD;
+                // section['content'] = await _loadJson(jsonPath)  // 改這邊
             }
             else {
                 section['content'] = {}

@@ -47,8 +47,9 @@ You have to change the folder name for this repository because "-" is a problem 
     mv ResilientDB-GraphQL ResilientDB_GraphQL
 
 Then you should start the crow http service, which may take a few minutes at the first time.
-    
-    bazel build ResilientDB_GraphQL/service/http_server:crow_service_main
+
+    cd ResilientDB_GraphQL
+    bazel build service/http_server:crow_service_main
 
 ## Start the Backend server and the HTTP server
 

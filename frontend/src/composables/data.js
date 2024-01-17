@@ -69,10 +69,21 @@ export function useData() {
      */
     const fetchAll = async () => {
         const jPlaces = await _loadJson('./data/info/places.json')
-        const jProfile = await _loadJson('./data/info/profile.json')
+        // const jProfile = await _loadJson('./data/info/profile.json')
 
         _jsonData.places = jPlaces
-        _jsonData.profile = jProfile
+        const skill_response = await fetch("https://res-a-me-api.tobywinz.com/loadResume", {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                "Access-Control-Allow-Origin": "*",
+                "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+            },
+            body: JSON.stringify({ "category": "profile" }),
+            });
+            _jsonData.profile = await skill_response.json();
+            console.log("profile");
+            console.log(_jsonData.profile);
         _progressData.loadedFiles = 5
 
         await _loadSections()
@@ -187,7 +198,86 @@ export function useData() {
                         body: JSON.stringify({ "category": "skills" }),
                         });
                         jD = await skill_response.json();
+                        console.log("skills");
+                        console.log(jD);
                 }
+
+                else if (jsonPath.includes("cover")){
+                    const skill_response = await fetch("https://res-a-me-api.tobywinz.com/loadResume", {
+                        method: "POST",
+                        headers: {
+                            "Content-type": "application/json; charset=UTF-8",
+                            "Access-Control-Allow-Origin": "*",
+                            "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+                        },
+                        body: JSON.stringify({ "category": "cover" }),
+                        });
+                        jD = await skill_response.json();
+                        console.log("cover");
+                        console.log(jD);
+                }
+
+                else if (jsonPath.includes("profile")){
+                    const skill_response = await fetch("https://res-a-me-api.tobywinz.com/loadResume", {
+                        method: "POST",
+                        headers: {
+                            "Content-type": "application/json; charset=UTF-8",
+                            "Access-Control-Allow-Origin": "*",
+                            "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+                        },
+                        body: JSON.stringify({ "category": "profile" }),
+                        });
+                        jD = await skill_response.json();
+                        console.log("profile");
+                        console.log(jD);
+                }
+
+
+                else if (jsonPath.includes("education")){
+                    const skill_response = await fetch("https://res-a-me-api.tobywinz.com/loadResume", {
+                        method: "POST",
+                        headers: {
+                            "Content-type": "application/json; charset=UTF-8",
+                            "Access-Control-Allow-Origin": "*",
+                            "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+                        },
+                        body: JSON.stringify({ "category": "education" }),
+                        });
+                        jD = await skill_response.json();
+                        console.log("education");
+                        console.log(jD);
+                }
+
+                else if (jsonPath.includes("experience")){
+                    const skill_response = await fetch("https://res-a-me-api.tobywinz.com/loadResume", {
+                        method: "POST",
+                        headers: {
+                            "Content-type": "application/json; charset=UTF-8",
+                            "Access-Control-Allow-Origin": "*",
+                            "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+                        },
+                        body: JSON.stringify({ "category": "experience" }),
+                        });
+                        jD = await skill_response.json();
+                        console.log("experience");
+                        console.log(jD);
+                }
+
+                else if (jsonPath.includes("achievements")){
+                    const skill_response = await fetch("https://res-a-me-api.tobywinz.com/loadResume", {
+                        method: "POST",
+                        headers: {
+                            "Content-type": "application/json; charset=UTF-8",
+                            "Access-Control-Allow-Origin": "*",
+                            "Authorization": `Bearer ` + sessionStorage.getItem('access_token'),
+                        },
+                        body: JSON.stringify({ "category": "achievements" }),
+                        });
+                        jD = await skill_response.json();
+                        console.log("achievements");
+                        console.log(jD);
+                }
+
 
                 section['content'] = jD;
                 // section['content'] = await _loadJson(jsonPath)  // 改這邊

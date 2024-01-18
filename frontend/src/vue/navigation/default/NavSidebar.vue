@@ -92,7 +92,7 @@ async function fetchProfileData() {
   } else {
     // If the user has logged in
     try {
-      const response = await fetch("http://127.0.0.1:3033/loadUser", {
+      const response = await fetch("https://res-a-me-api.tobywinz.com/loadUser", {
         method: "GET",
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -111,7 +111,7 @@ async function fetchProfileData() {
 
   // Update resume to show current user's
   try {
-    const response = await fetch("http://127.0.0.1:3033/updateResume", {
+    const response = await fetch("https://res-a-me-api.tobywinz.com/updateResume", {
       method: "POST",
       headers: {
         "Content-type": "application/json; charset=UTF-8",
@@ -167,7 +167,7 @@ const checkSession = () => {
 };
 
 const logout = () => {
-  fetch("http://127.0.0.1:3033/logout", {
+  fetch("https://res-a-me-api.tobywinz.com/logout", {
     method: "GET",
     headers: {
       "Content-type": "application/json; charset=UTF-8",

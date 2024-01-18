@@ -2,13 +2,14 @@
     "items": {
         "awards": [
             {
-                "place": "Apache",
-                "date": "2020/01",
+                "id": 0,
+                "place": "New company name or school name",
+                "date": "2023/01",
                 "href": "",
                 "locales": {
                     "en": {
-                        "title": "OpenSource Contributions",
-                        "description": "Contributed to several open-source projects, including enhancements to Apache Kafka."
+                        "title": "New award",
+                        "description": "add your description"
                     }
                 }
             }
@@ -16,25 +17,13 @@
         "certifications": [
             {
                 "id": 0,
-                "place": "Amazon",
-                "date": "2022/01",
-                "href": "",
-                "locales": {
-                    "en": {
-                        "title": "Certified AWS Solutions Architect",
-                        "description": "his certification demonstrates Jack Chen's proficiency in designing, deploying, and managing applications on the Amazon Web Services (AWS) platform. "
-                    }
-                }
-            },
-            {
-                "id": 1,
-                "place": "Scrum",
+                "place": "New company name or school name",
                 "date": "2023/01",
                 "href": "",
                 "locales": {
                     "en": {
-                        "title": "Professional Scrum Master (PSM I)",
-                        "description": "This certification highlights his skills in facilitating Scrum ceremonies, managing team dynamics, and ensuring seamless collaboration and project delivery within Agile frameworks."
+                        "title": "New certification",
+                        "description": "add your description"
                     }
                 }
             }

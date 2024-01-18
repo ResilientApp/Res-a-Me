@@ -26,5 +26,5 @@
         }
     ],
 
-    "preloaderEnabled": true
+    "preloaderEnabled": false
 }

@@ -2,7 +2,7 @@ import json
 import shutil
 import os
 from controller import getUserLogin, setUserLogin, getUserList, getUserResume, setUserResume, getUserInfoCategory, setUserInfoCategory, getUserInfoAll
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, url_for
 from flask_jwt_extended import create_access_token, create_refresh_token, get_jwt_identity, jwt_required, JWTManager
 from flask_cors import CORS
 from datetime import timedelta
@@ -18,7 +18,7 @@ jwt = JWTManager(app)
 
 
 # Setup the image upload folder
-app.config['UPLOAD_FOLDER'] = "../frontend/public/images/pictures"
+app.config['UPLOAD_FOLDER'] = "./images"
 
 CORS(app, supports_credentials=True)
 
@@ -170,13 +170,12 @@ def upload():
         return jsonify(message = "No selected file", status=400)
 
     if file and allowed_file(file.filename):
-        filename = current_user_email + ".png"
-        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        print(file_path)
-        file.save(file_path)
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], current_user_email + ".png")
+        file.save(os.path.join('./static/', file_path))
+        image_url = url_for('static', filename=file_path, _external=True)
         return jsonify(message="Upload successful", status=200, path=file_path)
     return jsonify(message="File type not allowed", status=400)
 
 if __name__ == '__main__':
-    app.run(debug=True, port = 3033)
+    app.run(debug=True, port = 3033, host="0.0.0.0")
     

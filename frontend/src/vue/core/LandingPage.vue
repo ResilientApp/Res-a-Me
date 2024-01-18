@@ -1,14 +1,36 @@
 <template>
   <v-app style="width: 100%; height: 100%">
+    <v-hover v-slot="{ hover }">
+      <v-btn
+        variant="plain"
+        density="compact"
+        href="https://tobyyu007.github.io/resame-about-page/"
+        :style="{
+          'position': 'fixed',
+          'z-index': '999',
+          'color': 'black',
+          'left': '20px',
+          'top': '27px',
+          'text-transform': 'none',
+          'letter-spacing': '0px',
+          'opacity': '1',
+          'text-decoration': hover ? 'underline' : 'none'
+        }"
+      >
+        About
+      </v-btn>
+    </v-hover>
+    
     <p
       style="
         position: fixed;
         z-index: 999;
         color: black;
-        left: 30px;
-        top: 27px;
+        right: 140px;
+        top: 28px;
         text-transform: none;
         letter-spacing: 0px;
+        font-size: 13px;
       "
       id="userNameDisplay"
     >
@@ -58,7 +80,7 @@
         <v-img
           class="mx-auto mt-12 mb-16"
           max-width="340"
-          src="/images/icons/Res-A-Me.png"
+          src="./images/icons/Res-A-Me.png"
         ></v-img>
 
         <v-autocomplete
@@ -149,7 +171,7 @@ export default {
     document.getElementById("logoutButton").style.display = "none";
     document.getElementById("userNameDisplay").style.display = "none";
 
-    await fetch("http://127.0.0.1:3033/loadUser", {
+    await fetch("https://res-a-me-api.resilientdb.com/loadUser", {
       // Check if user is logged in
       method: "GET",
       headers: {
@@ -162,10 +184,10 @@ export default {
         if (json.status === 200) {
           // User is logged in
           this.userEmail = json.logged_in_as;
-          fetch(`/images/pictures/${this.userEmail}.png`)
+          fetch(`https://res-a-me-api.resilientdb.com/static/images/${this.userEmail}.png`)
             .then(response => {
               if(response.ok) {
-                  this.shortCutIcon = `/images/pictures/${this.userEmail}.png`;
+                  this.shortCutIcon = `https://res-a-me-api.resilientdb.com/static/images/${this.userEmail}.png`;
               } else {
                   this.shortCutIcon = `/images/pictures/avatar.png`;
               }
@@ -183,7 +205,7 @@ export default {
           error.message || "An error occurred. Please try again.";
       });
 
-    fetch("http://127.0.0.1:3033/userList", {
+    fetch("https://res-a-me-api.resilientdb.com/userList", {
       // Get the user list for the search bar
       method: "GET",
       headers: {
@@ -198,10 +220,10 @@ export default {
             document.getElementById("userNameDisplay").style.display = "block";
           }
           var avatar = "";
-          fetch(`/images/pictures/${json.user_list[index].email}.png`)
+          fetch(`https://res-a-me-api.resilientdb.com/static/images/${json.user_list[index].email}.png`)
             .then(response => {
               if(response.ok) {
-                  avatar = `/images/pictures/${json.user_list[index].email}.png`;
+                  avatar = `https://res-a-me-api.resilientdb.com/static/images/${json.user_list[index].email}.png`;
               } else {
                   avatar = `/images/pictures/avatar.png`;
               }
@@ -221,7 +243,7 @@ export default {
   methods: {
     logout() {
       const errorMessage = "";
-      fetch("http://127.0.0.1:3033/logout", {
+      fetch("https://res-a-me-api.resilientdb.com/logout", {
         method: "GET",
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -256,7 +278,7 @@ export default {
     },
     async profileShortcutAction(){
       try {
-        const response = await fetch("http://127.0.0.1:3033/updateResume", {
+        const response = await fetch("https://res-a-me-api.resilientdb.com/updateResume", {
           method: "POST",
           headers: {
             "Content-type": "application/json; charset=UTF-8",
@@ -289,7 +311,7 @@ export default {
       }
       
       try {
-        const response = await fetch("http://127.0.0.1:3033/updateResume", {
+        const response = await fetch("https://res-a-me-api.resilientdb.com/updateResume", {
           method: "POST",
           headers: {
             "Content-type": "application/json; charset=UTF-8",
@@ -325,7 +347,7 @@ export default {
       }
 
       try {
-        const response = await fetch("http://127.0.0.1:3033/updateResume", {
+        const response = await fetch("https://res-a-me-api.resilientdb.com/updateResume", {
           method: "POST",
           headers: {
             "Content-type": "application/json; charset=UTF-8",

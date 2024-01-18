@@ -108,7 +108,7 @@ export default {
         //skill data
         // const skill_response = await axios.get('../../../data/sections/skills.json');
         // const skill_data = skill_response.data;
-        const skill_response = await fetch("http://127.0.0.1:3033/loadResume", {
+        const skill_response = await fetch("https://res-a-me-api.resilientdb.com/loadResume", {
           method: "POST",
           headers: {
             "Content-type": "application/json; charset=UTF-8",
@@ -133,7 +133,7 @@ export default {
         //about data
         // const cover_response = await axios.get('../../../data/sections/cover.json');
         // const cover_data = cover_response.data;
-        const cover_response = await fetch("http://127.0.0.1:3033/loadResume", {
+        const cover_response = await fetch("https://res-a-me-api.resilientdb.com/loadResume", {
           method: "POST",
           headers: {
             "Content-type": "application/json; charset=UTF-8",
@@ -144,7 +144,7 @@ export default {
         });
         const cover_data = await cover_response.json();
         cover_data_old.value = cover_data; //for update JSON file
-        const profile_response = await fetch("http://127.0.0.1:3033/loadResume", {
+        const profile_response = await fetch("https://res-a-me-api.resilientdb.com/loadResume", {
           method: "POST",
           headers: {
             "Content-type": "application/json; charset=UTF-8",
@@ -171,7 +171,7 @@ export default {
         //education data
         // const edu_response = await axios.get('../../../data/sections/education.json');
         // const edu_data = edu_response.data;
-        const edu_response = await fetch("http://127.0.0.1:3033/loadResume", {
+        const edu_response = await fetch("https://res-a-me-api.resilientdb.com/loadResume", {
           method: "POST",
           headers: {
             "Content-type": "application/json; charset=UTF-8",
@@ -196,7 +196,7 @@ export default {
         //profession data
         // const pro_response = await axios.get('../../../data/sections/experience.json');
         // const pro_data = pro_response.data;
-        const pro_response = await fetch("http://127.0.0.1:3033/loadResume", {
+        const pro_response = await fetch("https://res-a-me-api.resilientdb.com/loadResume", {
           method: "POST",
           headers: {
             "Content-type": "application/json; charset=UTF-8",
@@ -221,7 +221,7 @@ export default {
         //achievement and award data
         // const achi_response = await axios.get('../../../data/sections/achievements.json');
         // const achi_data = achi_response.data;
-        const achi_response = await fetch("http://127.0.0.1:3033/loadResume", {
+        const achi_response = await fetch("https://res-a-me-api.resilientdb.com/loadResume", {
           method: "POST",
           headers: {
             "Content-type": "application/json; charset=UTF-8",
@@ -276,7 +276,7 @@ export default {
         let userEmail = "";
 
         try {
-            const response = await fetch("http://127.0.0.1:3033/loadUser", {
+            const response = await fetch("https://res-a-me-api.resilientdb.com/loadUser", {
               method: "GET",
               headers: {
                 "Content-type": "application/json; charset=UTF-8",
@@ -292,7 +292,7 @@ export default {
         }
 
         try {
-          const response = await fetch("http://127.0.0.1:3033/updateResume", {
+          const response = await fetch("https://res-a-me-api.resilientdb.com/updateResume", {
             method: "POST",
             headers: {
               "Content-type": "application/json; charset=UTF-8",
@@ -346,7 +346,7 @@ export default {
           }
         });
       }
-      fetch("http://127.0.0.1:3033/editResume", {
+      fetch("https://res-a-me-api.resilientdb.com/editResume", {
         method: "POST",
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -358,13 +358,14 @@ export default {
     },
     async handleSaveAbout(about) {
       this.about = Object.assign({}, this.about, about);
+      console.log(this.cover_data_old.locales)
       this.cover_data_old.locales.en.bio = this.about.description;
       this.profile_data_old.name = this.about.name;
       this.profile_data_old.profilePictureUrl = this.about.profilePictureUrl;
       this.profile_data_old.locales.en.role = this.about.role;
       this.profile_data_old.contact.email.value = this.about.email;
       this.profile_data_old.contact.phone.valueShort = this.about.phone;
-      await fetch("http://127.0.0.1:3033/editResume", {
+      await fetch("https://res-a-me-api.resilientdb.com/editResume", {
         method: "POST",
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -373,7 +374,7 @@ export default {
         },
         body: JSON.stringify({ "category": "cover", "data": JSON.stringify(this.cover_data_old) }),
       });
-      await fetch("http://127.0.0.1:3033/editResume", {
+      await fetch("https://res-a-me-api.resilientdb.com/editResume", {
         method: "POST",
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -417,7 +418,7 @@ export default {
           },
         });
       }
-      fetch("http://127.0.0.1:3033/editResume", {
+      fetch("https://res-a-me-api.resilientdb.com/editResume", {
         method: "POST",
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -461,7 +462,7 @@ export default {
           },
         });
       }
-      fetch("http://127.0.0.1:3033/editResume", {
+      fetch("https://res-a-me-api.resilientdb.com/editResume", {
         method: "POST",
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -505,7 +506,7 @@ export default {
           },
         });
       }
-      await fetch("http://127.0.0.1:3033/editResume", {
+      await fetch("https://res-a-me-api.resilientdb.com/editResume", {
         method: "POST",
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -549,7 +550,7 @@ export default {
           },
         });
       }
-      await fetch("http://127.0.0.1:3033/editResume", {
+      await fetch("https://res-a-me-api.resilientdb.com/editResume", {
         method: "POST",
         headers: {
           "Content-type": "application/json; charset=UTF-8",

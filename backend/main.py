@@ -179,5 +179,5 @@ def upload():
     return jsonify(message="File type not allowed", status=400)
 
 if __name__ == '__main__':
-    app.run(debug=True, port = 3033)
+    app.run(debug=True, port = 3033, host="0.0.0.0")
     

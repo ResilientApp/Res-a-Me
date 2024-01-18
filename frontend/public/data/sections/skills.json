@@ -2,35 +2,13 @@
     "items": {
         "abilities": [
             {
-                "imageIconUrl": null,
-                "faIcon": null,
-                "value": null,
+                "imageIconUrl": "",
+                "faIcon": "",
+                "value": "",
                 "locales": {
                     "en": {
-                        "title": "Java, Python, JavaScript, and C++",
-                        "description": "Skilled in writing clean, efficient, and maintainable code in multiple languages, adapting to various project requirements"
-                    }
-                }
-            },
-            {
-                "imageIconUrl": null,
-                "faIcon": null,
-                "value": null,
-                "locales": {
-                    "en": {
-                        "title": "React and Node.js",
-                        "description": "Experienced in using React for front-end development, creating responsive and dynamic user interfaces."
-                    }
-                }
-            },
-            {
-                "imageIconUrl": null,
-                "faIcon": null,
-                "value": null,
-                "locales": {
-                    "en": {
-                        "title": "MySQL and MongoDB",
-                        "description": "Experienced in designing robust database schemas and performing complex queries."
+                        "title": "New skill",
+                        "description": "add your description"
                     }
                 }
             }

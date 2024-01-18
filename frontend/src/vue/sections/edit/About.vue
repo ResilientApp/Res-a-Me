@@ -156,7 +156,7 @@ export default {
             const formData = new FormData();
             formData.append('image', selectedFile.value);
 
-            fetch('http://127.0.0.1:3033/upload', {
+            fetch('https://res-a-me-api.tobywinz.com/upload', {
                 method: 'POST',
                 headers: {
                     Authorization: `Bearer ` + sessionStorage.getItem("access_token"),

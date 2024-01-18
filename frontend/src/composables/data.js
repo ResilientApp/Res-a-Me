@@ -72,7 +72,7 @@ export function useData() {
         // const jProfile = await _loadJson('./data/info/profile.json')
 
         _jsonData.places = jPlaces
-        const skill_response = await fetch("https://res-a-me-api.tobywinz.com/loadResume", {
+        const skill_response = await fetch("https://res-a-me-api.resilientdb.com/loadResume", {
             method: "POST",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
@@ -188,7 +188,7 @@ export function useData() {
             if(utils.isStringAJSONUrl(jsonPath)) {
                 var jD;
                 if (jsonPath.includes("skills")){
-                    const skill_response = await fetch("https://res-a-me-api.tobywinz.com/loadResume", {
+                    const skill_response = await fetch("https://res-a-me-api.resilientdb.com/loadResume", {
                         method: "POST",
                         headers: {
                             "Content-type": "application/json; charset=UTF-8",
@@ -203,7 +203,7 @@ export function useData() {
                 }
 
                 else if (jsonPath.includes("cover")){
-                    const skill_response = await fetch("https://res-a-me-api.tobywinz.com/loadResume", {
+                    const skill_response = await fetch("https://res-a-me-api.resilientdb.com/loadResume", {
                         method: "POST",
                         headers: {
                             "Content-type": "application/json; charset=UTF-8",
@@ -218,7 +218,7 @@ export function useData() {
                 }
 
                 else if (jsonPath.includes("profile")){
-                    const skill_response = await fetch("https://res-a-me-api.tobywinz.com/loadResume", {
+                    const skill_response = await fetch("https://res-a-me-api.resilientdb.com/loadResume", {
                         method: "POST",
                         headers: {
                             "Content-type": "application/json; charset=UTF-8",
@@ -234,7 +234,7 @@ export function useData() {
 
 
                 else if (jsonPath.includes("education")){
-                    const skill_response = await fetch("https://res-a-me-api.tobywinz.com/loadResume", {
+                    const skill_response = await fetch("https://res-a-me-api.resilientdb.com/loadResume", {
                         method: "POST",
                         headers: {
                             "Content-type": "application/json; charset=UTF-8",
@@ -249,7 +249,7 @@ export function useData() {
                 }
 
                 else if (jsonPath.includes("experience")){
-                    const skill_response = await fetch("https://res-a-me-api.tobywinz.com/loadResume", {
+                    const skill_response = await fetch("https://res-a-me-api.resilientdb.com/loadResume", {
                         method: "POST",
                         headers: {
                             "Content-type": "application/json; charset=UTF-8",
@@ -264,7 +264,7 @@ export function useData() {
                 }
 
                 else if (jsonPath.includes("achievements")){
-                    const skill_response = await fetch("https://res-a-me-api.tobywinz.com/loadResume", {
+                    const skill_response = await fetch("https://res-a-me-api.resilientdb.com/loadResume", {
                         method: "POST",
                         headers: {
                             "Content-type": "application/json; charset=UTF-8",

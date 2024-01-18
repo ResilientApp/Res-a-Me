@@ -156,7 +156,7 @@ export default {
             const formData = new FormData();
             formData.append('image', selectedFile.value);
 
-            fetch('https://res-a-me-api.tobywinz.com/upload', {
+            fetch('https://res-a-me-api.resilientdb.com/upload', {
                 method: 'POST',
                 headers: {
                     Authorization: `Bearer ` + sessionStorage.getItem("access_token"),

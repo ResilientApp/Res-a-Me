@@ -173,8 +173,6 @@ def upload():
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], current_user_email + ".png")
         file.save(os.path.join('./static/', file_path))
         image_url = url_for('static', filename=file_path, _external=True)
-        print(image_url)
-        # return jsonify(message = image_url, status = 200)
         return jsonify(message="Upload successful", status=200, path=file_path)
     return jsonify(message="File type not allowed", status=400)
 

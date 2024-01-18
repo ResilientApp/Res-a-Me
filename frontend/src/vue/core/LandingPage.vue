@@ -171,7 +171,7 @@ export default {
     document.getElementById("logoutButton").style.display = "none";
     document.getElementById("userNameDisplay").style.display = "none";
 
-    await fetch("https://res-a-me-api.tobywinz.com/loadUser", {
+    await fetch("https://res-a-me-api.resilientdb.com/loadUser", {
       // Check if user is logged in
       method: "GET",
       headers: {
@@ -184,10 +184,10 @@ export default {
         if (json.status === 200) {
           // User is logged in
           this.userEmail = json.logged_in_as;
-          fetch(`https://res-a-me-api.tobywinz.com/static/images/${this.userEmail}.png`)
+          fetch(`https://res-a-me-api.resilientdb.com/static/images/${this.userEmail}.png`)
             .then(response => {
               if(response.ok) {
-                  this.shortCutIcon = `https://res-a-me-api.tobywinz.com/static/images/${this.userEmail}.png`;
+                  this.shortCutIcon = `https://res-a-me-api.resilientdb.com/static/images/${this.userEmail}.png`;
               } else {
                   this.shortCutIcon = `/images/pictures/avatar.png`;
               }
@@ -205,7 +205,7 @@ export default {
           error.message || "An error occurred. Please try again.";
       });
 
-    fetch("https://res-a-me-api.tobywinz.com/userList", {
+    fetch("https://res-a-me-api.resilientdb.com/userList", {
       // Get the user list for the search bar
       method: "GET",
       headers: {
@@ -220,10 +220,10 @@ export default {
             document.getElementById("userNameDisplay").style.display = "block";
           }
           var avatar = "";
-          fetch(`https://res-a-me-api.tobywinz.com/static/images/${json.user_list[index].email}.png`)
+          fetch(`https://res-a-me-api.resilientdb.com/static/images/${json.user_list[index].email}.png`)
             .then(response => {
               if(response.ok) {
-                  avatar = `https://res-a-me-api.tobywinz.com/static/images/${json.user_list[index].email}.png`;
+                  avatar = `https://res-a-me-api.resilientdb.com/static/images/${json.user_list[index].email}.png`;
               } else {
                   avatar = `/images/pictures/avatar.png`;
               }
@@ -243,7 +243,7 @@ export default {
   methods: {
     logout() {
       const errorMessage = "";
-      fetch("https://res-a-me-api.tobywinz.com/logout", {
+      fetch("https://res-a-me-api.resilientdb.com/logout", {
         method: "GET",
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -278,7 +278,7 @@ export default {
     },
     async profileShortcutAction(){
       try {
-        const response = await fetch("https://res-a-me-api.tobywinz.com/updateResume", {
+        const response = await fetch("https://res-a-me-api.resilientdb.com/updateResume", {
           method: "POST",
           headers: {
             "Content-type": "application/json; charset=UTF-8",
@@ -311,7 +311,7 @@ export default {
       }
       
       try {
-        const response = await fetch("https://res-a-me-api.tobywinz.com/updateResume", {
+        const response = await fetch("https://res-a-me-api.resilientdb.com/updateResume", {
           method: "POST",
           headers: {
             "Content-type": "application/json; charset=UTF-8",
@@ -347,7 +347,7 @@ export default {
       }
 
       try {
-        const response = await fetch("https://res-a-me-api.tobywinz.com/updateResume", {
+        const response = await fetch("https://res-a-me-api.resilientdb.com/updateResume", {
           method: "POST",
           headers: {
             "Content-type": "application/json; charset=UTF-8",
